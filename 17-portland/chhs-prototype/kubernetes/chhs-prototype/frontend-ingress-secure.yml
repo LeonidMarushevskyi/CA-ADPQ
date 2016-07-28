@@ -1,0 +1,11 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: frontend-ingress-secure
+spec:
+  tls:
+    - secretName: tls
+  backend:
+    serviceName: frontend-internal
+    servicePort: 8080
+

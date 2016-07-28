@@ -1,0 +1,28 @@
+applicationName: CWS Parent Portal
+
+dataSourceFactory:
+  driverClass: org.postgresql.Driver
+  user: ${DB_USER}
+  password: ${DB_PASSWORD}
+  url: ${DB_JDBC_URL}
+  validationQuery: "/* MyService Health Check */ SELECT 1"
+  logValidationErrors: true
+  initialSize: 2
+  minSize: 2
+  maxSize: 8
+  minIdleTime: 1 minute
+
+flywayFactory:
+  sqlMigrationPrefix: v
+  locations:
+    - db/migrations
+
+
+api.chhs.url: https://chhs.data.ca.gov/resource/mffa-c6z5.json
+api.chhs.key: 81OubXhgPG3hny5Fdz1IgVACs
+api.chhs.queryParam: facility_zip
+
+encrypt.salt: fXY82541Kar14375
+
+swagger:
+  resourcePackage: com.tabordasolutions.cws.parentportal.resources

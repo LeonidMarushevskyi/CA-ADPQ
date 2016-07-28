@@ -1,0 +1,203 @@
+.case-worker-messenger__header-text {
+  color: $orange-1;
+}
+
+.case-worker-messenger__messages {
+  max-height: 500px;
+  overflow: auto;
+  padding: 0;
+  box-shadow: none;
+  border-top: 1px solid $gray-4;
+  border-bottom: 1px solid $gray-4;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.case-worker-messenger__messages-list {
+  margin: 0;
+}
+
+.case-worker-messenger__messages-empty {
+  margin: 15px;
+}
+
+.case-worker-messenger__messages-content {
+  padding: 0;
+}
+
+.case-worker-messenger__message {
+  border: 0;
+  border-top: 1px solid $gray-4;
+  position: static;
+  margin: 0;
+  border-radius: 0 !important;
+  padding: 15px;
+  line-height: 1.75rem;
+
+  &:first-child {
+    border: 0;
+  }
+}
+
+.case-worker-messenger__message-date{
+  font-weight: bold;
+}
+
+.case-worker-messenger__message-sender {
+  font-weight: bold;
+  color: $blue-3;
+}
+
+.case-worker-messenger__message-subject{
+  font-weight: bold;
+}
+
+.case-worker-messenger__message-contents {
+  white-space: pre-wrap;
+}
+
+.case-worker-messenger__viewer{
+  margin-top: 15px;
+}
+
+.case-worker-messenger__viewer-message-info{
+  background: $gray-3;
+  color: white;
+  padding: 15px;
+}
+
+.case-worker-messenger__viewer-sender{
+  font-weight: bold;
+}
+
+.case-worker-messenger__viewer-recepient{
+  font-weight: bold;
+}
+
+.case-worker-messenger__viewer-message-controls{
+  padding: 15px 10px;
+}
+
+.case-worker-messenger__viewer-control{
+  font-size: 1.4rem;
+  padding: 0 10px;
+  font-weight: bold;
+  border-right: 1px solid $gray-3;
+  line-height: 1.4rem;
+  color: $gray-2;
+  text-decoration: underline;
+
+  &:first-child{
+    border: 0;
+  }
+}
+
+.case-worker-messenger__viewer-message{
+  padding: 0 15px 15px;
+}
+
+.case-worker-messenger__viewer-control--primary{
+  color: $blue-3;
+}
+
+// Unfortunately, Bootstrap doesn't give much customization variables for modals.
+// Queue overrides!
+
+.case-worker-messenger__composer-title{
+  background: $gray-5;
+  padding: 15px;
+  color: $gray-1;
+}
+
+.case-worker-messenger__composer-content{
+  border-radius: 0;
+}
+
+.case-worker-messenger__composer-header{
+  border: 0;
+  padding-bottom: 0;
+}
+
+.case-worker-messenger__composer-input-addon{
+  border: 0;
+  background: none;
+  border-radius: 0;
+  font-weight: bold;
+}
+
+
+.case-worker-messenger__composer-input{
+  border: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  &:focus{
+    box-shadow: none;
+  }
+}
+
+.case-worker-messenger__composer-info-group{
+  border-bottom: 1px solid $gray-4;
+  margin-bottom: 0;
+  padding: 5px 0;
+
+  &:first-child{
+    border-top: 1px solid $gray-4;
+  }
+}
+
+.case-worker-messenger__composer-content-group{
+  margin: 15px 0;
+}
+
+.case-worker-messenger__composer-close{
+  margin: 5px 15px !important;
+  font-size: 5rem;
+  color: $gray-1;
+  opacity: 1;
+}
+
+.case-worker-messenger__compose-link {
+  margin-top: 25px;
+}
+
+.case-worker-messenger__composer-info {
+  margin-bottom: 15px;
+}
+
+.case-worker-messenger__composer-textarea {
+  display: block;
+  width: 100%;
+  border: 0;
+  box-shadow: none;
+
+  &:focus{
+    box-shadow: none;
+  }
+}
+
+.case-worker-messenger__composer-send{
+  // btn-primary color is now green. Override for this page.
+  background-color: $blue-2;
+  border-color: darken($blue-2, 5%);
+  padding-left: 30px;
+  padding-right: 30px;
+
+  &:hover {
+    background-color: darken($blue-2, 5%);
+  }
+
+  &:active, &:focus, &:disabled {
+    background-color: $blue-2;
+    border-color: darken($blue-2, 5%);
+  }
+}
+
+.case-worker-messenger__composer-cancel{
+  color: $blue-3;
+
+  &:hover, &:active, &:focus {
+    color: darken($blue-3,5%);
+  }
+}

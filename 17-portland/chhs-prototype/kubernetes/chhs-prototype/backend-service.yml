@@ -1,0 +1,15 @@
+# backend-service.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  labels:
+    name: chhs
+    tier: backend
+spec:
+  ports:
+    - port: 8090
+      targetPort: 8090
+  selector:
+    name: chhs
+    tier: backend

@@ -1,0 +1,98 @@
+@import 'style';
+.color-sample-wrap{
+  width:100%;
+  background: $Default;
+  border: 1px solid $BorderGray;
+  margin-bottom:30px;
+  text-align: center;
+  height:160px;
+  p{
+    line-height: 40px;
+    text-transform: uppercase;
+  }
+  .actual-color{
+    width:100%;
+    height:120px;
+    position: relative;
+    .darken{
+      width:50%;
+      height:120px;
+      position: absolute;
+      right:0;
+      top:0;
+      
+      
+    }
+  }
+  &.primary{
+    .actual-color{
+      background: $Primary;
+      .darken{
+        background: darken($Primary, 10);
+      }
+    }
+  }
+  &.success{
+    .actual-color{
+      background: $Success;
+      .darken{
+        background: darken($Success, 10);
+      }
+    }
+  }
+  &.warning{
+    .actual-color{
+      background: $Warning;
+      .darken{
+        background: darken($Warning, 10);
+      }
+    }
+  }
+  &.gray{
+    .actual-color{
+      background: $Gray;
+      .darken{
+        background: darken($Gray, 10);
+      }
+    }
+  }
+  &.dark{
+    .actual-color{
+      background: $Dark;
+      .darken{
+        background: darken($Dark, 10);
+      }
+    }
+  }
+  &.danger{
+    .actual-color{
+      background: $Danger;
+      .darken{
+        background: darken($Danger, 10);
+      }
+    }
+  }
+}
+body{
+  >.container{
+    margin-top: 60px;
+    position: relative;
+    border-left: 1px solid $Gray;
+  }
+}
+.section-title{
+  position: absolute;
+  left:-250px;
+  width:230px;
+  text-transform: uppercase;
+  text-align: right;
+}
+section{
+  padding: 20px;
+  border-bottom: 1px solid $BorderGray;
+}
+.buttons-wrapper{
+  .btn{
+    margin-bottom: 20px;
+  }
+}

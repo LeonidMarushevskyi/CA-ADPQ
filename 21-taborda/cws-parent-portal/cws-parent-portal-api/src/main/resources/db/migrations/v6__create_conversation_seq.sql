@@ -1,0 +1,1 @@
+CREATE SEQUENCE conversation_id_seq START 1;

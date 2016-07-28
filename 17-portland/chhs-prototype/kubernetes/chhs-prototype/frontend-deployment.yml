@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    name: chhs
+    tier: frontend
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: chhs
+        tier: frontend
+    spec:
+      containers:
+      - image: portlandwebworks/chhs-frontend:latest
+        name: webapp
+        ports:
+        - containerPort: 8080
+        env:
+          - name: BACKEND_URL
+            value: http://backend-service:8090
+          - name: SERVER_TOMCAT_REMOTE_IP_HEADER
+            value: x-forwarded-for
+          - name: SERVER_TOMCAT_PROTOCOL_HEADER
+            value: x-forwarded-proto
+          - name: SECURITY_REQUIRE_SSL
+            value: "true"
+          - name: SERVER_COMPRESSION_ENABLED
+            value: "true"
+          - name: SERVER_COMPRESSION_ENABLED_MIME_TYPES
+            value: application/json,application/xml,text/html,text/xml,text/plain

@@ -1,0 +1,37 @@
+.login {
+  margin-bottom: 100px;
+}
+
+.login__header {
+  padding: 30px;
+  color: white;
+  margin-bottom: 60px;
+  background: $green-2; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(-90deg, $green-2, $green-1); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(-90deg, $green-2, $green-1); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(-90deg, $green-2, $green-1); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(-90deg, $green-2, $green-1); /* Standard syntax */
+}
+
+.login__divider-line {
+  border-top: 1px solid black;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.login__divider-text {
+  background: white;
+  position: relative;
+  top: -1rem;
+  display: inline-block;
+  padding: 0 15px;
+}
+
+.login__create-account,
+.login__create-account:active,
+.login__create-account:hover,
+.login__create-account:focus {
+  color: $blue-2;
+  font-weight: bold;
+}

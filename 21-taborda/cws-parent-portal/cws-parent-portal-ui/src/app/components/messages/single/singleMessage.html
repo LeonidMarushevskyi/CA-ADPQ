@@ -1,0 +1,41 @@
+<div class="single-message">
+    <div class="sec-title">
+        <h4 class="pull-left primary">{{conversation.subject}}</h4>
+        <a href="javascript:void(0);" class="btn btn-default btn-wide btn-sm pull-right" ng-click="print()">
+            <span class="hide">Print</span> <i class="icon-print"></i></a>
+        <div class="clearfix"></div>
+        <hr>
+    </div>
+
+    <div class="messages-wrapper" id="messagesscreen">
+        <div class="message-body" ng-repeat="message in conversation.messages">
+            <div class="message-body-meta">
+                <div class="user-id">
+                    <div class="circle-img circle-img-xs pull-left">
+                        <img ng-src="{{message.sender.image}}" src="asset/img/profile-icon-400x380.png" alt="">
+                    </div>
+                    {{message.sender.name.first_name + " " + message.sender.name.last_name}}
+                </div>
+                <p class="sm date">{{message.date | date: 'yyyy MMM dd h:MMa'}}</p>
+                <div class="clearfix"></div>
+            </div>
+            <div class="message-content">
+                <p>{{message.content}}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="reply-form">
+        <form ng-submit="reply(replymessage)" name="replyform">
+            <label class="hide" for="replyMsgInput">Enter reply message</label>
+            <textarea id="replyMsgInput" class="form-control" id="reply" placeholder="Type a message" ng-model="replymessage.content" name='replycontent' ng-required="true"></textarea>
+            <div class="reply-btns">
+                <a href="javascript:void(0);" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" title="Prototype Note" data-content="Optional feature requested by users, not implemented for this prototype" class="btn btn-default pull-left"><i class="icon-paperclip"></i> Attach a file</a>
+                <input ng-hide="replymessage.content.length > 0" type="submit" class="btn btn-primary pull-right" value="Reply" disabled>
+                <input ng-show="replymessage.content.length > 0" type="submit" class="btn btn-primary pull-right" value="Reply">
+                <div class="clearfix"></div>
+            </div>
+        </form>
+    </div>
+</div>

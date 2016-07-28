@@ -1,0 +1,59 @@
+.site-banner {
+  position: relative;
+}
+
+.site-banner__image{
+  display: block;
+  width: 100%;
+}
+
+.site-banner__slogan{
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  margin-top: 0;
+  font-style: italic;
+  font-family: 'Open Sans', sans-serif;
+  color: $gray-1;
+
+  @media (min-width: 480px) {
+    top: 15%;
+    right: 5%;
+  }
+
+  @media (min-width: $screen-md) {
+    top: 20%;
+    right: 5%;
+  }
+
+  @media (min-width: $screen-lg) {
+    top: 30%;
+    right: 10%;
+  }
+}
+
+.site-banner__slogan-text{
+  font-size: 1.5rem;
+  line-height: 0.5rem;
+  font-weight: 600;
+
+  @media (min-width: 480px) {
+    font-size: 2rem;
+    line-height: 1rem;
+  }
+
+  @media (min-width: $screen-sm) {
+    font-size: 3rem;
+    line-height: 1.5rem;
+  }
+
+  @media (min-width: $screen-md) {
+    font-size: 4rem;
+    line-height: 2.5rem;
+  }
+
+  @media (min-width: $screen-lg) {
+    font-size: 5rem;
+    line-height: 3.5rem;
+  }
+}

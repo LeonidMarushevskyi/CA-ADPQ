@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require "erb"
+
+if ARGV.length != 2
+  $stderr.puts "Usage: parent-portal-ecs-task api_tag ui_tag"
+  exit(1)
+end
+
+class TaskDefinition
+  attr_reader :api_tag, :ui_tag
+
+  def initialize(api_tag, ui_tag)
+    @api_tag = api_tag
+    @ui_tag  = ui_tag
+  end
+
+  def render(io)
+    renderer = ERB.new(File.read(File.join(File.dirname(__FILE__), "parent-portal-ecs-task.json.erb")))
+    io.puts renderer.result(binding)
+  end
+end
+
+TaskDefinition.new(ARGV[0], ARGV[1]).render($stdout)

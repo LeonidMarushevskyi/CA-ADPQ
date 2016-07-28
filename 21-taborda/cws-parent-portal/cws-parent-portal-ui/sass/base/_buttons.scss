@@ -1,0 +1,74 @@
+.btn{
+  text-transform: uppercase;
+  border: none;
+  height: 50px;
+  padding:15px ;
+  border-radius: 0;
+  &.btn-lg{
+    height:60px;
+    padding: 18px 20px;
+  }
+  &.btn-sm{
+    height:40px;
+    padding:10px;
+  }
+  &.btn-xs{
+    height:30px;
+    padding:5px;
+  }
+  &.btn-wide{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+.btn{
+  &.btn-primary{
+    background: $Primary;
+    &:hover{
+      background: darken($Primary, 5);
+    }
+  }
+  &.btn-form-control{
+    background: $BrightGray;
+    border-bottom:1px solid $Primary;
+    &:hover{
+      color: $Gray;
+      background: darken($BrightGray, 5);
+    }
+  }
+  &.btn-default{
+    background: $Gray;
+    color: $Default;
+    &:hover{
+      color: $Default;
+      background: darken($Gray, 5);
+    }
+  }
+  &.btn-success{
+    background: $Success;
+    &:hover{
+      background: darken($Success, 5);
+    }
+  }
+  &.btn-warning{
+    background: $Warning;
+    &:hover{
+      background: darken($Warning, 5);
+    }
+  }
+
+  &.btn-danger{
+    background: $Danger;
+    &:hover{
+      background: darken($Danger, 5);
+    }
+  }
+  &.btn-dark{
+    background: $Dark;
+    color: $Default;
+    &:hover{
+      color: $Default;
+      background: darken($Dark, 5);
+    }
+  }
+}

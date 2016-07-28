@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    name: chhs
+    tier: backend
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: chhs
+        tier: backend
+    spec:
+      containers:
+      - image: portlandwebworks/chhs-backend:latest
+        name: backend
+        ports:
+        - containerPort: 8080
+        env:
+          - name: SPRING_DATASOURCE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: chhs
+                key: spring.datasource.username
+          - name: SPRING_DATASOURCE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: chhs
+                key: spring.datasource.password
+          - name: SPRING_DATASOURCE_URL
+            valueFrom:
+              secretKeyRef:
+                name: chhs
+                key: spring.datasource.url

@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button ng-show="$root.messagestab" ng-click="showMsgSidebar()" class="btn pull-left sidebar-btn"><span class="hide">menu</span> <i class="icon-navicon"></i></button>
+            <a class="navbar-brand" href="#/messages/inbox" ui-sref="messages.inbox"><img src="asset/img/logo.png" alt="CWS"></a>
+        </div>
+
+        <ul class="nav cws-navbar">
+            <li ng-if="!user"><a href="#/login" ui-sref="authentication.login">Have an account? <span class="primary">Log in here</span></a></li>
+            <li ng-if="user">
+
+                <a href="javascript:void(0);" class="dropdown-toggle" id="dropProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <div class="circle-img circle-img-xs">
+                        <img ng-src="{{user.image}}" src="asset/img/profile-icon-400x380.png" alt='{{user.name.first_name + " " + user.name.last_name}}'>
+                    </div>
+                    {{user.name.first_name + " " + user.name.last_name}}
+                    <i class="icon-caret-down"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropProfile">
+                    <li><a href="#/editprofile" ui-sref="editprofile"><i class="icon-cog"></i> Update Profile</a></li>
+                    <li><a href="javascript:void(0);"><i class="icon-support"></i> Help</a></li>
+                    <li><a href="javascript:void(0);" ng-click="logout()"><i class="icon-sign-out"></i> Log Out</a></li>
+                </ul>
+
+
+
+            </li>
+        </ul>
+
+    </div><!-- /.container -->
+</nav>

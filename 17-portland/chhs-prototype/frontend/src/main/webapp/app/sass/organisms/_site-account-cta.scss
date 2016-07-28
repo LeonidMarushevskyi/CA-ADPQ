@@ -1,0 +1,59 @@
+.site-account-cta{
+  @include clearfix;
+}
+
+.site-account-cta__cell {
+  color: white;
+  height: 75px;
+  white-space: nowrap;
+
+  &:before{
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+  }
+
+  @media (min-width: $screen-md) {
+    height: 112px;
+  }
+}
+
+.site-account-cta__action{
+  @media (min-width: $screen-md) {
+    padding: 0;
+  }
+
+  @media (min-width: $screen-lg) {
+    padding: 0 15px;
+  }
+}
+
+.site-account-cta__content{
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+}
+
+.site-account-cta__cell-link{
+  color: $blue-1;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.site-account-cta__action--register {
+  background-color: $blue-2;
+}
+
+.site-account-cta__description--register{
+  background-color: $blue-3;
+}
+
+.site-account-cta__action--login {
+  background-color: $green-1;
+}
+
+.site-account-cta__description--login {
+  background-color: $green-2;
+}

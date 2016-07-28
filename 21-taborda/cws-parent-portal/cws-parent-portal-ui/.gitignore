@@ -1,0 +1,11 @@
+archive
+node_modules
+npm-debug.log
+.DS_Store
+.DS_Store
+.idea/
+.idea
+dist
+app.js
+report.xml
+log/

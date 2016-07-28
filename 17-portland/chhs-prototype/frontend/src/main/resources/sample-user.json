@@ -1,0 +1,13 @@
+{
+	"firstName": "nick",
+	"lastName": "stuart",
+	"email": "nick@portlandwebworks.com",
+	"originalPassword": "Should not see me!",
+	"address": {
+		"city": "Portland",
+		"state": "ME",
+		"country": "USA",
+		"postalCode": "04101",
+		"street": "5 Milk Street"
+	}
+}

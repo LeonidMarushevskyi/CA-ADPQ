@@ -1,0 +1,78 @@
+.navbar{
+  height:50px;
+  background: $Default;
+  border-bottom: 1px solid $BorderGray;
+  box-shadow: none;
+  @include screen('tablet') {
+    height:80px;
+  }
+  .navbar-header{
+    float: left;
+    .navbar-brand{
+      margin:0;
+      width: 80px;
+      padding: 10px 0 10px 10px;
+      display: block;
+      @include screen('tablet') {
+        width: 140px;
+        padding: 12px 0;
+
+      }
+      img{
+        width:100%;
+      }
+    }
+
+  }
+  .cws-navbar{
+    float: right;
+
+     > li{
+      float: left;
+      .circle-img{
+        float: left;
+        margin-top: 20px;
+        margin-right: 10px;
+        @include screen('maxtablet') {
+          margin-top: 10px;
+          width:30px;
+          height:30px;
+        }
+      }
+
+      > a{
+        color: inherit;
+        opacity:0.8;
+        padding: 0;
+        line-height: 50px;
+        float: left;
+        position: relative;
+        transition:all .3s;
+        @include screen('tablet') {
+          line-height: 80px;
+          padding:0 15px;
+        }
+        &:hover{
+          opacity: 1;
+          background: none;
+        }
+      }
+    }
+  }
+}
+.sidebar-btn{
+  font-size:18px;
+  color: $Dark;
+  background: $BorderGray;
+  &:hover{
+    background: $Primary;
+    color: $Default;
+  }
+  &:focus, &:active{
+    outline: none;
+    box-shadow: none;
+  }
+  @include screen('tablet') {
+    display: none;
+  }
+}

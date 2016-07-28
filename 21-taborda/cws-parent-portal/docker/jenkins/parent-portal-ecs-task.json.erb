@@ -1,0 +1,83 @@
+{
+  "containerDefinitions": [
+    {
+      "memory": 500,
+      "portMappings": [
+        {
+          "hostPort": 8080,
+          "containerPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        {
+          "name": "DB_USER",
+          "value": "cpp"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "value": "ZQ6Y7TdsK"
+        },
+        {
+          "name": "DB_JDBC_URL",
+          "value": "jdbc:postgresql://cws-parent-portal.clb72r92gq7s.us-west-2.rds.amazonaws.com/cpp"
+        }
+      ],
+      "mountPoints": [
+        {
+          "containerPath": "/var/log/cws-parent-portal-api",
+          "sourceVolume": "parent-portal-api-log"
+        }
+      ],
+      "name": "parent-portal-api",
+      "image": "297353277856.dkr.ecr.us-west-2.amazonaws.com/parent-portal-api:<%= @api_tag %>",
+      "cpu": 512
+    },
+    {
+      "memory": 500,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "mountPoints": [
+        {
+          "containerPath": "/var/log/cws-parent-portal-ui",
+          "sourceVolume": "parent-portal-ui-log"
+        },
+        {
+          "containerPath": "/usr/local/share/cws-parent-portal-ui/env.js",
+          "sourceVolume": "parent-portal-ui-config-env"
+        }
+      ],
+      "name": "parent-portal-ui",
+      "image": "297353277856.dkr.ecr.us-west-2.amazonaws.com/parent-portal-ui:<%= @ui_tag %>",
+      "cpu": 512
+    }
+  ],
+  "volumes": [
+    {
+      "host": {
+        "sourcePath": "/var/lib/docker/volumes/cws-parent-portal-api/log"
+      },
+      "name": "parent-portal-api-log"
+    },
+    {
+      "host": {
+        "sourcePath": "/var/lib/docker/volumes/cws-parent-portal-ui/log"
+      },
+      "name": "parent-portal-ui-log"
+    },
+    {
+      "host": {
+        "sourcePath": "/var/lib/docker/volumes/cws-parent-portal-ui/config/env.js"
+      },
+      "name": "parent-portal-ui-config-env"
+    }
+  ],
+  "family": "parent-portal"
+}

@@ -1,0 +1,31 @@
+version: '2'
+services:
+  db:
+    image: "postgres:9.4"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=cpp
+      - POSTGRES_PASSWORD=password1
+  api:
+    image: "297353277856.dkr.ecr.us-west-2.amazonaws.com/parent-portal-api:latest"
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./api/log:/var/log/cws-parent-portal-api
+    environment:
+      - DB_USER=cpp
+      - DB_PASSWORD=password1
+      - DB_JDBC_URL=jdbc:postgresql://db/cpp
+    depends_on:
+      - db
+    links:
+      - db
+  ui:
+    image: "297353277856.dkr.ecr.us-west-2.amazonaws.com/parent-portal-ui:latest"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./ui/log:/var/log/cws-parent-portal-ui
+      - ./ui/env.js:/usr/local/share/cws-parent-portal-ui/env.js
+      - ./ui/nginx.conf:/usr/local/etc/cws-parent-portal-ui/nginx.conf

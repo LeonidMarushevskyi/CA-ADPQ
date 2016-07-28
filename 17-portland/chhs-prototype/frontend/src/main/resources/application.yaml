@@ -1,0 +1,11 @@
+
+spring:
+    cloud:
+
+ribbon:
+    eureka:
+        enabled: false
+
+backend:
+    url: http://localhost:8090
+        

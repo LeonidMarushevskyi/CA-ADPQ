@@ -1,0 +1,23 @@
+// Override Bootstrap variables here
+$body-bg: #FFF;
+
+// Override primary theme color
+$brand-primary: $green-1;
+
+// Override font
+$font-family-base: 'PT Sans', sans-serif;
+$font-size-base: 16px;
+
+// Set fonts directory
+$icon-font-path: "../../bower_components/bootstrap/fonts/";
+
+// Remove navbar margins that pull out the nav items to the edge, negating padding.
+$navbar-padding-horizontal: 0;
+
+// Largest site width is 1366. Override largest breakpoint and container size.
+$screen-lg: 1366px;
+$grid-gutter-width: 30px;
+$container-large-desktop: 1366px;
+
+// Navbar to collapse at md width
+$grid-float-breakpoint: 992px;

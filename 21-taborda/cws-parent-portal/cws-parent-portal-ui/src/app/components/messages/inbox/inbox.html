@@ -1,0 +1,28 @@
+<div class="sec-title messages-header">
+    <h4 class="pull-left">Inbox</h4>
+
+
+    <div class="col-sm-6 pull-right">
+        <div class="form-group">
+            <div class="input-group pull-right">
+                <label for="inboxSearch" class="hide">Search</label>
+                <input id="inboxSearch" type="text" class="form-control sm" placeholder="Search inbox" ng-show="showInboxSearchBox" ng-model="InboxSearchBox">
+                <a href="javascript:void(0)" ng-click="showInboxSearchBox = !showInboxSearchBox" class="btn btn-default input-group-addon btn-wide btn-sm" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" title="Prototype Note" data-content="Optional feature to search messages, not implemented for this prototype" >
+                    <span class="hide">search</span> <i class="icon-search"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <hr>
+</div>
+
+<div class="list-group list-group-custom inbox-list">
+    <h5 class="text-center" ng-if="!conversations.length > 0">No Messages Found</h5>
+    <a ng-repeat="conversation in conversations | orderBy: '-date'" href="#/messages/{{conversation.id}}" ui-sref="messages.single({id: conversation.id })" class="list-group-item new">
+        <h6 class="list-group-item-heading">{{getSender(conversation)}}<small class="time">{{conversation.date | date: 'yyyy-MMM-dd h:mma' }}</small></h6>
+        <p>{{conversation.subject}}</p>
+        <p class="sm">{{conversation.init_message | limitTo: 80}}</p>
+    </a>
+
+</div>

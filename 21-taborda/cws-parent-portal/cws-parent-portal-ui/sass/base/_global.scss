@@ -1,0 +1,64 @@
+body{
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, sans-serif;
+  background: $BrightGray;
+  color: darken($Gray, 10);
+}
+.loading{
+  width: 100%;
+  height:100%;
+  background: transparentize($Default, 0.1);
+  position: fixed;
+  left:0;
+  top:0;
+  z-index:99999999;
+  color: $Primary;
+  padding-top: 200px;
+  text-align: center;
+  display: none;
+  &.active{
+    display: block;
+  }
+  .loadbg{
+    width:  200px;
+    margin: 0 auto;
+    padding:50px;
+  }
+  .loadbg > p{
+    margin-top: 70px;
+  }
+  .circle{
+    width: 30px;
+    height: 30px;
+    border-radius:50%;
+    background: $Primary;
+    float: left;
+    animation:move .75s infinite;
+  }
+  .circle2{
+    animation-delay:.15s;
+  }
+  .circle3{
+    animation-delay:.25s;
+  }
+  @keyframes move{
+    0%,100%{transform:translateY(0) scale(1); background: $Primary;}
+    50%{transform:translateY(20px) scale(0.5);background: $Default;}
+
+
+  }
+}
+.required-elem{
+  color: $Danger;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.bootstrap-select{
+  width:100% !important;
+}
+.modal-backdrop{
+  display: none;
+}

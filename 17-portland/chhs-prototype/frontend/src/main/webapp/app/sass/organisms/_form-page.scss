@@ -1,0 +1,46 @@
+
+.form__header {
+  padding: 30px;
+  color: white;
+  margin-bottom: 60px;
+  background: $blue-3; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(-90deg, $blue-3, $blue-2); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(-90deg, $blue-3, $blue-2); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(-90deg, $blue-3, $blue-2); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(-90deg, $blue-3, $blue-2); /* Standard syntax */
+}
+
+.form__summary {
+  color: $blue-3;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.form__required-asterisk {
+  color: red;
+}
+
+.form__btn-create {
+  // btn-primary color is now green. Override for this page.
+  background-color: $blue-2;
+  border-color: darken($blue-2, 5%);
+
+  &:hover {
+    background-color: darken($blue-2, 5%);
+  }
+
+  &:active, &:focus, &:disabled {
+    background-color: $blue-2;
+    border-color: darken($blue-2, 5%);
+  }
+}
+
+.form__success {
+  color: $blue-3;
+}
+
+.form__error_display {
+  .ng-dirty.ng-invalid {
+    background-color: lighten($red-1, 30%);
+  }
+}

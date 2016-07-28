@@ -1,0 +1,59 @@
+.site-header__navigation{
+  background: white;
+  border: none;
+  margin: 0 auto;
+}
+
+.site-header__collapse {
+  background: white;
+}
+
+.site-header__logo-link{
+  padding: 5px;
+  border: none;
+
+  @media (min-width: $screen-md) {
+    padding: 25px;
+    height: auto;
+  }
+}
+
+.site-header__logo {
+  height: 40px;
+
+  @media (min-width: $screen-md) {
+    height: 73px;
+  }
+}
+
+.site-header__link-item{
+  list-style: none;
+
+  @media (min-width: $screen-md) {
+    border-left: 1px solid $gray-5;
+    margin: 50px 0;
+
+    &:first-of-type{
+      border: none;
+    }
+  }
+}
+
+.site-header__link{
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+
+  @media (min-width: $screen-md) {
+    padding: 0 25px !important;
+    line-height: 2rem !important;
+  }
+}
+
+.site-header__dropdown-link{
+  padding: 15px 30px!important;
+}
+
+.site-header__message-count{
+  background-color: $blue-3;
+}

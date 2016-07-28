@@ -1,0 +1,33 @@
+.register{
+  margin-bottom: 100px;
+}
+
+.register__terms-link {
+  color: $blue-3;
+
+  &:hover, &:active, &:focus {
+    color: darken($blue-3,5%);
+  }
+
+}
+
+.page-dashboard__row{
+  @media (min-width: $screen-sm) {
+    // required so that the separator is relative to this
+    position: relative;
+  }
+}
+
+.page-dashboard__separator{
+  display: none;
+
+  @media (min-width: $screen-sm) {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: $gray-4;
+  }
+}

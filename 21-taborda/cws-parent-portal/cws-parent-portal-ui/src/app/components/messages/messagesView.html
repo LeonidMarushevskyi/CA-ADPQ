@@ -1,0 +1,39 @@
+
+    <div class="row">
+
+        <div class="col-lg-3 col-md-4 sidebar">
+            <div class="well shadow">
+                <a href="#/messages/newMessage" ui-sref="messages.newmessage" class="btn btn-primary btn-block"><i class="icon-edit"></i> New Message</a>
+                <br>
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" ui-sref-active="active"><a href="#/messages/inbox" ui-sref="messages.inbox">Inbox</a></li>
+                    <li role="presentation" ui-sref-active="active"><a href="#/messages/sent" ui-sref="messages.sent">Sent</a></li>
+                </ul>
+
+                <hr>
+
+
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation">Case Workers</li>
+
+                    <li role="presentation" ng-repeat="worker in user.case_workers">
+                        <a href="javascript:void(0);" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" title="Prototype Note" data-content="Optional feature to filter messages from a specific case worker, not implemented for this prototype" class="has-image user-id">
+                            <div class="circle-img circle-img-xs pull-left">
+                                <img ng-src="{{worker.image}}" src="asset/img/profile-icon-400x380.png" alt="{{worker.name.first_name + worker.name.last_name }}">
+                            </div>
+                            {{worker.name.first_name + " " +worker.name.last_name }}
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="col-lg-9 col-md-8">
+            <div class="well shadow">
+                <div ui-view></div>
+            </div>
+        </div>
+
+    </div>

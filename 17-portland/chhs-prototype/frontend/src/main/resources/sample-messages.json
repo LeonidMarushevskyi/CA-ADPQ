@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "caseWorkerId": "1",
+    "caseWorkerName": "Alice",
+    "date": 1465147736364,
+    "sender": "CASEWORKER",
+    "message": "Hello User!"
+  },
+  {
+    "id": "2",
+    "caseWorkerId": "1",
+    "caseWorkerName": "Alice",
+    "date": 1465147736364,
+    "sender": "USER",
+    "message": "Alo Case Worker"
+  }
+]

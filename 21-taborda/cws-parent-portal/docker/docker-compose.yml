@@ -1,0 +1,34 @@
+version: '2'
+services:
+  db:
+    image: "postgres:9.4"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=cpp
+      - POSTGRES_PASSWORD=password1
+  api:
+    build: ../cws-parent-portal-api
+    ports:
+      - "8081:8080"
+    volumes:
+      - ../cws-parent-portal-api/log:/var/log/cws-parent-portal-api
+      - ../cws-parent-portal-api/build/libs/parentportal-all.jar:/usr/local/share/java/cws-parent-portal-api/cws-parent-portal-api.jar
+      - ../cws-parent-portal-api/config/parentportal_config.yml:/usr/local/etc/cws-parent-portal-api/cws-parent-portal-api.yml
+    environment:
+      - DB_USER=cpp
+      - DB_PASSWORD=password1
+      - DB_JDBC_URL=jdbc:postgresql://db/cpp
+    depends_on:
+      - db
+    links:
+      - db
+  ui:
+    build: ../cws-parent-portal-ui
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../cws-parent-portal-ui/log:/var/log/cws-parent-portal-ui
+      - ../cws-parent-portal-ui/src:/usr/local/share/cws-parent-portal-ui
+      - ./ui/env.js:/usr/local/share/cws-parent-portal-ui/env.js
+      - ../cws-parent-portal-ui/nginx.conf:/usr/local/etc/cws-parent-portal-ui/nginx.conf

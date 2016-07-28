@@ -1,0 +1,7 @@
+#!/bin/bash
+
+## Fix issue where mount point is owned by root
+sudo chown -R jenkins:jenkins /var/log/jenkins
+sudo chown -R jenkins:jenkins /var/lib/jenkins
+
+java -DJENKINS_HOME=/var/lib/jenkins -jar /usr/lib/jenkins/jenkins.war --logfile=/var/log/jenkins/jenkins.log --webroot=/var/cache/jenkins/war
