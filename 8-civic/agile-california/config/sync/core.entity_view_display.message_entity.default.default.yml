@@ -1,0 +1,65 @@
+uuid: c0048c48-76a3-4b1b-9f49-31791066283e
+langcode: en
+status: true
+dependencies:
+  config:
+    - chhs_message.message_entity_type.default
+    - field.field.message_entity.default.field_comment
+    - field.field.message_entity.default.field_message
+    - field.field.message_entity.default.field_sent
+    - field.field.message_entity.default.field_urgent
+  module:
+    - comment
+    - datetime
+    - text
+    - user
+id: message_entity.default.default
+targetEntityType: message_entity
+bundle: default
+mode: default
+content:
+  field_comment:
+    weight: 5
+    label: hidden
+    settings:
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+  field_message:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_sent:
+    weight: 6
+    label: hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+  field_urgent:
+    weight: 2
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  subject:
+    type: string
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  flag_read: true

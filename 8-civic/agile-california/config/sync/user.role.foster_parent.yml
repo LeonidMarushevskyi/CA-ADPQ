@@ -1,0 +1,25 @@
+uuid: 8b89dfdd-dbd2-4047-a693-f587b2e96a73
+langcode: en
+status: true
+dependencies: {  }
+id: foster_parent
+label: 'Foster Parent'
+weight: -7
+is_admin: null
+permissions:
+  0: 'view own foster_parent profile'
+  1: 'view own main profile'
+  3: 'add own foster_parent profile'
+  4: 'edit own foster_parent profile'
+  5: 'add own main profile'
+  6: 'edit own main profile'
+  7: 'view any main profile'
+  8: 'view any social_worker profile'
+  9: 'view published child entities'
+  10: 'add message entities'
+  11: 'view published message entities'
+  12: 'post comments'
+  13: 'skip comment approval'
+  14: 'access comments'
+  15: 'use text format basic_html'
+  16: 'access content'

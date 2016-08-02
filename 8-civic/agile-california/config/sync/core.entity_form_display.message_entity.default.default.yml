@@ -1,0 +1,51 @@
+uuid: 1b682537-1135-49d2-8784-c3c2d179141b
+langcode: en
+status: true
+dependencies:
+  config:
+    - chhs_message.message_entity_type.default
+    - field.field.message_entity.default.field_comment
+    - field.field.message_entity.default.field_message
+    - field.field.message_entity.default.field_sent
+    - field.field.message_entity.default.field_urgent
+  module:
+    - comment
+    - text
+id: message_entity.default.default
+targetEntityType: message_entity
+bundle: default
+mode: default
+content:
+  field_comment:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: comment_default
+  field_message:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_urgent:
+    weight: 4
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+  langcode:
+    type: language_select
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  subject:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_sent: true
+  user_id: true

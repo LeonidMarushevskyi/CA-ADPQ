@@ -1,0 +1,23 @@
+uuid: 5823b428-b736-4eed-9839-f7613a22b117
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: L2mtwGWH_7wDRCMIR4r_Iu_jmvQ10DV1L8ht8iNZ5qY
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  profile_foster_parent:
+    weight: 10
+  profile_main:
+    weight: 10
+  profile_social_worker:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  member_for: true

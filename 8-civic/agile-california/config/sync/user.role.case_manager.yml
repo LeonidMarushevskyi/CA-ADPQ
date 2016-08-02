@@ -1,0 +1,29 @@
+uuid: b6d137e8-436c-4cac-a940-ea6376df43d1
+langcode: en
+status: true
+dependencies: {  }
+id: case_manager
+label: 'Case Manager'
+weight: -5
+is_admin: null
+permissions:
+  - 'view any foster_parent profile'
+  - 'view own main profile'
+  - 'view own social_worker profile'
+  - 'add own main profile'
+  - 'edit own main profile'
+  - 'view any main profile'
+  - 'add own social_worker profile'
+  - 'edit own social_worker profile'
+  - 'view any social_worker profile'
+  - 'add child entities'
+  - 'delete child entities'
+  - 'edit child entities'
+  - 'view published child entities'
+  - 'view published message entities'
+  - 'post comments'
+  - 'skip comment approval'
+  - 'access comments'
+  - 'use text format basic_html'
+  - 'access content'
+  - 'view any biological_parent profile'

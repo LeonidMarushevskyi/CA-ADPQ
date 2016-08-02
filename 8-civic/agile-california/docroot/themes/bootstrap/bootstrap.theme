@@ -1,0 +1,128 @@
+<?php
+/**
+ * @file
+ * The primary PHP file for the Drupal Bootstrap base theme.
+ *
+ * This file should only contain light helper functions and point to stubs in
+ * other files containing more complex functions.
+ *
+ * The stubs should point to files within the `./includes` folder named after
+ * the function itself minus the theme prefix. If the stub contains a group of
+ * functions, then please organize them so they are related in some way and name
+ * the file appropriately to at least hint at what it contains.
+ *
+ * All [pre]process functions, theme functions and template files lives inside
+ * the `./templates` folder. This is a highly automated and complex system
+ * designed to only load the necessary files when a given theme hook is invoked.
+ *
+ * Visit this project's official documentation site, http://drupal-bootstrap.org
+ * or the markdown files inside the `./docs` folder.
+ *
+ * @see bootstrap_theme()
+ * @see \Drupal\bootstrap\Registry
+ */
+
+use Drupal\bootstrap\Bootstrap;
+
+/**
+ * Initialize the active theme.
+ */
+Bootstrap::initialize();
+
+/**
+ * {@inheritdoc}
+ *
+ * @see \Drupal\bootstrap\Plugin\Alter\ElementInfo::alter()
+ */
+function bootstrap_element_info_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  Bootstrap::alter(__FUNCTION__, $data, $context1, $context2);
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see \Drupal\bootstrap\Theme::alter()
+ */
+function bootstrap_form_alter(&$form, &$form_state = NULL, &$form_id = NULL) {
+  Bootstrap::alter(__FUNCTION__, $form, $form_state, $form_id);
+  // Make "Save and make default" the only button on profile add/edit forms and give it a simpler name.
+  if (substr($form_id, 0, 8) == 'profile_' && (substr($form_id, -10) == '_edit_form' || substr($form_id, -9) == '_add_form')) {
+    $form['actions']['submit']['#access'] = FALSE;
+    $form['actions']['set_default']['#access'] = TRUE;
+    $form['actions']['set_default']['#value'] = t("Save profile"); 
+  }
+  // Hide comment open/close control on messages form.
+  if ($form_id == 'message_entity_default_form') {
+    $form['field_comment']['#access'] = FALSE;
+  }
+  // Rename "Save" button to "Reply";
+  if ($form_id == 'comment_message_reply_form') {
+    $form['actions']['submit']['#value'] = t('Reply');
+  }
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see \Drupal\bootstrap\Plugin\Form\SystemThemeSettings::alterForm()
+ */
+function bootstrap_form_system_theme_settings_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  Bootstrap::alter(__FUNCTION__, $data, $context1, $context2);
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see \Drupal\bootstrap\Plugin\Alter\LibraryInfo::alter()
+ */
+function bootstrap_library_info_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  Bootstrap::alter(__FUNCTION__, $data, $context1, $context2);
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see \Drupal\bootstrap\Plugin\Alter\PageAttachments::alter()
+ */
+function bootstrap_page_attachments_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  Bootstrap::alter(__FUNCTION__, $data, $context1, $context2);
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see \Drupal\bootstrap\Bootstrap::preprocess()
+ */
+function bootstrap_preprocess(&$variables, $hook, $info) {
+  Bootstrap::preprocess($variables, $hook, $info);
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see \Drupal\bootstrap\Bootstrap::getInfo()
+ */
+function bootstrap_theme() {
+  return Bootstrap::getThemeHooks();
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see \Drupal\bootstrap\Plugin\Alter\ThemeRegistry::alter()
+ *
+ * @todo Remove once a proper replacement for the theme.registry service can be
+ * created in a bootstrap_core sub-module.
+ */
+function bootstrap_theme_registry_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  Bootstrap::alter(__FUNCTION__, $data, $context1, $context2);
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see \Drupal\bootstrap\Plugin\Alter\ThemeSuggestions::alter()
+ */
+function bootstrap_theme_suggestions_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  Bootstrap::alter(__FUNCTION__, $data, $context1, $context2);
+}

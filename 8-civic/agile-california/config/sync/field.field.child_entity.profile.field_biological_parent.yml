@@ -1,0 +1,35 @@
+uuid: 790203f5-a258-4e73-a604-88f86e7433e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - chhs_child.child_entity_type.profile
+    - field.storage.child_entity.field_biological_parent
+id: child_entity.profile.field_biological_parent
+field_name: field_biological_parent
+entity_type: child_entity
+bundle: profile
+label: 'Biological Parents'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    include_anonymous: true
+    filter:
+      type: role
+      role:
+        biological_parent: biological_parent
+        foster_parent: '0'
+        case_worker: '0'
+        case_manager: '0'
+        administrator: '0'
+    target_bundles: null
+    sort:
+      field: name
+      direction: ASC
+    auto_create: false
+field_type: entity_reference

@@ -1,0 +1,67 @@
+uuid: ff2f7e67-0fe7-4228-b732-80bbcd3ec212
+langcode: en
+status: true
+dependencies:
+  config:
+    - chhs_child.child_entity_type.profile
+    - field.field.child_entity.profile.field_biological_parent
+    - field.field.child_entity.profile.field_case_worker
+    - field.field.child_entity.profile.field_date_of_birth
+    - field.field.child_entity.profile.field_foster_parent
+  module:
+    - datetime
+id: child_entity.profile.default
+targetEntityType: child_entity
+bundle: profile
+mode: default
+content:
+  field_biological_parent:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_case_worker:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_date_of_birth:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+  field_foster_parent:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  langcode:
+    type: language_select
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }
