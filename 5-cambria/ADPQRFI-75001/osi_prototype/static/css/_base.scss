@@ -1,0 +1,184 @@
+@import 'variables';
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: $font-stack;
+  color: $black-light;
+  background-color: $gray-light;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+h1 {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 34pt;
+}
+
+h2 {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 30pt;
+}
+
+h3 {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 24pt;
+}
+
+h4 {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 22pt;
+}
+
+h5 {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 18pt;
+}
+
+p {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 22pt;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.vertical-align-col {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#product-title {
+  font-family: $font-stack;
+  font-weight: 700;
+  font-size: 12pt;
+  margin-bottom: 0;
+}
+
+#product-subtitle {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 8pt;
+  margin-bottom: 0;
+}
+
+.user-picture {
+}
+
+/* Containers */
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.container .jumbotron {
+  border: 3px solid #ddd;
+  border-radius: 12px;
+}
+
+.jumbotron h1 {
+  font-size: 34pt;
+}
+
+
+/* Forms */
+.navbar-form input[type="text"],
+.navbar-form input[type="password"] {
+}
+
+.form-control {
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  color: #999999;
+}
+
+footer a {
+  color: #999999;
+}
+
+footer p {
+  float: right;
+  margin-right: 25px;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 10px;
+}
+
+footer .company {
+  float: left;
+  margin-left: 25px;
+  padding-left: 0;
+}
+
+footer .footer-nav {
+  float: right;
+  margin-right: 25px;
+  list-style: none;
+}
+
+.navbar {
+  background: url(/static/img/background.jpg) 50% 15%/cover no-repeat;
+  height: 25vw;
+  z-index: 1;
+}
+
+.navbar a {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.navbar-collapse.collapse.in,
+.navbar-collapse.collapsing {
+  background-color: rgba(250, 250, 250, .78);
+}
+
+.navbar-header {
+  margin-bottom: 15px;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+.navbar-brand > img {
+  float: left;
+  height: 40px;
+}
+
+.navbar-brand > div {
+  float: left;
+}
+
+.badge {
+  background-color: $warning-light;
+}

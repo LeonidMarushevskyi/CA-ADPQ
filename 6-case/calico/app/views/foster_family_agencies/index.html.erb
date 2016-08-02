@@ -1,0 +1,20 @@
+<div class="resource-table">
+  <h2> Foster Family Agencies in </h2>
+  <%= form_tag(foster_family_agencies_path, method: :get, enforce_utf8: false) do %>
+    <%= text_field_tag(:zip_code, @current_zip_code) %>
+    <%= submit_tag 'Update ZIP', name: '', class: 'btn btn-primary' %>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "foster_family_agency", collection: @foster_family_agencies %>
+    </tbody>
+  </table>
+</div>

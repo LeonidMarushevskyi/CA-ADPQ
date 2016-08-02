@@ -1,0 +1,15 @@
+#!/bin/bash
+ROOT="$(dirname "$0")/.."
+source "$ROOT/bin/_util"
+
+cd "$ROOT"
+
+set -e
+
+if [[ -z $DOCKER_HOST ]]; then
+  eval $(docker-machine env)
+fi
+
+number_of_images=$(($(docker images | wc -l)-1))
+
+runcmd docker rmi -f $(docker images --quiet)

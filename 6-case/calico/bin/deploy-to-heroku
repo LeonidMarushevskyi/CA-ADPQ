@@ -1,0 +1,52 @@
+#!/bin/bash
+ROOT="$(dirname "$0")/.."
+source "$ROOT/bin/_util"
+
+set -e
+
+cd "$ROOT"
+
+PROGRAM=`basename $0`
+
+usage() {
+  cat >&2 <<STR
+usage: $PROGRAM [ --app <app_name> ]
+
+Builds docker images and deploys to heroku using <app_name>, app name defaults to beta-calico
+STR
+}
+
+HEROKU_APP="beta-calico"
+while test $# -gt 0
+do
+  case $1 in
+  --app | -a)
+    HEROKU_APP="$2"
+    shift
+    ;;
+  --help | -h | '-?' )
+    usage
+    exit 0
+    ;;
+  -*)
+    fatal "Unrecognized option: $1"
+    usage
+    exit 1
+    ;;
+  *)
+    break
+    ;;
+  esac
+  shift
+done
+if [[ -z $DOCKER_HOST ]]; then
+  eval $(docker-machine env)
+fi
+docker-compose build web
+warn "You should be logged into heroku before running this command"
+heroku docker:release --app "$HEROKU_APP"
+heroku run --app "$HEROKU_APP" rake --trace db:migrate db:seed
+info "Completed deployment"
+info "App $HEROKU_APP is available at"
+heroku domains --app "$HEROKU_APP"
+echo $?

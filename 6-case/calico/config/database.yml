@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  prepared_statements: false
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: ca_development
+  username: casebook
+
+test:
+  <<: *default
+  database: ca_test
+  username: casebook
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>

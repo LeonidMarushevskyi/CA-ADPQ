@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ROOT="$(dirname "$0")/.."
+source "$ROOT/bin/_util"
+
+cd "$ROOT"
+
+set -e
+set -x
+if [[ -z $DOCKER_HOST ]]; then
+  eval $(docker-machine env)
+fi
+runcmd docker rm --force $(docker ps --all --quiet)

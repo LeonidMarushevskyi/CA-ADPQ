@@ -1,0 +1,87 @@
+body {
+  background:
+    linear-gradient(
+      rgba(120, 100, 140, 0.25),
+      rgba(140, 100, 140, 0.25)
+    ), url(/static/img/cover.jpg) no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+}
+
+.navbar {
+  background: none;
+  height: auto;
+  z-index: 1;
+}
+
+.readable {
+  color: #28323B;
+  text-decoration: underline;
+}
+
+.readable-background {
+  background-color: rgba(255, 255, 255, .25);
+}
+
+div[role=main] {
+  height: 100vh;
+}
+
+.container .jumbotron {
+  background: none;
+  border: none;
+  margin-top: 150px;
+}
+
+.jumbotron > h1 {
+  text-transform: uppercase;
+}
+
+.jumbotron > p {
+  font-size: 22pt;
+}
+
+footer {
+  color: white;
+}
+
+footer a {
+  color: white;
+}
+
+#loginForm {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+#loginForm input {
+  height: 50px;
+  line-height: 40px;
+  width: 100%;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}

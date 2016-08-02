@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/messages.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="panel-collapse collapse in" role="tabpanel">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <form class="form-inline">
+          <div class="form-group">
+            <label>Start a new conversation:</label>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                {{ 'Case workers' if current_user.user_type == 'parent' else 'Parents' }}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                {% for username in users %}
+                <li><a href="{{ url_for('user.message_thread', to_username=username) }}">
+                  {{ users[username].full_name }} ({{ username }})
+                </a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+  <div class="list-group">
+    {% for thread in threads %}
+    <a href="{{ url_for('user.message_thread', to_username=thread['other_username']) }}"
+       class="list-group-item">
+      <div class="row">
+        <div class="col col-lg-7">
+          <p>
+            {% set to_username = thread['other_username'] %}
+            {% set to_user = users[to_username] %}
+            {% if thread['has_unread'] %}
+              <span class="label label-warning"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+              <strong class="text-primary">
+                Chat with {{ to_user.full_name }} ({{ to_username }})
+              </strong>
+            {% else %}
+              Chat with {{ to_user.full_name }} ({{ to_username }})
+            {% endif %}
+          </p>
+        </div>
+        <div class="col col-lg-5">
+          <p class="text-right"><em>{{ thread['last_updated'] | utc_to_pst | format_dt }}</em></p>
+        </div>
+      </div>
+    </a> {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+#!/bin/bash
+
+ROOT="$(dirname "$0")/.."
+source "$ROOT/bin/_util"
+set -e
+
+cd "$ROOT"
+PROGRAM=`basename $0`
+
+usage() {
+  cat >&2 <<STR
+usage: $PROGRAM [ --env <environment_name> ]
+
+Drop and then Create the database, load the schema, and initialize with the seed data
+STR
+}
+
+ENV="development"
+while test $# -gt 0
+do
+  case $1 in
+  --env | -e)
+    ENV="$2"
+    shift
+    ;;
+  --help | -h | '-?' )
+    usage
+    exit 0
+    ;;
+  -*)
+    fatal "Unrecognized option: $1"
+    usage
+    exit 1
+    ;;
+  *)
+    break
+    ;;
+  esac
+  shift
+done
+
+cd "$ROOT"
+RAILS_ENV="$ENV" rake --trace db:reset

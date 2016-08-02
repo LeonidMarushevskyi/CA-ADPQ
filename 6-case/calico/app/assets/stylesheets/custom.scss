@@ -1,0 +1,276 @@
+// GENERAL //
+
+body {
+  font-size: 1.7rem;
+  background-color: #f1f1f1;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h2 {
+  margin-top: 0.5rem;
+}
+
+.container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+// HELPERS //
+
+.padded {
+  padding: 2rem;
+}
+
+.half-padded {
+  padding: 1rem;
+}
+
+.margin-bottom {
+  margin-bottom: 2rem;
+}
+
+.double-margin-bottom {
+  margin-bottom: 4rem;
+}
+
+.half-margin-bottom {
+  margin-bottom: 1rem;
+}
+
+// TABLES //
+
+.table > thead > tr > th {
+    vertical-align: middle;
+}
+
+.table {
+    background-color: #fff;
+
+    thead {
+      tr {
+        th {
+          padding: 2rem;
+          border-bottom: 1px solid #ddd;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 1em;
+        }
+      }
+    }
+}
+
+// NAV //
+
+.navbar-header {
+  height: 60px;
+}
+
+.navbar {
+  border-radius: 0;
+}
+
+.navbar-inverse {
+  background-color: #112E51;
+  border-color:#112E51;
+
+  .navbar-brand {
+    color: #fff;
+    font-family: 'Yellowtail', cursive;
+    margin: 0;
+    padding: 2.1rem 0 0 0;
+    float: left;
+    font-size: 4.6rem;
+  }
+
+  .navbar-brand:hover {
+    color: #d6d7d9;
+  }
+}
+
+.container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse {
+  margin:0;
+}
+
+@media (min-width: 768px) {
+
+.navbar > .container .navbar-brand {
+  margin-left: 0rem;
+}
+
+.container > .navbar-header {
+  float: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+}
+
+.menu-icon {
+  float: right;
+  display: block;
+  font-size: 4rem;
+  margin-top: 0.3rem;
+
+  a {
+    color: #fff;
+  }
+
+  a:hover {
+    color: #d6d7d9;
+  }
+}
+
+// VALIDATIONS //
+
+#error_explanation {
+  background-color: #e1f3f8;
+  padding: 1em;
+  margin-bottom: 2rem;
+  padding-left:7rem;
+  background-image: url("images/error.svg");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: 2.4rem 1.7rem;
+  border: 1px solid #CFEDF9;
+}
+
+#error_explanation h2 {
+  font-size:2rem;
+  margin: 0 0 2rem 0;
+  padding:0;
+  line-height: 2.6rem;
+}
+
+a .delete-button {
+  float:right;
+  font-size: 24px;
+  color: #333;
+}
+
+a .delete-button:hover {
+  color: #5b616b;
+}
+
+// FORM //
+
+.form-control {
+  border-radius: 0;
+  box-shadow: none;
+  border: 0.1rem solid #5b616b;
+  box-sizing: border-box;
+  color: #212121;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+
+  label {
+    display: block;
+    overflow: auto;
+  }
+
+  span {
+    float: left;
+  }
+
+  label em {
+    font-weight: 200;
+    float: right;
+  }
+}
+
+select {
+background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20fill%3D%22%23555555%22%20%0A%09%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%22-261%20145.2%2024%2024%22%20style%3D%22enable-background%3Anew%20-261%20145.2%2024%2024%3B%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cpath%20d%3D%22M-245.3%2C156.1l-3.6-6.5l-3.7%2C6.5%20M-252.7%2C159l3.7%2C6.5l3.6-6.5%22%2F%3E%0A%3C%2Fsvg%3E") !important;
+  padding-right: 2.5rem;
+  background-repeat: no-repeat;
+  background-position: right center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.btn {
+  font-size: 1.9rem;
+  padding: 1.2rem 2rem 1.2rem 2rem;
+  border: none;
+  border-radius: 0.3rem;
+}
+
+.btn-primary {
+  background-color: #0071BC;
+}
+
+.btn-primary:hover {
+  background-color: #205493;
+}
+
+.btn-primary:active, .btn-primary:focus {
+  background-color: #112E51;
+}
+
+.btn-secondary {
+  background-color: #E31C3D;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #CD2026;
+  color: #fff;
+}
+
+.btn-secondary:active, .btn-secondary:focus {
+  background-color: #981B1E;
+  color: #fff;
+}
+
+// TRANSITIONS //
+
+a, li, .container, .btn, .drawer, .drawer-right, .form-signin, textarea, .message, .delete-button {
+  -o-transition:.3s;
+  -ms-transition:.3s;
+  -moz-transition:.3s;
+  -webkit-transition:.3s;
+  transition:.3s;
+}
+
+// MOBILE //
+
+@media (max-width: 768px) {
+  body {
+    margin-top: 5em;
+  }
+
+  .drawer {
+    margin-top: 0em;
+    z-index: 9999;
+  }
+
+  .table {
+    thead {
+      tr {
+        th {
+          padding: 1rem;
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          padding: 1rem;;
+        }
+      }
+    }
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    z-index: 9998;
+    width: 100%;
+
+  }
+}

@@ -1,0 +1,39 @@
+.container .jumbotron {
+  padding: 20px 32px;
+  background-color: rgba(255, 255, 255, .95);
+}
+
+#user-profile-form .editable-inline {
+  vertical-align: baseline;
+}
+
+.editable {
+  min-height: 38px;
+}
+
+.editable a:not(.editable-empty) {
+  color: #9B9B9B;
+}
+
+.editable-pre-wrapped {
+  white-space: normal;
+}
+
+.row{
+    overflow: hidden;
+}
+
+[class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+.user-photo {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+#real-file-upload {
+  display: none;
+}

@@ -1,0 +1,260 @@
+.dashboard {
+
+  margin-top: 1.2rem;
+
+  h2 {
+    margin-top: -0.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .sidebar-header {
+    padding: 0.5em;
+    background-color: #00a6d2;
+    color: #fff;
+    font-weight: 600;
+
+    i {
+      font-size: 2rem;
+      margin: 0 0.5rem 0.4rem 0.5rem;
+    }
+  }
+
+  ul {
+    padding: 0;
+
+    img {
+      height: 5rem;
+      width: 5rem;
+      margin-right: 0.8rem;
+    }
+  }
+
+  .channels li  {
+    border-bottom: 0.1rem solid #ddd;
+    padding: 1rem;
+    list-style-type: none;
+    background-color: #fff;
+
+      a {
+        display: block;
+        color: #5d616b;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+  }
+
+  .channels li:active  {
+    background-color: #dce4ee;
+  }
+
+  .channels li:last-child  {
+    border-bottom: none;
+  }
+
+  .channels li:hover  {
+    background-color: #dce4ee;
+  }
+
+  .channels li.active {
+    background-color: #112E51;
+    a {
+      color: #ffffff;
+    }
+    font-weight: 300;
+  }
+
+  .channels li.unread {
+    background-color: #dce4ee;
+    font-weight: 600;
+    a {
+      color: #333;
+    }
+  }
+
+  .channels li.read {
+    background-color: #ffffff;
+    a {
+      color: #5d616b;
+    }
+    font-weight: 300;
+  }
+
+  .message-window {
+    margin-bottom: 2rem;
+    max-height: 55vh;
+    overflow-y: auto;
+    display: block;
+  }
+
+  .message {
+    padding: 2rem;
+    background-color: #fff;
+    clear: both;
+    overflow: hidden;
+
+    .profile-picture {
+
+      float: left;
+
+      img {
+        height: 7.5rem;
+        width: 7.5rem;
+        margin-right: 2rem;
+      }
+    }
+
+    .message-body {
+
+      .username {
+        color: #5d616b;
+        float:left;
+        font-weight: 600;
+        margin-top: -0.3em;
+      }
+
+      .date {
+        color: #b8b8b8;
+        font-style: italic;
+        float: right;
+        margin-top: -0.3em;
+      }
+
+      p {
+        display: block;
+          overflow: hidden;
+      }
+    }
+  }
+
+  .message-input {
+    padding: 2rem;
+    background-color: #fff;
+    clear: both;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 2rem;
+
+    .profile-picture {
+      img {
+        height: 7.5rem;
+        width: 7.5rem;
+        margin-right: 2rem;
+        float: left;
+      }
+    }
+
+    .message-box {
+
+      width: 100%;
+      padding-left: 9.5rem;
+      padding-right: 12rem;
+
+      textarea {
+        border: none;
+        min-height: 7.5rem;
+        float: left;
+        width: 100%;
+
+      }
+    }
+
+    .actions {
+      float: right;
+      .btn {
+        height: 4em;
+      }
+    }
+  }
+}
+
+// MOBILE VIEW //
+
+@media (max-width: 768px) {
+
+  .mobile-spacer {
+    height: 5.5em;
+    display:block;
+    background-color: #f1f1f1;
+  }
+  .dashboard {
+    margin-top: 0;
+
+    h2 {
+      display: none;
+    }
+    ul {
+      margin-bottom: 2rem;
+    }
+
+    .message-window {
+      height: auto;
+      overflow: visible;
+    }
+
+    .message {
+      padding: 1rem;
+      
+      .profile-picture {
+          img {
+            height: 5.5rem;
+            width: 5.5rem;
+            margin-right: 1rem;
+            float: none;
+          }
+      }
+
+      .message-body {
+        p {
+          margin: 0;
+          overflow: inherit;
+        }
+
+        span {
+          float:none;
+        }
+
+      } 
+    }
+      
+    .message-input {
+      position: fixed;
+      bottom: -2rem;
+      z-index: 9998;
+      width: 100%;
+      padding: 1rem;
+      margin-left: -2rem;
+      margin-top:-1rem;
+      border-top: 1px solid #f1f1f1;
+
+      .message-box {
+
+        padding-right: 5.5em;
+
+        textarea {
+          min-height: 0rem;
+        }
+      }
+
+      .profile-picture {
+        display: none;
+      }
+
+      .message-box {
+        padding-left: 0;
+      }
+
+      .actions{
+        .btn {
+          height: 5rem;
+          padding: 1rem 2rem 1rem 2rem;
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
+

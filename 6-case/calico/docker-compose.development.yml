@@ -1,0 +1,36 @@
+app:
+  build: .
+  dockerfile: ./docker/Dockerfile.development
+  working_dir: /app/user
+  command: 'bash -c ''bundle exec foreman start -f Procfile-dev'''
+  container_name: dev_calico_app
+  restart: always
+  environment:
+    RAILS_ENV: development
+    DATABASE_URL: 'postgres://calico:calico@postgresql:5432/ca_development'
+    PG_PORT: 5432
+    PORT: 3000
+  ports:
+    - "3000:3000"
+    - "4857:4857"
+  links:
+    - postgresql
+  volumes:
+    - '.:/app/user'
+postgresql:
+  image: postgres:9.5.3
+  container_name: dev_calico_db
+  restart: always
+  environment:
+    POSTGRES_USER: calico
+    POSTGRES_DB: ca_development
+    POSTGRES_PASSWORD: calico
+webserver:
+  build: ./docker
+  dockerfile: Dockerfile.nginx
+  container_name: dev_calico_nginx
+  restart: always
+  ports:
+    - "80:80"
+  links:
+    - app

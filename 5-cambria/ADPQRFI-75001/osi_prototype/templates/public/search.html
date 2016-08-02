@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block js %}
+<script>
+  const user_address = "{{ (current_user.address if current_user) or '' | safe }}";
+</script>
+<script src="{{ url_for('static', filename='libs/js-marker-clusterer/src/markerclusterer_compiled.js') }}"></script>
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDofPmsXtEJdXKNmCvV6hSzJIGS1AD1ldU&callback=init_map"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col col-lg-12">
+    <div class="panel-group" role="tablist">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="search-options-heading">
+          <h4 class="panel-title">
+            <a class="" role="button" data-toggle="collapse" href="#search-options" aria-expanded="true" aria-controls="search-options">
+              Search Options <span class="text-right">(click to toggle)</i>
+            </a>
+          </h4>
+        </div>
+        <div id="search-options" class="panel-collapse collapse in" role="tabpanel">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <form action="javascript:run_location_search()" id="search_form">
+                <div id="zip-group" class="form-group has-feedback">
+                  <label for="location">My location:</label>
+                  <input type="text" class="form-control" id="facility-location" placeholder="Address/Zip/City">
+                  <span class="glyphicon glyphicon-ok form-control-feedback success-status" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-warning-sign form-control-feedback failure-status" aria-hidden="true"></span>
+                </div>
+                <div class="form-group">
+                  <label for="type">Search within:</label>
+                  <select class="form-control" id="facility-radius">
+                    <option data-field="0">My zipcode only</option>
+                    <option data-field="1">5 mile radius of my location</option>
+                    <option data-field="2">10 mile radius of my location</option>
+                    <option data-field="3">15 mile radius of my location</option>
+                    <option data-field="4">20 mile radius of my location</option>
+                    <option data-field="5">50 mile radius of my location</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="type">Agency type:</label>
+                  <select class="form-control" id="facility-type">
+                    <option data-field="0">All</option>
+                    <option data-field="1">Adoption Agency</option>
+                    <option data-field="2">Foster Family Agency</option>
+                    <option data-field="3">Foster Family Agency Sub</option>
+                  </select>
+                </div>
+                <button id="run-search" type="submit" class="btn btn-default">
+                  <i class="fa fa-search" aria-hidden="true"></i> Search
+                </button>
+                <div class="pull-right"><span id="num-results">no</span> results</div>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-lg-6 col-md-6">
+    <div id="results-list" class="list-group">
+      <p>No results to show.</p>
+    </div>
+  </div>
+
+  <div class="col col-lg-6 col-md-6">
+    <div id="results-map"></div>
+  </div>
+</div>
+{% endblock %}
