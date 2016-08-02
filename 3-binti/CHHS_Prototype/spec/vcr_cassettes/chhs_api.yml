@@ -1,0 +1,82 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://chhs.data.ca.gov/resource/v9bn-m9p9.json?$limit=1
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      X-App-Token:
+      - "<CHHS_API_TOKEN>"
+      User-Agent:
+      - soda-ruby/0.2.21 (Linux/3.16.0-4-amd64; Ruby/2.3.1-p112)
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 05 Jun 2016 07:02:28 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Socrata-Requestid:
+      - 5snlvvnuckh58xa1q60rcsz3y
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Thu, 14 Jan 2016 17:28:40 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["location","closed_date","facility_type","facility_address","facility_state","license_first_date","facility_capacity","facility_city","facility_telephone_number","facility_name","facility_administrator","facility_status","facility_number","facility_zip","regional_office","licensee","county_name"]'
+      X-Soda2-Types:
+      - '["location","calendar_date","text","text","text","calendar_date","number","text","text","text","text","text","text","text","text","text","text"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "location" : {
+            "needs_recoding" : false,
+            "longitude" : "-122.275554",
+            "latitude" : "37.797441",
+            "human_address" : "{\"address\":\"401 BROADWAY\",\"city\":\"OAKLAND\",\"state\":\"CA\",\"zip\":\"94604\"}"
+          },
+          "facility_type" : "ADOPTION AGENCY",
+          "facility_address" : "401 BROADWAY",
+          "facility_state" : "CA",
+          "license_first_date" : "2000-04-03T00:00:00",
+          "facility_capacity" : "0",
+          "facility_city" : "OAKLAND",
+          "facility_telephone_number" : "(510) 268-2422",
+          "facility_name" : "ALAMEDA COUNTY SOCIAL SERVICES AGENCY",
+          "facility_administrator" : "LEE, SALLY",
+          "facility_status" : "LICENSED",
+          "facility_number" : "15200804",
+          "facility_zip" : "94604",
+          "regional_office" : "26",
+          "licensee" : "ALAMEDA COUNTY SOCIAL SERVICES AGECNY",
+          "county_name" : "ALAMEDA"
+        }
+         ]
+    http_version: 
+  recorded_at: Sun, 05 Jun 2016 07:02:28 GMT
+recorded_with: VCR 3.0.3

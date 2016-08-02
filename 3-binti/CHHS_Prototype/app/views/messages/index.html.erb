@@ -1,0 +1,34 @@
+<h2><%= t("messages.social_worker_messages_header") %></h2>
+<h3><%= t("messages.social_worker_your_info") %></h3>
+<p class="clearfix social-worker-bio">
+  <img src="/images/social-worker.jpg"
+       alt="<%= SocialWorker.first.full_name %>'s avatar"
+       class="avatar large pull-left">
+  <strong><%= SocialWorker.first.full_name %></strong><br/>
+  <%= SocialWorker.first.phone_number %>
+</p>
+
+<br>
+<ul class="messages-container">
+  <% @conversations.each do |conversation| %>
+    <% next if conversation.messages.empty? %>
+    <li>
+      <%= link_to message_path(id: conversation.id),
+                  class: "message-container conversation-container clearfix" do %>
+        <div class="avatar pull-left">
+          <%= conversation.user.avatar %>
+        </div>
+        <div class="conversation-details pull-left">
+          <strong><%= conversation.user.full_name %></strong><br/>
+          <span class="date-container">
+            <%= time_ago_in_words(conversation.messages.first.created_at) %>
+          </span>
+          <em><%= conversation.user.full_name %></em>
+          <span>
+            <%= conversation.messages.first.body %>
+          </span>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

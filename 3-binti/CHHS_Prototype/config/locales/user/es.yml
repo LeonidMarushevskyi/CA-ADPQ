@@ -1,0 +1,19 @@
+es:
+  user:
+    address: "Dirección de envio"
+    change_password: "Cambiar la contraseña"
+    email: "Dirección de correo electrónico"
+    edit_profile: "Actualiza tu perfil"
+    first_name: "Primer nombre"
+    last_name: "Apellido"
+    profile:
+      saved: "Su perfil ha sido guardado con éxito."
+    save: "Salvar"
+    section:
+      name: "Nombre"
+      contact: "Información del contacto"
+      mailing: "Dirección de envio"
+    phone_number: "Número de teléfono"
+    city: "Ciudad"
+    state: "Estado"
+    zipcode: "Código postal"

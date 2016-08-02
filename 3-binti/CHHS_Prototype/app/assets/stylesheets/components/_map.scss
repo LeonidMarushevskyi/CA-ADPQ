@@ -1,0 +1,53 @@
+#map {
+  height: 40vh;
+  margin-bottom: 3em;
+}
+
+.map-finder {
+  max-width: 100%;
+
+  .form-quarter, .form-half {
+    float: left;
+
+    label, button, select, input {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  .form-quarter, .form-half {
+    width: 100%;
+  }
+
+  @media(min-width: #{$medium-screen}) {
+    .form-zipcode, .form-agency {
+      margin-bottom: 2em;
+      width: calc(50% - 1em);
+    }
+
+    .form-zipcode {
+      margin-right: 2em;
+    }
+  }
+
+  @media(min-width: 900px) {
+    .form-quarter, .form-half {
+      label {
+        margin-top: 0;
+      }
+    }
+
+    .form-quarter {
+      width: calc(25% - 1em);
+
+      button {
+        height: 2.59em;
+      }
+    }
+
+    .form-half {
+      margin-right: 2em;
+      width: calc(50% - 2em);
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<nav>
+  <div class="usa-grid">
+    <div class="nav-controls">
+      <%= link_to root_path, class: "logo-container pull-left" do %>
+        <img src="/images/chhslogo.png" alt="CHHS logo" />
+      <% end %>
+      <a class="nav-toggle pull-right" href="#">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <% if current_user %>
+      <ul>
+        <li>
+          <%= link_to messages_path do %>
+            <i class="fa fa-envelope"></i>
+            <%= t("nav_messages") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-map-marker"></i>
+            <%= t("nav_map") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to edit_user_path do %>
+            <i class="fa fa-user"></i>
+            <%= t("nav_profile") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_session_path(:user),
+            method: :delete do %>
+            <i class="fa fa-sign-out"></i>
+            <%= t("nav_logout") %>
+          <% end %>
+        </li>
+      </ul>
+    <% else %>
+      <ul>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-map-marker"></i>
+            <%= t("nav_map") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to t("nav_log_in"), new_session_path(:user) %>
+        </li>
+        <li>
+          <%= link_to t("nav_sign_up"),
+            new_registration_path(:user),
+            class: "with-border"
+          %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</nav>

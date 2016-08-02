@@ -1,0 +1,134 @@
+nav {
+  $logo-width: 7.5em;
+  $nav-padding: 0.4em;
+  $medium-screen: 800px;
+
+  background: $color-primary;
+  max-height: 55px;
+  overflow: hidden;
+  padding: $nav-padding 0;
+  transition: max-height ease 0.2s;
+
+  &.open {
+    max-height: 30em;
+  }
+
+  @media(min-width: #{$medium-screen}) {
+    max-height: initial;
+  }
+
+  ul {
+    display: block;
+    margin: 0;
+
+    a {
+      border-top: 1px solid $color-white;
+      color: $text-color-inverse;
+      display: block;
+      font-size: 1.2em;
+      padding: 1em $grid-margins;
+      transition: color 0.2s ease, background 0.2s ease;
+
+      &:visited {
+        color: $text-color-inverse;
+      }
+
+      &:hover {
+        background: $text-color-inverse;
+        color: $color-primary;
+        text-decoration: none;
+      }
+
+      @media(min-width: #{$medium-screen}) {
+        border: none;
+        display: inline-block;
+        padding: 0.3em 0.5em;
+
+        &:hover {
+          background: initial;
+          color: $text-color-inverse;
+          text-decoration: underline;
+        }
+
+        &.with-border {
+          border: 2px solid $color-white;
+          border-radius: 0.4em;
+          padding: 0.3em 1.5em;
+
+          &:hover {
+            background: $text-color-inverse;
+            color: $color-primary;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+    @media(min-width: #{$medium-screen}) {
+      float: right;
+      text-align: right;
+      width: calc(100% - #{$logo-width});
+    }
+  }
+
+  li {
+    list-style: none;
+    display: block;
+    margin: 0;
+    margin-left: -$grid-margins;
+    width: calc(100% + (2 * #{$grid-margins}));
+
+    &:before, &:after {
+      content: none;
+    }
+
+    @media(min-width: #{$medium-screen}) {
+      display: inline-block;
+      margin-left: 0;
+      width: initial;
+    }
+  }
+
+  .logo-container {
+    display: block;
+    width: $logo-width;
+  }
+
+  .logo-only {
+    display: inline-block;
+  }
+
+  .nav-controls {
+    @include clearfix;
+
+    @media(min-width: #{$medium-screen}) {
+      &:after, &:before {
+        display: none;
+      }
+    }
+  }
+
+  .nav-toggle {
+    display: block;
+    color: $color-white;
+    padding-top: 0.2em;
+    text-align: right;
+
+    &:active {
+      text-decoration: none;
+    }
+
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+
+    i {
+      font-size: 3.5rem;
+    }
+
+    @media(min-width: #{$medium-screen}) {
+      display: none;
+    }
+  }
+}

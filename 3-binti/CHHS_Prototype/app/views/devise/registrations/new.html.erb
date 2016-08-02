@@ -1,0 +1,46 @@
+<h1><%= t("registration.welcome_message") %></h1>
+<%= devise_error_messages! %>
+
+<article class="outer-container clearfix">
+  <section class="reasons-section">
+    <h2><%= t("registration.why_join") %></h2>
+    <div class="clearfix">
+      <div class="icon-container pull-left">
+        <i class="fa fa-envelope"></i>
+      </div>
+      <div class="text-container pull-left">
+        <%= t("registration.message_reason") %>
+      </div>
+    </div>
+    <div class="clearfix">
+      <div class="icon-container pull-left">
+        <i class="fa fa-user"></i>
+      </div>
+      <div class="text-container pull-left">
+        <%= t("registration.case_worker_reason") %>
+      </div>
+    </div>
+  </section>
+  <section class="signup-section">
+    <h2><%= t("registration.create_account") %></h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.label :first_name, t("user.first_name") %>
+      <%= f.text_field :first_name, required: true %>
+      <%= f.label :last_name, t("user.last_name") %>
+      <%= f.text_field :last_name, required: true %>
+      <%= f.label :email, t("user.email") %>
+      <%= f.text_field :email, required: true %>
+
+      <%= f.label :password, t("registration.form.password"), required: true %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> <%= t("registration.form.password_min") %>)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "off", required: true %>
+      <%= f.label :password_confirmation,
+        t("registration.form.confirm_password"),
+        required: true %>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      <%= f.submit t("registration.submit") %> 
+    <% end %>
+  </section>
+</article>

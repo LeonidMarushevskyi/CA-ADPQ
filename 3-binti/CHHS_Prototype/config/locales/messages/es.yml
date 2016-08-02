@@ -1,0 +1,10 @@
+es:
+  messages:
+    header: "Enviar mensajes a su trabajador social"
+    social_worker_header: "Mensajes con"
+    social_worker_messages_header: "Mensajes con padres"
+    social_worker_your_info: "Su informacion"
+    submit: "Enviar"
+    text_instructions: "Escriba sus mensajes abajo"
+    your_social_work: "Su trabajador social"
+    me: "Yo"

@@ -1,0 +1,19 @@
+en:
+  user:
+    address: "Mailing address"
+    change_password: "Change password"
+    email: "Email"
+    edit_profile: "Update your profile"
+    first_name: "First name"
+    last_name: "Last name"
+    profile:
+      saved: "Your profile has been successfully saved."
+    save: "Save"
+    section:
+      name: "Name"
+      contact: "Contact information"
+      mailing: "Mailing address"
+    phone_number: "Phone number"
+    city: "City"
+    state: "State"
+    zipcode: "Zip code"

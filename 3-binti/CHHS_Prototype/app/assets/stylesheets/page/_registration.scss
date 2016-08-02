@@ -1,0 +1,64 @@
+#error_explanation {
+  background: $error-color;
+  padding: 1em;
+
+  h2 {
+    margin: 0 0 0.5em;
+
+    &:before {
+      content: "\f071";
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: 1em;
+      display: inline-block;
+      margin-right: 0.4em;
+    }
+  }
+
+  ul {
+    margin : 0;
+  }
+}
+
+.reasons-section {
+  $icon-size: 3.5em;
+
+  @media (min-width: #{$medium-screen}) {
+    float: left;
+    margin-right: $gutter;
+    width: calc(50% - #{$gutter});
+  }
+
+  .clearfix {
+    margin-bottom: 1em;
+  }
+
+  i.fa {
+    color: $color-primary;
+    font-size: $icon-size;
+  }
+
+  .icon-container {
+    margin-right: 1em;
+    text-align: center;
+    width: $icon-size;
+  }
+
+  .text-container {
+    height: $icon-size;
+    margin-top: 0.5em;
+    width: calc(100% - 4.5em);
+  }
+}
+
+.signup-section {
+  @media (min-width: #{$medium-screen}) {
+    float: right;
+    width: calc(50% - #{$gutter});
+  }
+
+  form {
+    max-width: none;
+    width: 100%;
+  }
+}
+

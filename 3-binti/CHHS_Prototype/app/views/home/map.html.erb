@@ -1,0 +1,60 @@
+<h1><%= t(:welcome_message) %></h1>
+
+<form action="#" class="map-finder">
+  <input type="hidden" value="100" name="within">
+  <input type="hidden" value="12" name="limit">
+  <div class="clearfix">
+    <div class="form-quarter form-zipcode">
+      <label>
+        <%= t(:zipcode) %>
+        <input type="text" name="zipcode" autofocus>
+      </label>
+    </div>
+
+    <div class="form-half form-agency">
+      <label class="select-group">
+        <%= t(:type) %>
+        <select name="facility_type">
+          <option value="adoption_agency"><%= t(:adoption_agencies) %></option>
+          <option value="residential_facility"><%= t(:facilities) %></option>
+          <option value=""><%= t(:all) %></option>
+        </select>
+      </label>
+    </div>
+
+    <div class="form-quarter">
+      <button type="submit"><%= t(:search) %></button>
+    </div>
+  </div>
+</form>
+
+<div id="map"></div>
+<div class="facilities-container"></div>
+
+<script type="text/template" class="template-marker-info">
+  <h4>{{= name }}</h4>
+  <p>
+    <strong><%= t(:address) %></strong> {{= address }}<br/>
+    <strong><%= t(:phone) %></strong> {{= phone_number }}
+  </p>
+</script>
+
+<script type="text/template" class="template-facility-row">
+  <section class="facility-row">
+    <h5>{{= name }}</h5>
+
+    <p>
+      <strong>{{= distance_in_miles }} <%= t(:miles) %></strong><br/>
+      {{= address }}<br/>
+      <span>Tel:{{= phone_number }}</span>
+    </p>
+  </section>
+</script>
+
+<script type="text/template" class="template-alert">
+  <div class="usa-alert usa-alert-{{= alert_type}}">
+    <div class="usa-alert-body">
+      <h3 class="usa-alert-heading">{{= message }}</h3>
+    </div>
+  </div>
+</script>

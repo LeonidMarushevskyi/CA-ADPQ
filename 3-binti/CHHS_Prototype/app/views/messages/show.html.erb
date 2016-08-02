@@ -1,0 +1,53 @@
+<% if current_user.social_worker? %>
+  <h1>
+    <%= t("messages.social_worker_header") %>
+    <%= @conversation.user.full_name %>
+  </h1>
+<% else %>
+  <h1>
+    <%= t("messages.header") %>
+  </h1>
+  <h3><%= t("messages.your_social_work") %></h3>
+  <p class="clearfix social-worker-bio">
+    <img src="/images/social-worker.jpg"
+         alt="<%= SocialWorker.first.full_name %>'s avatar"
+         class="avatar large pull-left">
+    <strong><%= SocialWorker.first.full_name %></strong><br/>
+    <%= SocialWorker.first.phone_number %>
+  </p>
+<% end %>
+
+<ul class="messages-list">
+  <% @messages.each do |message| %>
+    <% if message.user == current_user %>
+      <li class="message-container clearfix">
+        <div class="avatar pull-left"><%= t("messages.me") %></div>
+        <p class="message-body pull-right mine">
+          <%= message.body %><br/>
+          <em><%= time_ago_in_words(message.created_at) %> ago</em>
+        </p>
+      </li>
+    <% else %>
+      <li class="message-container clearfix">
+        <p class="message-body pull-left">
+          <%= message.body %><br/>
+          <em><%= time_ago_in_words(message.created_at) %> ago</em>
+        </p>
+        <div class="avatar pull-right">
+          <% if current_user.social_worker? %>
+            <%= message.user.avatar %>
+          <% else %>
+            <img src="/images/social-worker.jpg" alt="<%= SocialWorker.first.full_name %>'s avatar">
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= form_for Message.new do |f| %>
+  <%= f.label :body, t("messages.text_instructions") %>
+  <%= hidden_field_tag "message[conversation_id]", params[:id] %>
+  <%= f.text_area :body %>
+  <%= f.submit t("messages.submit") %>
+<% end %>

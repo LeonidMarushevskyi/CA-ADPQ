@@ -1,0 +1,16 @@
+.edit_user {
+  max-width: 35em;
+
+  input {
+    max-width: none;
+  }
+}
+
+.user-city-container {
+  margin-right: 2em;
+  width: calc(100% - 7em);
+}
+
+.user-state-container {
+  width: 5em;
+}

@@ -1,0 +1,12 @@
+es:
+  registration:
+    case_worker_reason: "Actualize los detalles de su cuenta para su trabajador social"
+    create_account: "Crear una cuenta"
+    form:
+      confirm_password: "Confirmar contraseña"
+      password: "Contraseña"
+      password_min: "caracteres como mínimo"
+    message_reason: "Envíe mensajes a su trabajador social fácilmente para resolver todas sus dudas"
+    welcome_message: "Regístrase para enviar mensajes a su trabajador social"
+    why_join: "¿Por qué registrarse?"
+    submit: "Registarse"

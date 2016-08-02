@@ -1,0 +1,10 @@
+Hi <%= @user.first_name %>,
+
+You have received a new message from your social worker.
+
+Please visit your inbox to see the message and reply:
+
+<%= messages_url(protocol: (Rails.env.production? ? "https" : "http")) %>
+
+Sincerely,
+The CHHS Team
