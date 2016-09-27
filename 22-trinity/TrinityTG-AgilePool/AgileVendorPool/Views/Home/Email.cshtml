@@ -1,0 +1,490 @@
+﻿@{
+
+    //ViewBag.Title = "EmailFosterParent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2 id="emailTitle-1"></h2>
+
+<section id="EmailArea" style="margin-top:20px;">
+ 
+    <!-- SY -->
+    <!-- Bootstrap tabs -->
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#inboxTab" aria-controls="inboxtab" role="tab" data-toggle="tab">Inbox</a></li>
+        <li role="presentation"><a href="#sentitemsTab" aria-controls="sentitemsTab" role="tab" data-toggle="tab">Sent Items</a></li>
+        <li>
+            <div style="margin-left:20px; margin-bottom:10px;">
+                <button id="btnNewEmail"  type="button" class="btn btn-primary btn-sm" aria-haspopup="true"><span style="margin-right:5px;" class="glyphicon glyphicon-envelope" aria-hidden="true"></span>New Email</button>
+                <button id="btnDeleteEmails" type="button" class="btn btn-danger btn-sm" aria-haspopup="true"><span style="margin-right:5px;" class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>Delete Email(s)</button>
+            </div>
+
+        </li>
+    </ul>
+    
+
+    <!-- Tab panes -->
+    <div class="tab-content" style="">
+        <!-- inboxTab -->
+        <div role="tabpanel" class="tab-pane active" id="inboxTab">
+            <div class="pre-scrollable" style="cursor: pointer;" >
+                <table id="userInbox" class="table table-striped table-bordered table-hover facilityList" >
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>From</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tr rv-each-data="emailList" rv-on-click="controller.getItem">
+                        <td><input type="checkbox" rv-checked="data.checked"></td>
+                        <td rv-text="data.emailFrom"></td>
+                        <td rv-text="data.emailSubject"></td>
+                        <td rv-text="data.dynamicEmailDate"></td>
+                        
+                    </tr>
+                </table>
+            </div>
+            <h6 id="inboxTotalItames" style="text-align:right;"></h6>
+            <h4>Email Body:</h4>
+            <textarea readonly class="form-control emailBodyContent"  >
+                *** no email to display
+            </textarea>
+
+        </div> <!-- tab inbox -->
+        
+        <!-- sentitemsTab -->
+        <div role="tabpanel" class="tab-pane" id="sentitemsTab">
+            <div class="pre-scrollable" style="cursor: pointer;">
+                <table id="userSentItems" class="table table-striped table-bordered table-hover facilityList">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>To</th>
+                            <th>Subject</th>
+                            <th>emailDate</th>
+                        </tr>
+                    </thead>
+                    <tr rv-each-data="emailList" rv-on-click="controller.getItem">
+                        <td><input type="checkbox" rv-checked="data.checked"></td>
+                        <td rv-text="data.emailTo"></td>
+                        <td rv-text="data.emailSubject"></td>
+                        <td rv-text="data.dynamicEmailDate"></td>
+                        
+                    </tr>
+                </table>
+            </div>
+            <h6 id="sentItemsTotalItames" style="text-align:right;"></h6>
+            <h4>Email Body:</h4>
+            <textarea readonly class="form-control emailBodyContent" >
+                *** no email to display
+            </textarea>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+    var caseWorkerEmail = '@AgileVendorPool.Models.GlobalData.caseWorkerEmail';
+    var isCaseWorker = '@ViewData["isCaseWorker"]';
+    (isCaseWorker=='False' ? isCaseWorker=false : isCaseWorker=true); 
+    var userType = '@ViewData["UserType"]';
+    var userEmail = '@ViewData["UserEmail"]';
+    var newEmailFrom = '';
+    var newEmailTo = '';
+
+    // SY
+    // For debug only
+    //console.log("--------------------------------------------------------------");
+    //console.log(caseWorkerEmail, isCaseWorker, userType, userEmail);
+    //console.log("--------------------------------------------------------------");
+
+    var emailList = [{
+        checked: 0,
+        emailId: '-1',
+        emailFrom: '',
+        emailTo: '',
+        emailSubject: '',
+        emailBody: '',
+        emailDate: '',
+        dynamicEmailDate: ''
+    }],
+    selectedIndex = '',
+    controller = {
+        getItem: function (e, model) {
+            $('.emailBodyContent').text(model.emailList[model.index].emailBody);
+            model.selectedIndex = model.index;
+            userMailBox.selectedIndex = model.index;
+            userMailBox.selectedEmailId = model.emailList[model.index].emailId;
+        }
+    };
+
+    var userMailBox = {
+        userInbox: emailList,
+        userSentBox: emailList,
+        selectedIndex: '',
+        selectedEmailId: ''
+    };
+
+
+    var mainProgram =
+        {
+            init: function () {
+                endpointUrl = '/api/email/getMyEmail';
+                $.ajax({
+                    type: "POST",
+                    url: endpointUrl,
+                    data: JSON.stringify(emailList[0])
+                }).done(function (data) {
+                    emailList = data.serverData;
+
+                    // filter
+                    userMailBox.userInbox = jQuery.grep(emailList, function (n, i) {
+                        return (n.emailTo.toLowerCase() == userEmail.toLowerCase());
+                    });
+                    $('#inboxTotalItames').text("Total Items: " + userMailBox.userInbox.length);
+                    
+                    // filter
+                    userMailBox.userSentBox = jQuery.grep(emailList, function (n, i) {
+                        return (n.emailFrom.toLowerCase() == userEmail.toLowerCase());
+                    });
+                    $('#sentItemsTotalItames').text("Total Items: " + userMailBox.userSentBox.length);
+
+                }).complete(function () {
+                    $('#modalActivityImage').modal('hide');
+                    rivets.bind($('#userInbox'), { emailList: userMailBox.userInbox, controller: controller });
+
+                    if (userMailBox.userInbox.length > 1) {
+                        $('.emailBodyContent').text(userMailBox.userInbox[0].emailBody);
+                    }
+                    rivets.bind($('#userSentItems'), { emailList: userMailBox.userSentBox, controller: controller });
+                })
+            },
+        };
+
+
+    $(document).ready(function () {
+        console.log("ready!");
+
+        $('#modalActivityImage').modal('show');
+        console.log(isCaseWorker);
+        if (isCaseWorker) {
+            $('#emailTitle-1').text('Email (Case Worker)');
+        }
+        else {
+            $('#emailTitle-1').text('Email (Foster Parent)');
+        }
+
+        if (userEmail.length == 0) {
+
+            errorMessage = 'Please log in first. Thank you!';
+            $('.modal-header').css({ 'background-color': 'RED' });
+            $('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+            $('#modal-text').text(errorMessage);
+            $('#myModal').modal({ show: true, keyboard: true });
+
+
+            $('#EmailArea').hide();
+            window.location = '/Home';
+            return;
+
+        }
+        $('#modalActivityImage').modal('hide');
+        $('#userName').text(userEmail);
+
+        emailList[0].emailFrom = userEmail;
+
+        mainProgram.init();
+
+
+        // ------------------------------------------------------------------
+        // When user clicks on the TABS
+        // ------------------------------------------------------------------
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            // user clicks on the TABS
+
+            //console.log('tab');
+            //console.log(e.relatedTarget);  // previous active tab
+            //console.log(e.target);   // newly activated tab
+            //console.log($(e.target).attr('href'));
+
+            // clear
+            $('.emailBodyContent').text("* No email");
+
+            if (($(e.target).attr('href')) == '#inboxTab') {
+                // inbox
+                // make sure it is not empty
+                if (userMailBox.userInbox.length>0) {
+                    $('.emailBodyContent').text(userMailBox.userInbox[0].emailBody);
+                }
+
+                // enable the delete button
+                $("#btnDeleteEmails").prop("disabled", false);
+
+            }
+            else if (($(e.target).attr('href')) == '#sentitemsTab') {
+                // sent items
+                // make sure it is not empty
+                if (userMailBox.userSentBox.length>0) {
+                    $('.emailBodyContent').text(userMailBox.userSentBox[0].emailBody);
+                }
+
+                // disable the delete button
+                $("#btnDeleteEmails").prop("disabled", true);
+            }
+
+        })
+
+
+        // ------------------------------------------------------------------
+        // user clicks on New Email
+        // ------------------------------------------------------------------
+        $('#btnNewEmail').click(function () {
+
+
+            if (isCaseWorker) {
+                newEmailFrom = caseWorkerEmail;
+                // PICK FROM DROP DOWN
+            }
+            else {
+                newEmailFrom = userEmail;
+                newEmailTo = caseWorkerEmail;
+            }
+
+
+            if (isCaseWorker) {
+                $('#modalActivityImage').modal('show');
+
+                $('#mySelectEmailList').empty();
+
+                // get email list
+                endpointUrl = '/api/email/getFosterParentEmailList';
+                $.ajax({
+                    type: "GET",
+                    url: endpointUrl
+                }).done(function (data) {
+                    console.log(data);
+                    console.log(data.serverData);
+                    emailList = data.serverData;
+                    // add email list to the dropdown
+                    $.each(emailList, function (key, value) {
+                        $('#mySelectEmailList').append($("<option></option>")
+                                      .attr("value", key)
+                                      .text(value));
+                    });
+
+                }).complete(function () {
+                    $('#modalActivityImage').modal('hide');
+                    //rivets.bind($('#userInbox'), { emailList: userMailBox.userInbox, controller: controller });
+                })
+            }
+            else {
+
+                // Email is going to the Case Worker
+                $('#mySelectEmailList').append($("<option></option>")
+                                       .attr("value", newEmailTo)
+                                       .text(newEmailTo));
+            }
+
+            
+            // SY
+            // For debug
+            //console.log("--------------------------------------------------------------");
+            //console.log(caseWorkerEmail, isCaseWorker, userType, userEmail);
+            //console.log("--------------------------------------------------------------");
+
+            $('#myModalNewEmailFrom').text(newEmailFrom);
+
+            $('.modal-header').css({ 'background-color': 'lightseagreen' });
+            $('#myModalbutton').removeClass('btn-danger').addClass('btn-primary');
+            $('#modal-text').text('Update is Complete.');
+            $('#myModalNewEmail').modal({ show: true, keyboard: true });
+
+        });
+
+
+        // -----------------------------------------------------------------------------
+        // send new email
+        //------------------------------------------------------------------------------
+        $('#newEmailSend').click(function () {
+            newEmailSubject = $('#newEmailSubject').val();
+            newEmailBody = $('#newEmailBody').val();
+
+            $('#modalActivityImage').modal('show');
+
+            // Determine what email the user has selected  from teh OPTION DROPDOWN
+            newEmailTo = $("#mySelectEmailList option:selected").text();
+
+            newEmail = {
+                emailId: '-1',
+                emailFrom: newEmailFrom,
+                emailTo: newEmailTo,
+                emailSubject: newEmailSubject,
+                emailBody: newEmailBody,
+                emailDate: '',
+                dynamicEmailDate: ''
+            };
+
+            endpointUrl = '/api/email/sendEmail';
+
+            $.ajax({
+                type: "POST",
+                url: endpointUrl,
+                data: JSON.stringify(newEmail)
+            }).done(function (data) {
+
+                // reset the inbox
+                //window.location = '/Home/EmailFosterParent';
+                // *************************************************************
+                window.location = '/Home/Email?UserType=' + userType;
+                // *************************************************************
+
+            }).fail(function (jqXHR, textStatus) {
+                console.log("deletefail");
+                var errorMessage = jqXHR.responseJSON.serverError[0].summary;
+
+                //$('.modal-header').css({ 'background-color': 'RED' });
+                //$('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+                //$('#modal-text').text(errorMessage);
+                //$('#myModal').modal({ show: true, keyboard: true });
+
+            }).complete(function () {
+                $('#modalActivityImage').modal('hide');
+            })
+
+        });
+
+
+
+        $('#btnDeleteEmails').click(function () {
+
+            // filter
+            deleteList = jQuery.grep(userMailBox.userInbox, function (n, i) {
+                return (n.checked == 1);
+            });
+
+            if (deleteList.length == 0) {
+
+                //alert("Please log in first. Thank you!");
+                errorMessage = 'Please select email(s) to be deleted. Thank you!';
+                $('.modal-header').css({ 'background-color': 'RED' });
+                //btn-primary btn-danger
+                $('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+                $('#modal-text').text(errorMessage);
+                $('#myModal').modal({ show: true, keyboard: true });
+
+                return;
+            }
+
+            $('#modalActivityImage').modal('show');
+
+            endpointUrl = '/api/email/deleteEmailList';
+
+            tempList = [];
+            deleteList.forEach(function (element, index, array) {
+                //console.log(index + ' - ' + element.emailId);
+                tempList.push(element.emailId);
+            });
+
+
+            $.ajax({
+                type: "POST",
+                url: endpointUrl,
+                data: JSON.stringify(tempList)
+            }).done(function (data) {
+                console.log("delete");
+
+                // reset the inbox
+                //window.location = '/Home/EmailFosterParent';
+                // *************************************************************
+                window.location = '/Home/Email?UserType=' + userType;
+                // *************************************************************
+
+
+                //$('#Update').text("Update");
+
+                //$('.modal-header').css({ 'background-color': 'lightblue' });
+                //$('#myModalbutton').removeClass('btn-danger').addClass('btn-primary');
+                //$('#modal-text').text('Update is Complete.');
+                //$('#myModal').modal({ show: true, keyboard: true });
+
+            }).fail(function (jqXHR, textStatus) {
+                var errorMessage = jqXHR.responseJSON.serverError[0].summary;
+
+                //$('.modal-header').css({ 'background-color': 'RED' });
+                //$('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+                //$('#modal-text').text(errorMessage);
+                //$('#myModal').modal({ show: true, keyboard: true });
+
+            }).complete(function () {
+                $('#modalActivityImage').modal('hide');
+            })
+        });
+    });
+
+</script>
+
+
+
+@*bootstrap modal dialog*@
+
+<div id="myModalNewEmail" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:lightseagreen">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h2 class="modal-title" style="color:black;">New Email</h2>
+            </div>
+            <div class="modal-body">
+                <table style="width:100%;">
+                    <tr style="width:100%;">
+                        <td style="width:15%; text-align:right;"><h4>From:</h4></td>
+                        <td style="width:80%;"><h4 id="myModalNewEmailFrom"></h4></td>
+                    </tr>
+                    <tr style="width:100%;">
+                        <td style="width:15%; text-align:right;"><h4>To:</h4></td>
+                        <td style="width:80%;"> <select id="mySelectEmailList" class="form-control"  aria-describedby="basic-addon1"></select></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;"><h3>Subject:</h3>        
+                        <td><input type="text" id="newEmailSubject" class="form-control" placeholder="Subject" aria-describedby="basic-addon1"  /></td></tr>
+                    <tr>
+                        <td><td>
+                        <textarea id="newEmailBody" class="form-control" placeholder="Enter email body..." style="width:100%; height: 200px;  "></textarea></td></tr>
+                </table>
+
+            </div>
+            <div class="modal-footer" >
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" id="newEmailSend" class="btn btn-primary" data-dismiss="modal">Send</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+            <p class="modal-title" style="color:black;">oops...</p>
+        </div>
+        <div class="modal-body">
+            <p id="modal-text"></p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" id="myModalbutton" class="btn" data-dismiss="modal">OK</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

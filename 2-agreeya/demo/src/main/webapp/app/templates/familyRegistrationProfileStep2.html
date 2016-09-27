@@ -1,0 +1,241 @@
+<div class="MainContainer" id="MainContainer">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ol class="breadcrumb">
+                <li><a href="#/">Home</a></li>
+                <li><a href="javascript:void(0)">Establish Profile</a></li>
+                <li class="active">Personal Information</li>
+            </ol>
+        </div>
+    </div>
+    <section>
+        <div class="row marginTop10 lightGrayBG">
+            <div class="col-xs-12 col-sm-6 h3 txtBlue marginTop7">Establish Profile</div>
+            <div class="col-xs-12 col-sm-6 txtBlue font1dot5em"><span class="stepCount">Step <span class="font1em">2</span> of <span class="font1em">4</span></span></div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified tabPills">
+            <li><a href="javascript:void(0);">Account Detail</a></li>
+            <li  class="active"><a href="javascript:void(0);">Personal Information</a></li>
+            <li ><a href="javascript:void(0)">Family Narrative &amp; Preferences</a></li>
+            <li ><a href="javascript:void(0)">License &amp; Agency Detail</a></li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="form-horizontal marginTop20">
+        <form name="registrationForm2"role="form" novalidate>
+      <div class="form-group required" ng-class="{ 'has-error' : registrationForm2.firstName.$invalid && !registrationForm2.firstName.$pristine }">
+        <label for="inputPassword" class="control-label col-sm-2 paddingTop7">First Name</label>
+        <div class="col-sm-3">
+          <input class="form-control" name="firstName" id="firstName" type="text" ng-model="model.personalDetails.firstName" required>
+          <span ng-show="registrationForm2.firstName.$invalid && !registrationForm2.firstName.$pristine" class="help-block"> First name required.</span>
+            </div>
+
+            <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Last Name</label>
+            <div class="col-sm-3">
+                <input class="form-control" name="lastName" ng-model="model.personalDetails.lastName" type="text" required>
+                <span ng-show="registrationForm2.lastName.$invalid && !registrationForm2.lastName.$pristine" class="help-block"> Last name required.</span>
+            </div>
+        </div>
+        <div class="form-group required">
+            <label for="contactNumber" class="control-label col-sm-2 paddingTop7">Contact Number</label>
+            <div class="col-sm-3" ng-class="{ 'has-error' : registrationForm2.contactNumber.$invalid && !registrationForm2.contactNumber.$pristine }">
+              <input type="number" class="form-control" ng-minlength="10" ng-maxlength="10"  id="inputContactNumber" name="contactNumber" ng-model="model.personalDetails.contactNo" ng-required="true">
+               <span ng-show="((registrationForm2.contactNumber.$error.required || registrationForm2.contactNumber.$error.number) && !registrationForm2.contactNumber.$pristine)" class="help-block"> Contact number required and it should be numeric only.</span>
+               <span class="help-block" ng-show="((registrationForm2.contactNumber.$error.minlength || registrationForm2.contactNumber.$error.maxlength) && registrationForm2.contactNumber.$dirty) "> Contact number should be 10 digits only</span>
+
+            </div>
+
+            <label class="col-sm-2 control-label">Date of Birth</label>
+            <div class="col-sm-3" ng-class="{ 'has-error' : registrationForm2.dob.$invalid && !registrationForm2.dob.$pristine }">
+                <div class="input-append date form-control datepicker" id="dp3" data-date-format="mm/dd/yyyy">
+                    <input class="span2" size="16" type="text" value="" name="dob" ng-model="model.personalDetails.dob"  ng-required="true">
+                    <span ng-show="registrationForm2.dob.$invalid && !registrationForm2.dob.$pristine" class="help-block"> Date of birth required.</span>
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+            </div>
+        </div>      
+
+
+        <div class="form-group">
+            <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Race</label>
+            <div class="col-sm-3">
+              <select name="ddl_races1" class="form-control" ng-model="model.personalDetails.race" ng-options="race.Name as race.Name for race in model.racesData">
+                  <option value="">Select</option>
+              </select>
+            </div>
+
+            <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Religion</label>
+            <div class="col-sm-3">
+              <select name="ddl_religion1" class="form-control" ng-model="model.personalDetails.religion" ng-options="religion.Name as religion.Name for religion in model.religionData">
+                  <option value="">Select</option>
+              </select>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Occupation</label>
+            <div class="col-sm-3">
+                <input class="form-control" type="text" name="Occupation" ng-model="model.personalDetails.occupation">
+            </div>
+            <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Income (in USD)</label>
+            <div class="col-sm-3" ng-class="{ 'has-error' : registrationForm2.income.$invalid && !registrationForm2.income.$pristine }">
+              <input class="form-control" type="number" name="income" ng-model="model.personalDetails.income">
+              <span ng-show="registrationForm2.income.$error.number" class="help-block"> Income should be numeric only.</span>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Foster kid’s preferences category</label>
+            <div class="col-sm-3">
+              <select name="ddl_preferences1" class="form-control" ng-model="model.personalDetails.preference" ng-options="preference.Name as preference.Name for preference in model.preferencesData">
+                  <option value="">Select</option>
+              </select>
+            </div>
+            <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Your Hobbies</label>
+            <div class="col-sm-3">
+                <textarea class="form-control" rows="2" name="hobbies" ng-model="model.personalDetails.hobbies"></textarea>
+            </div>
+        </div>
+
+         <div class="form-group ">
+            <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Gender</label>
+            <div class="col-sm-3">
+                <select class="form-control" id="genderSelector">
+                    <option value="">Select</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+
+            <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Marital Status</label>
+            <div class="col-sm-3">
+                <select class="form-control" id="MaritalStatusSelector">
+                    <option value="status">Select Status</option>
+                    <option value="single">Single</option>
+                    <option value="Married">Married</option>
+                </select>
+            </div>
+        </div>
+        <div class="panel panel-default MaritalStatus" style="display:none" id="Married">
+            <div class="panel-heading"><b>Spouse Details</b>
+                 <a class="btn btn-default btn-xs pull-right" ng-click="model.onChangeSpouseDetails()"><i ng-class="model.spouseClass"></i></a>
+            </div>
+            <div class="panel-body" ng-show="model.showSpouseDetails">
+
+                <div class="form-group">
+                    <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Name</label>
+                    <div class="col-sm-3">
+                        <input class="form-control" type="text" name="spouseName" ng-model="model.personalDetails.spouseDetails.firstName">
+                    </div>
+
+                    <label for="spouseContactNumber" class="control-label col-sm-2 paddingTop7">Contact Number</label>
+                    <div class="col-sm-3" ng-class="{ 'has-error' : registrationForm2.spouseContactNumber.$error.number || registrationForm2.spouseContactNumber.$error.minlength || registrationForm2.spouseContactNumber.$error.maxlength}">
+                        <input type="number" class="form-control" ng-minlength="10" ng-maxlength="10"  id="spouseContactNumber" name="spouseContactNumber" ng-model="model.personalDetails.spouseDetails.contactNo">
+                         <span ng-show="registrationForm2.spouseContactNumber.$error.number" class="help-block"> Contact number should be number.</span>
+                         <span class="help-block" ng-show="((registrationForm2.spouseContactNumber.$error.minlength || registrationForm2.spouseContactNumber.$error.maxlength) && registrationForm2.spouseContactNumber.$dirty) "> Contact number should be 10 digits only</span>
+
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Date of Birth</label>
+                    <div class="col-sm-3">
+                        <div class="input-append date form-control datepicker" id="dp3" data-date-format="mm/dd/yyyy">
+                            <input class="span2 " size="16" type="text" name="spouseDOB" ng-model="model.personalDetails.spouseDetails.dob">
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+                    </div>
+                     <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Gender</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="spouseGenderSelector">
+                            <option value="">Select</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                     <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Race</label>
+                    <div class="col-sm-3">
+                      <select name="ddl_races" class="form-control" ng-model="model.personalDetails.spouseDetails.race" ng-options="race.Name as race.Name for race in model.racesData">
+                          <option value="">Select</option>
+                      </select>
+                    </div>
+
+                    <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Religion</label>
+                    <div class="col-sm-3">
+                      <select name="ddl_religion" class="form-control" ng-model="model.personalDetails.spouseDetails.religion" ng-options="religion.Name as religion.Name for religion in model.religionData">
+                          <option value="">Select</option>
+                      </select>
+                    </div>
+
+                </div>
+                <div class="form-group">
+
+
+                    <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Occupation</label>
+                    <div class="col-sm-3">
+                        <input class="form-control" type="text" name="spouseOccupation" ng-model="model.personalDetails.spouseDetails.occupation">
+                    </div>
+                      <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Income (in USD)</label>
+                      <div class="col-sm-3" ng-class="{ 'has-error' : registrationForm2.spouseIncome.$invalid && !registrationForm2.spouseIncome.$pristine }">
+                        <input class="form-control" type="number" name="spouseIncome" ng-model="model.personalDetails.spouseDetails.income">
+                        <span ng-show="registrationForm2.spouseIncome.$error.number" class="help-block"> Income should be numeric only.</span>
+                      </div>
+                </div>
+                <div class="form-group">
+
+
+                    <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Foster kid’s preferences category</label>
+                    <div class="col-sm-3">
+                      <select name="ddl_preferences" class="form-control" ng-model="model.personalDetails.spouseDetails.preference" ng-options="preference.Name as preference.Name for preference in model.preferencesData">
+                          <option value="">Select</option>
+                      </select>
+                    </div>
+                    <label for="inputPassword" class="control-label col-sm-2 paddingTop7">Hobbies</label>
+                    <div class="col-sm-3">
+                        <textarea class="form-control" rows="2" name="spouseHobbies" ng-model="model.personalDetails.spouseDetails.hobbies"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn btn-default" onClick="$('#Married').hide()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <!--/.panel-body -->
+        </div>
+        <!--/.panel -->
+
+        <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-2">
+                <input class="btn btn-primary" value="Save" type="submit" ng-click="model.SaveRegistrationProfileData()" ng-disabled="registrationForm2.$invalid">
+                <input class="btn btn-default" value="Save & Exit" type="submit" ng-click="model.SaveRegistrationProfileDataAndExit()" ng-disabled="registrationForm2.$invalid">
+            </div>
+        </div>
+        </form>
+</div>
+
+<!-- /.form-horizontal -->
+
+
+</section>
+</div>
+<main-script></main-script>
+<script language="javascript">
+
+$(function() {
+    $('#MaritalStatusSelector').change(function() {
+        $('.MaritalStatus').hide();
+        $('#' + $(this).val()).show("slow");
+    });
+});
+
+$('.datepicker').datepicker();
+</script>

@@ -1,0 +1,41 @@
+{
+  "name": "cgiAdpq",
+  "version": "0.0.1",
+  "description": "A sample foster care proof of concept application. A joint project of Surge, LLC and CGI Group Inc.",
+  "author": "Steve Sickman <ssickman@surgeforward.com",
+  "repository": "https://ssickman@github.com/surgeforward/CGI-ADPQ.git",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "grunt": "^1.0.1",
+    "grunt-angular-gettext": "^2.2.0",
+    "grunt-angular-templates": "^1.0.3",
+    "grunt-bowercopy": "^1.2.4",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-karma": "^1.0.0",
+    "grunt-sass": "^1.2.0",
+    "grunt-script-link-tags": "^1.0.2",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-coverage": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-junit-reporter": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "node-sass": "^3.7.0",
+    "phantomjs-prebuilt": "^2.1.7"
+  },
+  "scripts": {
+    "install": "bower install --config.interactive=false --allow-root",
+    "build": "grunt build",
+    "test": "grunt test"
+  },
+  "config": {
+    "unsafe-perm": "true"
+  }
+}

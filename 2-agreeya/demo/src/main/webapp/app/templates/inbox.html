@@ -1,0 +1,38 @@
+
+  <div class="col-sm-12 rightSection">
+
+     <div class="form-horizontal marginTop20">
+
+       <div class="row" ng-if="model.isMails == 'no'">
+         <div class="class="col-xs-12 font1dot3em""><div class="alert alert-warning" role="alert">There are no emails in your inbox.</div></div>
+       </div>
+       <div class="row" ng-if="model.isMails == 'yes'">
+         <div class="col-xs-12 font1dot3em">
+           <a href="javascript:void(0)"><i class="fa  fa-remove"></i> Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)"><i class="fa  fa-send"></i> Sent</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)"><i class="fa fa-edit"></i> Compose</a>
+         </div>
+      </div><!--/.row -->
+
+   <div class="table-responsive" ng-if="model.isMails == 'yes'">
+     <table class="table table-striped">
+       <thead>
+         <tr class="grayBG">
+           <th width="15"><input type="checkbox" name="checkbox" id="checkbox"></th>
+         <th>From</th>
+         <th>Subject</th>
+         <th>Received Date</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr class="cursorHand" ng-repeat = "email in model.inboxData" >
+           <td><input type="checkbox" name="checkbox2" id="checkbox2"></td>
+           <td>{{email.mailfrom}}</td>
+           <td>{{email.subject}}</td>
+           <td>{{email.recieveddate | date}}</td>
+         </tr>
+       </tbody>
+     </table>
+   </div>
+
+     </div><!-- /.form-horizontal -->
+   </div>
+<main-script><main-script>

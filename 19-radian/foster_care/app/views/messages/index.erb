@@ -1,0 +1,5 @@
+<h3><strong>Sent Message</strong></h3>
+<%= render partial: 'messages_list', locals: { messages: @sent_messages, list_type: :sent_messages} %>
+
+<h3><strong>Received Message</strong></h3>
+<%= render partial: 'messages_list', locals: { messages: @received_messages, list_type: :received_messages} %>

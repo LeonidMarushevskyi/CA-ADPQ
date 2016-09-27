@@ -1,0 +1,83 @@
+
+
+ <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="nav nav-pills nav-justified tabPills">
+                            <li class="active">
+                                <a ng-link="['UserAccountDetails']">
+                                    Update<br />
+                                    Account Detail
+                                </a>
+                            </li>
+                            <li>
+                                <a ng-link="['UserPersonalInformation']">
+                                    Update<br />
+                                    Personal Information
+                                </a>
+                            </li>
+                            <li>
+                                <a ng-link="['UserPreferences']">
+                                    Update Family
+                                    Narrative &amp; Preferences
+                                </a>
+                            </li>
+                            <li><a ng-link="['UserLicense']">Update License &amp; Agency Detail</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-7">
+
+                        <form name="userForm1" ng-submit="model.updateAccountProfile()" novalidate>
+                            <div class="form-horizontal marginTop20">
+                                <div class="form-group required" ng-class="{ 'has-error' : userForm1.userName.$invalid && !userForm1.userName.$pristine }">
+                                    <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Username</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" disabled="disabled" type="text" name="userName" id="userName" ng-model="model.personalProfile.userName" required>
+                                        <span ng-show="userForm1.userName.$invalid && !userForm1.userName.$pristine" class="help-block"> Username required.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group required" ng-class="{ 'has-error' : userForm1.email.$invalid && !userForm1.email.$pristine }">
+                                    <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Email Id</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="email" disabled="disabled" name="email" id="email" ng-model="model.personalProfile.useremail" required>
+                                        <p ng-show="userForm1.email.$invalid && !userForm1.email.$pristine" class="help-block">Enter a valid email.</p>
+                                    </div>
+                                </div>
+                                <div class="form-group required" ng-class="{ 'has-error' : userForm1.password.$invalid && !userForm1.password.$pristine }">
+                                    <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Password</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="password" name="password" ng-model="model.personalProfile.password" required>
+                                        <p ng-show="userForm1.password.$invalid && !userForm1.password.$pristine" class="help-block">Enter password.</p>
+
+                                    </div>
+                                </div>
+                                <div class="form-group required" ng-class="{ 'has-error' : userForm1.confirmPassword.$invalid && !userForm1.confirmPassword.$pristine }">
+                                    <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Confirm Password</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="password" name="confirmPassword" ng-model="model.confirmPassword" required>
+                                        <p ng-show="userForm1.password.$invalid && !userForm1.password.$pristine" class="help-block">Enter confirm password.</p>
+                                        <p ng-show="userForm1.confirmPassword.$valid && model.personalProfile.password != model.confirmPassword" class="help-block">Password and confirm password does not match.</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-6 col-sm-offset-4">
+
+                                        <button class="btn btn-primary" type="submit" ng-disabled="userForm1.$invalid || model.personalProfile.password != model.confirmPassword">Update</button>
+                                        <input class="btn btn-default" value="Cancel" type="button" ng-link="['UserAccountDetails']">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.form-horizontal -->
+                        </form>
+                    </div>
+                    <div class="col-sm-5 marginTop20 LeftDivider">
+                        <img src="./contents/images/registerFiller.jpg" width="388" height="408" alt="" class="img-responsive" />
+                    </div>
+                </div>
+
+            </div>
+      <main-script></main-script>  

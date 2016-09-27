@@ -1,0 +1,49 @@
+
+      <div class="col-sm-12 rightSection">
+
+        <div class="form-horizontal marginTop20">
+          <form name="facilityForm" ng-submit="model.searchFacilities(model.zipCode)" novalidate>
+          <div class="form-group required">
+            <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Enter Zip Code</label>
+            <div class="col-sm-4" ng-class="{ 'has-error' : facilityForm.txtZipCode.$error.number || facilityForm.txtZipCode.$error.minlength || facilityForm.txtZipCode.$error.maxlength}">
+
+                <input class="form-control" type="number" name="txtZipCode" ng-model="model.zipCode" ng-minlength="5" ng-maxlength="5" >
+                <span ng-show="facilityForm.txtZipCode.$error.number" class="help-block"> Zip Code should be numeric only.</span>
+                <span class="help-block" ng-show="((facilityForm.txtZipCode.$error.minlength || facilityForm.txtZipCode.$error.maxlength) && facilityForm.txtZipCode.$dirty) ">ZipCode should be 5 digits only</span>
+
+            </div>
+            <div class="col-sm-1">
+              <button class="btn btn-primary" ng-click="model.searchFacilities(model.zipCode)"><i class="glyphicon glyphicon-search"></i> Search</button>
+            </div>
+          </div>
+          </form>
+          <div id="searchResult" ng-if="model.isFacilitiesAvailable != 'default'">
+            <h4>Search Results</h4>
+            <div class="row">
+              <div ng-if="model.isFacilitiesAvailable == 'yes'" class="col-sm-3">
+                Page Size:
+                <select name="ddl_pageSizes" class="form-control" ng-change="model.onPageSizeChanged(model.selectedPageSize)" ng-model="model.selectedPageSize"
+                  ng-options="page.Id as page.Name for page in model.pageSizes">
+                      <option value="">Select</option>
+                  </select>
+              </div>
+            </div>
+
+            <div ag-grid="model.gridOptions" class="ag-fresh" id="facilitiesGrid" ng-style="model.agGridStyle" class="table-responsive"
+              ng-if="model.isFacilitiesAvailable == 'yes'">
+
+            </div>
+            <div ng-if="model.isFacilitiesAvailable == 'no'">
+              <div class="alert alert-warning" role="alert">No child residential facility is available for the selected Zip code.</div>
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+        <!-- /.form-horizontal -->
+      </div>
+
+<main-script></main-script>

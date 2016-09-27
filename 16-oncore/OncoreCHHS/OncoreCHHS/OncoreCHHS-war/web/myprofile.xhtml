@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:onc="http://java.sun.com/jsf/composite/onc"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/facelets/templates/reduced_layout.xhtml">
+
+
+
+        <ui:param name="managedBean" value="#{profileMaintenanceManagedBean}"/>
+        <ui:param name="managedBeanContent" value="#{profileMaintenanceManagedBean.profileBean}"/>
+
+
+
+        <ui:define name="title">
+            <title>CHHS Foster Care Services | My Profile</title>
+        </ui:define>
+
+        <ui:define name="content">
+
+            <!-- Main -->
+            <div id="main" class="wrapper style1">
+                <section class="container">
+                    <a name="skip_main_content"/>
+                    <header class="major">
+                        <h2>My Profile</h2>
+
+                    </header>
+
+            
+                    <p:messages id="messages" showSummary="true" showDetail="false"
+                                autoUpdate="true" globalOnly="true" 
+                                escape="false"/>
+
+
+                    <p><b><h:outputText value="ATTENTION:  This website is for demonstration purposes only.  Do not enter your real contact information."/></b></p>
+                    <p:spacer height="5"/>
+                    <p:panel id="registerPnl" header="View or Update Registration Information" toggleable="false">
+
+
+                        <onc:inputText_1 id="userNameTxt"
+                                         widgetVar='userNameWdg'
+                                         label="User Name:"
+                                         labelStyleClass="form_label"
+                                         inputStyleClass="input_float_left"
+                                         requiredLabel="true"
+                                         maxlength="45"
+                                         size="25"
+                                         immediate="true"
+                                         errAlt=""
+                                         errMsgRendered="false"
+                                         readonly="true"
+                                         value="#{managedBeanContent.userName}"/>
+
+
+
+                        <ui:include src="/facelets/profile/common_profile_content.xhtml"/>
+                    </p:panel>
+                    <p:spacer height="10"/>
+
+                    <div class="row">
+
+                        <p:outputPanel layout="block" id="outerButtonPnl">
+
+                            <p:outputPanel id="cancelButtonPnl" layout="block"
+                                           styleClass="innerButtonGroup">
+                                <p:commandButton id="cancelBtn" value="Cancel" 
+                                                 styleClass="buttonGroup" 
+                                                 action="#{navigationManagedBean.navigateToLink('index', false)}"/>
+                            </p:outputPanel>
+                            <p:outputPanel id="registerButtonPnl" layout="block"
+                                           styleClass="innerButtonGroup">
+                                <p:commandButton id="registerBtn" value="Save" 
+                                                 styleClass="buttonGroup" onstart="PF('feedbackWdg').show()"
+                                                 oncomplete="PF('feedbackWdg').hide()"
+                                                 ajax="false"
+                                                 action="#{managedBean.handleSaveButtonClickEvent()}"/>
+                            </p:outputPanel>
+                            <p:blockUI block="registerButtonPnl" trigger="registerBtn"/>
+                        </p:outputPanel>
+
+
+                    </div>
+
+                </section>
+
+            </div>
+
+            <p:defaultCommand target="registerBtn"/>
+        </ui:define>
+
+    </ui:composition>
+
+
+</html>

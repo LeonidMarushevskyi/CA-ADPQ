@@ -1,0 +1,29 @@
+head
+  = javascript_include_tag "//maps.google.com/maps/api/js?v=3.23&sensor=true&client=&key=#{Rails.application.secrets.map_api_key}&libraries=geometry&language=&hl=&region=", cache: true
+  = javascript_include_tag "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js", cache: true
+  = javascript_include_tag '//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js', cache: true
+
+.row
+  .col-sm-12
+    = form_tag [@profile, :agencies], method: :get, id: 'agencies', 
+        class: 'form-inline', remote: true  do
+      .form-group
+        = label_tag :zip, 'Radius', class: 'sr-only'
+        = text_field_tag :zip, params.fetch(:zip, current_user.try(:profile).try(:home).try(:address).try(:zip)), placeholder: 'zip',
+          class: 'form-control'
+      .form-group
+        = label_tag :radius, 'Radius', class: 'sr-only'
+        = select_tag :radius, options_for_select(%w(5 10 25 50 100), 
+                                                 params[:radius]),
+                                  prompt: 'select distance in miles',
+                                  class: 'form-control c-select'
+  .col-sm-12.hello-world
+    p data-map='' 
+      = render partial: 'map', locals: { location: @location, hash: @hash }
+    #map
+
+coffee:
+  $('form#agencies').on 'change', ->
+    $(@).submit()
+      
+  @App.Map.prototype.constructor()

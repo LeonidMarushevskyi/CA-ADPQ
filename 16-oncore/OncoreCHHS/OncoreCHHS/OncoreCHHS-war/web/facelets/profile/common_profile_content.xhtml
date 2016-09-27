@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:onc="http://java.sun.com/jsf/composite/onc"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+    </h:head>
+
+
+    <ui:composition>
+
+        <div class="cleaner"/>
+
+        <onc:inputText_1 id="firstNameTxt"
+                         label="First Name:"
+                         labelStyleClass="form_label"
+                         inputStyleClass="input_float_left"
+                         requiredLabel="true"
+                         maxlength="45"
+                         size="10"
+                         immediate="true"
+                         errAlt=""
+                         errMsgRendered="false"
+                         title="#{managedBeanContent.firstNameError}"
+                         value="#{managedBeanContent.firstName}"/>
+
+
+
+
+        <onc:inputText_1 id="middleNameTxt"
+                         label="Middle Name:"
+                         labelStyleClass="form_label"
+                         inputStyleClass="input_float_left"
+                         requiredLabel="false"
+                         maxlength="45"
+                         size="10"
+                         immediate="true"
+                         errAlt=""
+                         errMsgRendered="false"
+                         title="#{managedBeanContent.middleNameError}"
+                         value="#{managedBeanContent.middleName}"/>
+
+
+
+
+        <onc:inputText_1 id="lastNameTxt"
+                         label="Last Name:"
+                         labelStyleClass="form_label"
+                         inputStyleClass="input_float_left"
+                         requiredLabel="true"
+                         maxlength="45"
+                         size="10"
+                         immediate="true"
+                         errAlt=""
+                         errMsgRendered="false"
+                         title="#{managedBeanContent.lastNameError}"
+                         value="#{managedBeanContent.lastName}"/>
+
+ 
+
+
+        <onc:inputText_1 id="addressLine1Txt"
+                         label="Address Line:"
+                         labelStyleClass="form_label"
+                         inputStyleClass="input_float_left"
+                         requiredLabel="true"
+                         maxlength="128"
+                         size="10"
+                         immediate="true"
+                         errAlt=""
+                         errMsgRendered="false"
+                         title="#{managedBeanContent.addressLine1Error}"
+                         value="#{managedBeanContent.addressLine1}"/>
+
+
+
+
+        <onc:inputText_1 id="addressLine2Txt"
+                         label="Address Line(cont):"
+                         labelStyleClass="form_label"
+                         inputStyleClass="input_float_left"
+                         requiredLabel="false"
+                         maxlength="128"
+                         size="10"
+                         immediate="true"
+                         errAlt=""
+                         errMsgRendered="false"
+                         title="#{managedBeanContent.addressLine2Error}"
+                         value="#{managedBeanContent.addressLine2}"/>
+
+
+
+
+        <onc:inputText_1 id="cityTxt"
+                         label="City:"
+                         labelStyleClass="form_label"
+                         inputStyleClass="input_float_left"
+                         requiredLabel="true"
+                         maxlength="64"
+                         size="10"
+                         immediate="true"
+                         errAlt=""
+                         errMsgRendered="false"
+                         title="#{managedBeanContent.cityError}"
+                         value="#{managedBeanContent.city}"/>
+
+ 
+ 
+
+ 
+            <onc:selectOneMenuStates
+                id="statesList" 
+                label="State:"
+                labelStyleClass="form_label"
+                inputStyleClass="input_float_left"
+                requiredLabel="true"
+                errAlt=""
+                errMsgRendered="false"
+                title="#{managedBeanContent.stateError}"
+                value="#{managedBeanContent.state}"
+               />
+ 
+      
+             <onc:inputMask id="zipMsk"
+                         label="Zip Code:"
+                         labelStyleClass="form_label"
+                         inputStyleClass="input_float_left"
+                         requiredLabel="true"
+                         mask="99999"
+                         placeHolder="_"
+                         immediate="true"
+                         errAlt=""
+                         errMsgRendered="false"
+                         title="#{managedBeanContent.zipError}"
+                         value="#{managedBeanContent.zip}"/>
+             
+             
+              <onc:inputMask id="phoneMsk"
+                         label="Phone Number:"
+                         labelStyleClass="form_label"
+                         inputStyleClass="input_float_left"
+                         requiredLabel="true"
+                         mask="999-999-9999"
+                         placeHolder="_"
+                         immediate="true"
+                         errAlt=""
+                         errMsgRendered="false"
+                         title="#{managedBeanContent.phoneError}"
+                         value="#{managedBeanContent.phone}"/>
+             
+              <onc:inputText_1 id="emailTxt"
+                         label="Email Address:"
+                         labelStyleClass="form_label"
+                         inputStyleClass="input_float_left"
+                         requiredLabel="true"
+                         maxlength="256"
+                         size="10"
+                         immediate="true"
+                         errAlt=""
+                         errMsgRendered="false"
+                         title="#{managedBeanContent.emailError}"
+                         value="#{managedBeanContent.email}"/>
+             
+        <div class="cleaner"/>
+
+    </ui:composition>
+
+
+</html>

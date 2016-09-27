@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title QualApps ADPQ Vendor Pool
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  body.gray-bg
+    .row.border-bottom.white-bg
+    #wrapper
+      .top-navigation
+        = render 'shared/main_menu'
+      = render 'shared/notifications'
+      .container-fluid
+        == yield :form_errors
+        = render 'shared/profile_menu' if user_signed_in?
+        == yield
+        = render 'shared/modal'
+        

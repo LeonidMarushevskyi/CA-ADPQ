@@ -1,0 +1,81 @@
+.animated-accordion__panel[aria-hidden=true] {
+    display: none;
+}
+
+.animated-accordion__header {
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    &:focus{
+        outline: none;
+    }
+    &:not(:first-child):not(:last-child) {
+        margin-top: unitSize(3);
+        margin-bottom: unitSize(2);
+    }
+}
+
+
+/* title closed */
+.animated-accordion__header[aria-expanded="false"]{
+    h3:before {
+        content: "+ ";
+    }
+
+}
+
+/* title opened */
+.animated-accordion__header[aria-expanded="true"] {
+
+    h3:before {
+        content: "- ";
+    }
+
+    button {
+        display: none;
+    }
+}
+
+
+
+///* title selected */
+//.animated-accordion__header[aria-expanded="true"]:after {
+//    content: "";
+//}
+///* title non selected */
+//.animated-accordion__header[aria-expanded="false"]:after {
+//    content: "(view more)";
+//    font-size: 0.7em;
+//    color: getColor(text, muted);
+//    position: absolute;
+//    bottom:0;
+//    left:0;
+//}
+
+.animated-accordion__panel {
+    display: block;
+    overflow: hidden;
+    opacity: 1;
+    transition: visibility 0s ease, max-height 0.5s ease, opacity 0.5s ease ;
+    max-height: 100em;
+    /* magic number for max-height = enough height */
+    visibility: visible;
+    transition-delay: 0s;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid #909090;
+    border-top: 0;
+    padding-top: 0;
+    padding: 1em;
+    padding-top: 0;
+}
+/* This is the hidden state */
+[aria-hidden=true].animated-accordion__panel {
+    display: block;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 1s, 0s, 0s;
+    margin: 0;
+    padding: 0;
+}

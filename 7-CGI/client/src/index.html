@@ -1,0 +1,31 @@
+<!doctype html>
+
+<html ng-app="cgiAdpq">
+	<head>
+		<base href="/">
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		
+		<title>CGI ADPQ</title>
+		<meta name="description" content="A foster services proof of concept website">
+		<meta name="author" content="Surge, LLC">
+		
+		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="screen"/>
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+		<!-- start css template tags -->
+		<!-- end css template tags -->
+	</head>
+	
+	<body ng-controller="MainController" class="{{page}}">
+		<ng-include src="'nav/navbar.html'"></ng-include>
+		
+		<div class="container">
+			<section ui-view></section>
+		</div>
+	</body>
+	
+	<!-- start script template tags -->
+	<!-- end script template tags -->
+
+</html>

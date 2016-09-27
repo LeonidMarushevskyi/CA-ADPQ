@@ -1,0 +1,64 @@
+<div layout="row" layout-align="center center">
+  <div layout="column">
+    <div ng-hide="editableValue">
+      <form name="myForm">
+        <md-content class="md-no-momentum">
+          <div layout="row" class="row-edit">
+            <md-icon md-svg-src="client/icons/person.svg" ng-cloak class="material-icons" aria-label="Address"></md-icon>
+            <md-input-container class="md-icon-float md-block">
+              <label>Address</label>
+              <input name="viewAddress" class="txtWidth" ng-model="viewAddress" type="text"
+                  ng-minlength="5" ng-maxlength="80" required md-maxlength="80" ng-required="true">
+            </md-input-container>
+          </div>
+          <div layout="row" class="row-edit">
+            <md-icon md-svg-src="client/icons/phone.svg" ng-cloak class="material-icons" aria-label="Home Phone"></md-icon>
+            <md-input-container md-no-float class="md-block">
+              <label>Home Phone Number</label>
+              <input name="viewHomePhone" class="txtWidth" ng-model="viewHomePhone" type="text" placeholder="Home Phone Number"
+                  ng-minlength="9" ng-maxlength="12" required md-maxlength="12" ng-required="true">
+            </md-input-container>
+          </div>
+          <div layout="row" class="row-edit">
+            <md-icon md-svg-src="client/icons/phone.svg" ng-cloak class="material-icons" aria-label="Work Phone"></md-icon>
+            <md-input-container class="md-block">
+              <label>Work Phone Number</label>
+              <input name="viewWorkPhone" class="txtWidth" ng-model="viewWorkPhone" type="text"
+                    placeholder="Work Phone Number" ng-minlength="9" ng-maxlength="12" required md-maxlength="12" ng-required="true">
+            </md-input-container>
+          </div>
+          <div layout="row" layout-align="space-between end">
+            <div layout="column">
+              <a style="color:white" ng-href="/#/profile" class="arrow_forward">
+                <md-icon md-svg-src="client/icons/arrow_back.svg" ng-cloak class="material-icons" aria-label="Go back"></md-icon>
+              </a>
+            </div>
+
+            <div layout="column" class="arrow_forward">
+              <md-icon md-svg-src="client/icons/check.svg" ng-cloak class="material-icons" ng-hide="editMyProfile"
+                       aria-label="Go back" ng-click="myForm.$valid && editProfile()"></md-icon>
+            </div>
+          </div>
+
+          <div ng-cloak style="text-align:right">{{viewAddress.$error}}</div>
+          <div ng-cloak style="text-align:right">{{viewHomePhone.$error}}</div>
+          <div ng-cloak style="text-align:right">{{viewWorkPhone.$error}}</div>
+          <div ng-messages="myForm.viewAddress.$error" style="color:maroon; text-align:center" role="alert">
+            <div ng-message="required">Address is required</div>
+            <div ng-message="maxlength">Address should be 80 characters long</div>
+          </div>
+
+          <div ng-messages="myForm.viewHomePhone.$error" style="color:maroon; text-align:center" role="alert">
+            <div ng-message="required">Home Phone Number is required</div>
+            <div ng-message="maxlength">Home Phone Number is invalid</div>
+          </div>
+
+          <div ng-messages="myForm.viewWorkPhone.$error" style="color:maroon; text-align:center" role="alert">
+            <div ng-message="required">Work Phone Number is required</div>
+            <div ng-message="maxlength">Work Phone Number is invalid</div>
+          </div>
+        </md-content>
+    </form>
+    </div>
+  </div>
+</div>

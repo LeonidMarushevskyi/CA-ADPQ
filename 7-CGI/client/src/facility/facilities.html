@@ -1,0 +1,13 @@
+<div class="facilities" ng-controller="FacilityController">
+	<form ng-submit="login()" class="col-md-6">
+		<fieldset class="form-group">
+			<label for="email" translate>Zipcode</label>
+			<input ng-model="input.zipcode" type="input" maxlength="5" class="form-control" id="zipcode" placeholder="{{'Zipcode'|translate}}" required>
+		</fieldset>
+	</form>	
+	
+	<ul ng-show="facilities" class="row">
+		<li ng-repeat="f in facilities" class="col-xs-12">
+			{{f.name}} - {{f.zipcode}}
+		</li>
+</div>

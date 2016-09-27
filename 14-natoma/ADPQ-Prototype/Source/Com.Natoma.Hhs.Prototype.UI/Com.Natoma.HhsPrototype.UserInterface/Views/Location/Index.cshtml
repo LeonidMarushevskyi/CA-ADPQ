@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Locations";
+}
+
+<div class="container theme-showcase" role="main">
+    <div class="page-header">
+        <h1>Find Locations</h1>
+        <p class="lead">Search by ZIP code to view children's residential facilities.</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label for="txtZipToSearch" style="display: none;" aria-hidden="true">ZIP Code</label>
+            <input id="txtZipToSearch" value="@ViewBag.ZipCode" type="tel" />            
+            <button id="btnSearch" type='submit' class="btn btn-primary" onclick="SearchZip($('#txtZipToSearch').val())">Search</button>
+        </div>
+        <div class="col-sm-6">
+            <input id="chkShowClosedLocations" type="checkbox" onchange="SearchZip($('#txtZipToSearch').val())" />
+            <label for="chkShowClosedLocations">Show Closed Locations</label>
+        </div>   
+    </div>
+    <div id="locations">
+        <table id="locations-table" class="table table-striped table-bordered">
+            <tbody data-bind="foreach: locations">
+                <tr>
+                    <td>
+                        <div style="margin: 0 auto; max-width: 1024px;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p class="closed-facility" data-bind="visible: closed_date != null, text: closed_facility_display">Closed</p>
+                                    <p style="font-weight: bold;" data-bind='text: facility_name, uniqueName: true'>Placeholder Facility</p>
+                                    <p data-bind="text: facility_telephone_number, uniqueName: true">(916) 555-1345</p>
+                                    <span data-bind="text: facility_address, uniqueName: true">Placeholder Street</span><br />
+                                    <span data-bind="text: facility_city_state_zip, uniqueName: true">PlaceholderCity, CA 90000</span><br />
+                                    <a data-bind="attr: { href: map_url, target: '_blank' }">Map</a>
+                                </div>
+                            </div>
+                            <div id="divAdditionalInfoRow" class="row" style="display: none;" data-bind="uniqueName: true">
+                                <hr />
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="spnAdminstrator">Administrator</label><br />
+                                        <span id="spnAdministrator" data-bind="text: facility_administrator"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="spnLicensee">Licensee</label><br />
+                                        <span id="spnLicensee" data-bind="text: licensee">Placeholder Licensee</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="spnFirstLicenseDate">First Licensed Date</label><br />
+                                        <span id="spnFirstLicenseDate" data-bind="text: license_first_date_display">Placeholder date</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="spnRegionalOffice">Regional Office</label><br />
+                                        <span id="spnRegionalOffice" data-bind="text: regional_office">Placeholder Regional Office</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="spnFacilityType">Facility Type</label><br />
+                                        <span id="spnFacilityType" data-bind="text: facility_type">Placeholder Type</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="spnFacilityNumber">Facility Number</label><br />
+                                        <span id="spnFacilityNumber" data-bind="text: facility_number">Placeholder Number</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="spnFacilityStatus">Facility Status</label><br />
+                                        <span id="spnFacilityStatus" data-bind="text: facility_status">Placeholder Status</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="spnFacilityCapacity">Facility Capacity</label><br />
+                                        <span id="spnFacilityCapacity" data-bind="text: facility_capacity">Placeholder Facility Capacity</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button id="btnDetails" type="button" class="btn btn-info" data-bind="uniqueName: true" onclick="ToggleAdditionalDetails(this)">Additional Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody data-bind="visible: locations().length == 0">
+                <tr>
+                    <td>
+                        <p class="no-data">No data found for this ZIP code</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+
+@Scripts.Render("~/bundles/js/location")

@@ -1,0 +1,142 @@
+nav {
+	background: $nav-bg;
+	padding: 5px 20px;
+	
+	h1 {
+		color: $link-color;
+		margin-top: 19px;	
+	}
+	
+	h2, h4 {
+		color: white;
+		margin: 5px 0;
+	}
+	
+	h2 {
+		font-size: 20px;
+		font-weight: lighter;
+	}
+	
+	h4 {
+		font-size: 12px;
+		font-weight: bolder;
+	}
+	
+	li {
+		a {
+			color: $link-color;	
+		} 
+		
+		a:hover, a:active, a:focus {
+			background-color: lighten($nav-bg, 10%) !important;
+		}
+	}
+}
+
+.dropdown-menu {
+	background-color: $nav-bg;
+	
+	& > li > a {
+		color: $link-hover;
+	}
+}
+
+.navbar-brand {
+	padding: 0;
+}
+.navbar-toggle {
+	margin-top: 5px;
+	margin-bottom: 0;
+	
+	.icon-bar {
+		background: $hamburger;
+	}
+}
+
+.welcome {
+	float: left;
+	margin-left: 10px;
+	
+	a {
+		text-decoration: underline;
+		font-size: 12px;
+	}
+}
+
+#navbar {
+	float: right;
+}
+
+.breadcrumbs {
+	float: left;
+	display: inline-block;
+	color: white;
+	font-size: 35px;	
+	margin-right: 20px;
+
+	a {
+		color: white;
+	}
+	
+	i {
+		margin-right: 10px;
+		
+		&.fa-chevron-right {
+			font-size: 25px;
+			position: relative;
+			top: -2px;
+		}
+	}
+	
+	.current-page {
+		font-size: 23px;
+		text-transform: capitalize;
+		position: relative;
+		top: -4px;
+		
+	}
+}
+
+body {
+	&.home {
+		nav {
+			padding: 15px 20px;
+		}
+		
+		#navbar {
+			margin-top: 14px;
+		}
+		
+		.navbar-toggle {
+			margin-top: 22px;
+		}
+		
+		.breadcrumbs {
+			display: none;
+		}
+	}
+	
+	&:not(.home) {
+		nav .circle-picture {
+			width: 45px;
+			height: 45px;
+			border-width: 2px;
+			position: relative;
+			top: 3px;
+		}
+	}
+}
+
+
+@media (max-width: ($small-screen-max)) {
+	#navbar {
+		background: $nav-bg;
+	    width: 100%;
+	    float: none;
+	    margin-top: 12px;
+	}
+	
+	.breadcrumbs {
+		margin-right: 3px;
+	}
+}

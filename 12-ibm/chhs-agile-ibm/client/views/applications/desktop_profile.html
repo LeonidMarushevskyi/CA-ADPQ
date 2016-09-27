@@ -1,0 +1,61 @@
+<!--Form for editing parent info gets rendered into the div below-->
+
+<div  hide-xs hide-sm flex layout="row" layout-align="center centre">
+
+    <!--column 1-->
+    <div flex layout="column" layout-align="center center">
+    </div>
+    <!--column 2-->
+    <div flex="40" layout="column" layout-align="center center">
+        <div flex layout="row" layout-align="center center">
+            <div flex layout="column" layout-align="center center">
+                <img src="client/assets/rachel.jpg" ng-show="showProfile" width="150" height="170" />
+            </div>
+            <div flex layout="column" layout-align="center center">
+                <div ng-show="showProfile" class="parent-name md-headline">
+                    Rachel Marie Robins
+                </div>
+                <br>
+                <div class="md-subhead" ng-show="editMyProfile">
+                  <span class="parent-address">
+                    <span ng-cloak class="md-subhead">
+                      {{storage.parent_home_address}}
+                    </span>
+                  </span><br>
+                  <span ng-cloak class="parent-home-number">
+                    H: {{storage.parent_home_phone}}
+                  </span><br>
+                  <span ng-cloak class="parent-phone-number">
+                    W: {{storage.parent_work_number}}
+                      <md-icon md-svg-src="client/icons/mode_edit.svg" ng-cloak class="material-icons check_mark"
+                               ng-style="{'color': profileColor}" aria-label="Edit Profile" ng-show="showProfile" ng-click="editProfile()"></md-icon>
+                  </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--column 3-->
+    <div class="caseworker" flex layout="column" layout-align="center center" ng-show="showProfile">
+        <div class="blackcolor">
+            <div class="md-headline caseworker-name">
+                Case Worker
+            </div>
+
+            <div class="md-subhead">
+                Francis Romero<br>
+                951-582-1984<br><br>
+            </div>
+
+            <!--Child Info-->
+            <span class="md-subhead child-fullname">
+              <span class="md-headline">Child</span>
+            </span>
+            <br>
+            Margaret<span class="child-pref-name"> "Molly" </span>Robins
+        </div>
+    </div>
+    <!--column 4-->
+    <div flex layout="column" layout-align="center center">
+    </div>
+
+</div>

@@ -1,0 +1,171 @@
+﻿@{
+    //ViewBag.Title = "Contact";
+}
+
+<h2>Foster Parent Profile</h2>
+
+<div id="main">
+
+    <table class="ParentProfile" >
+        <tr><td>Email: </td>        <td><input type="text" class="form-control" rv-value="fosterParent.email" /></td></tr>
+        <tr><td>Last Name:</td>     <td><input type="text" class="form-control" rv-value="fosterParent.lastName" /></td></tr>
+        <tr><td>First Name:</td>    <td><input type="text" class="form-control" rv-value="fosterParent.firstName" /></td></tr>
+
+        <tr><td>Address 1:</td>     <td><input type="text" class="form-control" rv-value="fosterParent.address1" /></td></tr>
+        <tr><td>Address 2:</td>     <td><input type="text" class="form-control" rv-value="fosterParent.address2" /></td></tr>
+        <tr><td>City:</td>          <td><input type="text" class="form-control" rv-value="fosterParent.city" /></td></tr>
+
+        <tr><td>State:</td>         <td><input type="text" class="form-control" rv-value="fosterParent.state" /></td></tr>
+        <tr><td>Zip</td>            <td><input type="text" class="form-control" rv-value="fosterParent.zipCode" /></td></tr>
+        @*<tr><td>Country</td>        <td><input type="text" rv-value="fosterParent.country" /></td></tr>*@
+
+        <tr><td></td>        <td><button id="Update" type="submit"   class="btn btn-primary form-control" >Update</button></td></tr>
+        <tr><td></td>        <td><button id="Register" type="submit" class="btn btn-primary form-control" >Register</button></td></tr>
+    </table>
+
+</div>
+
+<script>
+    var endpointUrl = '/api/fosterparent/fosterparent';
+
+    var fosterParent = {
+        fosterParentId: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        addrees1: "",
+        addrees2: "",
+        city: "",
+        state: "",
+        zipCode: "",
+        country: ""
+
+    };
+    
+
+    $(document).ready(function () {
+        console.log("ready!");
+        $('#modalActivityImage').modal('show');
+
+        var email = '@ViewData["UserEmail"]';
+        //$('#emailFosterParent').show();
+        $('#userName').text(email);
+        $('#logOut').show();
+
+        $('#Update').hide();
+        $('#Register').hide();
+
+        fosterParent.email = email;
+
+        endpointUrl = '/api/fosterparent/getfosterparent';
+        $.ajax({
+            type: "POST",
+            url: endpointUrl,
+            data: JSON.stringify(fosterParent)
+        }).done(function (data) {
+            fosterParent = data.serverData;
+
+            if (fosterParent.fosterParentId == null) {
+                $('#Update').hide();
+                $('#Register').show();
+                fosterParent.email = email;
+            }
+            else
+            {
+                $('#Update').show();
+                $('#Register').hide();
+            }
+
+
+        }).complete(function () {
+            $('#modalActivityImage').modal('hide');
+            rivets.bind($('#main'), { fosterParent: fosterParent });
+        })
+
+        rivets.bind($('#main'), { fosterParent: fosterParent });
+
+        // Update
+        $('#Update').click(function () {
+            $('#modalActivityImage').modal('show');
+            endpointUrl = '/api/fosterparent/fosterparent';
+            $.ajax({
+                type: "PUT",
+                url: endpointUrl +'/'+ fosterParent.fosterParentId,
+                data: JSON.stringify(fosterParent)
+            }).done(function (data) {
+                console.log("Update");
+                $('#Update').text("Update");
+
+                $('.modal-header').css({ 'background-color': 'lightblue' });
+                $('#myModalbutton').removeClass('btn-danger').addClass('btn-primary');
+                $('#modal-text').text('Update is Complete.');
+                $('#myModal').modal({ show: true, keyboard: true });
+
+            }).fail(function (jqXHR, textStatus) {
+                var errorMessage = jqXHR.responseJSON.serverError[0].summary;
+
+                $('.modal-header').css({ 'background-color': 'RED' });
+                $('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+                $('#modal-text').text(errorMessage);
+                $('#myModal').modal({ show: true, keyboard: true });
+
+            }).complete(function () {
+                $('#modalActivityImage').modal('hide');
+            })
+        });
+
+
+        // Register
+        $('#Register').click(function () {
+            $('#modalActivityImage').modal('show');
+            endpointUrl = '/api/fosterparent/fosterparent';
+            $.ajax({
+                type: "POST",
+                url: endpointUrl,
+                data: JSON.stringify(fosterParent)
+            }).done(function (data) {
+                $('#Update').show();
+                $('#Register').hide();
+
+                fosterParent.fosterParentId = data.serverData.fosterParentId;
+
+                $('.modal-header').css({ 'background-color': 'lightblue' });
+                $('#myModalbutton').removeClass('btn-danger').addClass('btn-primary');
+                $('#modal-text').text('Registeration is Complete.');
+                $('#myModal').modal({ show: true, keyboard: true });
+
+
+            }).fail(function (jqXHR, textStatus) {
+                var errorMessage = jqXHR.responseJSON.serverError[0].summary;
+
+                $('.modal-header').css({ 'background-color': 'RED' });
+                $('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+                $('#modal-text').text(errorMessage);
+                $('#myModal').modal({ show: true, keyboard: true });
+
+            }).complete(function () {
+                $('#modalActivityImage').modal('hide');
+            })
+        });
+    });
+
+</script>
+
+
+@*bootstrap modal dialog*@
+
+<div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title" style="color:black;">Thank you!</p>
+            </div>
+            <div class="modal-body" >
+                <p id="modal-text"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="myModalbutton" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

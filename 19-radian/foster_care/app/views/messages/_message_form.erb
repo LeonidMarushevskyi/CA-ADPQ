@@ -1,0 +1,23 @@
+
+<%= form_for(message, as: :messages, url: messages_path, method: :post) do |f| %>
+  <br/>
+  <button type="submit" id='btn_send' class="btn btn-success btn-sm">
+    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+    <strong>Send</strong>
+  </button>
+  <br/>
+  <div class='col-sm-1'><strong>From: </strong></div>
+  <div class='col-sm-4'><%= message.sender.name + '  ' %>(<%= message.sender.email %>)</div><br/>
+
+
+  <div class='col-sm-1'><strong>To: </strong></div>
+  <input <%= @disabled %> class='col-sm-4' type="text" name="message[recipients]" id="message_recipients" value='<%= message.recipients.map(&:email).join(',') %>' class="text ui-widget-content ui-corner-all" ><br/>
+  <br/>
+  <div class='col-sm-1'><strong>Subject: </strong></div>
+  <input <%= @disabled %> class='col-sm-4' type="text" name="message[subject]" id="message_subject" value='<%= message.subject %>' class="text ui-widget-content ui-corner-all" ><br/>
+  <br/>
+  <div class='col-sm-2'><strong>Content: </strong></div><br/>
+  <textarea <%= @disabled %> name="message[content]" id="message_content" class="col-sm-5 ui-corner-all"  rows='10'><%= message.content %></textarea>
+  <br/>
+
+<% end %>

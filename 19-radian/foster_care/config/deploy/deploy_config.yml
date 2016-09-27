@@ -1,0 +1,23 @@
+# Assume that you want to deploy on server 'your_forster_care.com', with user 'deploy_user'
+# to the directory '/var/www/foster_care' on the server
+# You must have public/private keypair name 'deployment' in your local $HOME/.ssh/
+# See about generating SSH keypair: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
+staging:
+  ssh_keys:
+    - '~/.ssh/deployment'
+  roles:
+    app:
+      - 'deploy_user@your_forster_care.com'
+    db:
+      #run rake db:migrate on 1 host is enough, in case all the app hosts point to the same db
+      - 'deploy_user@your_forster_care.com'
+
+  application: 'foster_care'
+  # I would suggesst that you fork your own repository of this on your github, and use your repo_url
+  repo_url: 'git@github.com:linhchauatl/foster_care.git'
+  branch: 'master'
+  deploy_user: 'deploy_user'
+  deploy_to_dir: '/var/www/foster_care'
+
+  

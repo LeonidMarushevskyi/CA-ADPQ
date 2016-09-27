@@ -1,0 +1,106 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 500px;
+}
+
+label {
+    
+}
+
+.row {
+    padding-bottom: 1em;
+}
+
+p.no-data {
+    text-align: center;
+}
+
+p.closed-facility {
+    color: red;
+    font-weight: bold;
+}
+
+p.race {
+    max-width: 500px;
+}
+
+td.center-item {
+    text-align: center;
+}
+
+.glyphicon-trash {
+    cursor: pointer;
+}
+
+.natoma-icon {
+    color: #B3BC00;
+    font-size: 0.9em;
+    padding-right: 3px;
+}
+
+.navbar-nav > li > a:hover > .natoma-icon, .navbar-nav > li > a:focus > .natoma-icon {
+    color: #EDF470;
+}
+
+.navbar-brand:hover > .natoma-icon, .navbar-brand:focus > .natoma-icon {
+    color: #EDF470;
+}
+
+.natoma-img-footer {
+    max-width: 300px;
+}
+
+.div-dialog {
+    display: none;
+}
+
+.tabs {
+    padding: 0 !important;
+}
+
+.ui-widget-content a {
+    color: #337ab7 !important;
+}
+
+.help-block {
+    font-size: 0.8em;
+}
+
+#locations-table {
+    /*max-width: 500px;*/
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+a.link-main-content {
+    color: #9d9d9d;
+    text-decoration: none;
+}
+
+a.link-main-content:hover {
+    color: #ffffff;
+    text-decoration: none;
+}

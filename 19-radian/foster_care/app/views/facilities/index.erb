@@ -1,0 +1,36 @@
+<h3>Facilities</h3>
+
+<strong>Facilities' administrators are changed in this table for login purposes</strong>
+
+<table id="facilities_table" class="table table-bordered display" cellspacing="0">
+    <thead>
+      <tr class="table success">
+        <%  %w( id facility_type facility_number facility_name licensee administrator 
+              regional_office facility_capacity facility_status license_first_date closed_date).each do |attr| %>
+
+            <th><%= attr.humanize %></th>  
+        
+        <% end %>
+        
+        <th>City</th>
+        <th>Zipcode</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @facilities.each_with_index do |facility, idx| %>
+        <tr class='tr_clinic_facility' facility_id='<%= facility.id %>' >
+          <td><%= idx + 1 %></td>
+          <%  %w( facility_type facility_number facility_name licensee administrator_name
+              regional_office facility_capacity facility_status license_first_date closed_date).each do |attr| %>
+
+              <td id='<%= "#{attr}_#{facility.id}" %>' ><%= facility.send(attr) %></td>  
+        
+          <% end %>
+          <td id= ''><%= facility.addresses.first.city  %></td>
+          <td id= ''><%= facility.addresses.first.zip  %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

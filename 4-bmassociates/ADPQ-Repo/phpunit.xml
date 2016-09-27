@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         backupGlobals="false"
+         verbose="true">
+  <testsuites>
+    <testsuite name="small">
+      <directory suffix="authenticatetest.php">test/app</directory>
+      <directory suffix="createusertest.php">test/app</directory>
+    </testsuite>
+    <php>
+      <const name="PHPUNIT_TESTSUITE" value="true"/>
+    </php>
+  </testsuites>
+</phpunit>
+

@@ -1,0 +1,132 @@
+/*
+The MIT License
+
+Copyright 2016 oncore.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+/* 
+    Created on : May 19, 2016, 9:52:15 AM
+    Author     : oncore
+*/
+
+
+
+/* Div Cleaner, can be used when div tags misbehave */
+.cleaner{
+    clear: both;
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    float: none;
+}
+
+/* Component styles */
+.input_float_left{
+    float: left;
+}
+ 
+.form_label{
+      font-size: 1em;
+      float: left;
+      color: black;
+      padding-bottom: .5em;
+      padding-left: .9em;
+      vertical-align: middle;
+      background: transparent !important;
+}
+ 
+.form_field{
+    margin-bottom: 0.6em;
+}
+
+.component_float_right{
+    float: right;
+}
+
+
+.column_1_class{
+    width: 30%;
+}
+
+.column_2_class{
+    width: 70%;
+}
+
+/* Styles to ensure command button groups look nice */
+.outerButtonGroupPanel{
+    padding: 0;
+    width: 100%;
+}
+
+.innerButtonGroup{
+    padding: 0;
+    float: left;
+}
+
+.buttonGroup{
+    margin-right: 1em !important;
+}
+
+/* ADA Skip to Main Content */
+a.skip-main {
+    left:-999px;
+    position:absolute;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    z-index:-999;
+}
+
+a.skip-main:focus, a.skip-main:active {
+    color: #fff;
+    background-color:#000;
+    left: auto;
+    top: auto;
+    width: 30%;
+    height: auto;
+    overflow:auto;
+    margin: 10px 35%;
+    padding:5px;
+    border-radius: 15px;
+    border:4px solid yellow;
+    text-align:center;
+    font-size:1.2em;
+    z-index:999;
+}
+
+
+/* Used to adjust the PrimeFaces datatables (can be any content) to screensize) */
+.contentSmall{
+    width: 100% !important;
+    height: 100% !important;
+}
+.contentLarge{
+    display: none;
+}
+@media screen and (min-width: 40em) {
+    .contentSmall{
+        display: none;
+    }
+    .contentLarge{
+        display:  block;
+    }
+}

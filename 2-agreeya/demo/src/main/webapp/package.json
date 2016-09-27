@@ -1,0 +1,12 @@
+{
+  "name": "chhsdemo",
+  "version": "1.0.0",
+  "description": "Develope a demo app for foster families",
+  "main": "appModule.js",
+  "author": "as-manish",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-cache": "^4.6.0"
+  }
+}

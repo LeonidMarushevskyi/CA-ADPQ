@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <title>CHHS</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1 maximum-scale=1">
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="client/css/style.css">
+    </head>
+  <body>
+
+  <md-toolbar class="md-hue-2" layout="column">
+    <div class="md-toolbar-tools">
+      <h2>
+        <span ng-cloak>{{title}}</span>
+      </h2>
+      <span flex></span>
+
+      <div hide-xs>
+        <div layout="row">
+            <div layout="column" class="paddingtop">
+              <a ng-cloak ng-click="changeColor('profile')" class="md-icon-button" aria-label="Person" flex href ng-href="/#/">
+                <div layout="row" layout-align="space-around">
+                  <md-icon md-svg-src="client/icons/account_circle.svg" ng-cloak
+                           ng-style="{'color': profileColor}" aria-label="Profile"></md-icon>
+                </div>
+                <div class="md-subhead" layout="row" ng-style="{'color': profileColor}">
+                    Profile
+                </div>
+              </a>
+            </div>
+
+          <div class="small-padding" layout="column"></div>
+          <div layout="column" class="paddingtop">
+              <a ng-cloak  ng-click="changeColor('search')"
+                class="md-icon-button" aria-label="Search" flex href ng-href="/#/search">
+                  <div layout="row">
+                    <md-icon md-svg-src="client/icons/search.svg" ng-cloak
+                         ng-style="{'color': searchColor}" aria-label="Search"></md-icon>
+                  </div>
+                  <div class="md-subhead" layout="row" ng-style="{'color': searchColor}">
+                    Search
+                  </div>
+              </a>
+          </div>
+          <div class="small-padding" layout="column"></div>
+          <div layout="column" class="paddingtop">
+            <a ng-cloak ng-click="changeColor('inbox')"
+                class="md-icon-button" aria-label="Message" flex href ng-href="/#/inbox">
+                <div layout="row">
+                  <md-icon md-svg-src="client/icons/message.svg" ng-cloak
+                           ng-style="{'color': inboxColor}" aria-label="Inbox"></md-icon>
+                </div>
+                <div class="md-subhead" layout="row" ng-style="{'color': inboxColor}">
+                  Inbox
+                </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </md-toolbar>
+  <div class="body-is-loaded">
+  <md-content flex layout-padding>
+    <div ng-view body-is-loaded></div>
+  </md-content>
+
+  </div>
+
+  <footer>
+    <div flex layout="row" layout-align="center center">
+      <md-toolbar class="md-hue-2" layout="column" hide-gt-xs>
+        <div class="md-toolbar-tools">
+          <span class="btn-span" flex="35" layout="column" layout-align="center center">
+            <md-button ng-cloak ng-click="changeColor('profile')"
+                       class="md-icon-button" aria-label="Person" flex href ng-href="/#/">
+              <md-icon md-svg-src="client/icons/account_circle.svg" ng-cloak
+                       ng-style="{'color': profileColor}" aria-label="Profile"></md-icon>
+            </md-button>
+          </span>
+          <span class="btn-span" flex="30" layout="column" layout-align="center center">
+            <md-button ng-cloak  ng-click="changeColor('search')"
+                       class="md-icon-button" aria-label="Search" flex href ng-href="/#/search">
+
+              <md-icon md-svg-src="client/icons/search.svg" ng-cloak
+                       ng-style="{'color': searchColor}" aria-label="Search"></md-icon>
+            </md-button>
+          </span>
+          <span class="btn-span" flex="35" layout="column" layout-align="center center">
+            <md-button  ng-click="changeColor('inbox')"
+                        class="md-icon-button" aria-label="Message" flex href ng-href="/#/inbox">
+              <md-icon md-svg-src="client/icons/message.svg" ng-cloak
+                       ng-style="{'color': inboxColor}" aria-label="Inbox"></md-icon>
+            </md-button>
+          </span>
+          </div>
+      </md-toolbar>
+    </div>
+  </footer>
+  </body>
+
+  <!-- Angular Library Resources  -->
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="node_modules/angular-route/angular-route.min.js"></script>
+  <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+  <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+  <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+  <script src="node_modules/angular-material/angular-material.min.js"></script>
+  <script src="node_modules/angular-messages/angular-messages.min.js"></script>
+  <script src="node_modules/ngstorage/ngStorage.min.js"></script>
+
+  <!-- Application Resources -->
+  <script src="client/js/app.js"></script>
+  <script src="client/js/applications/profileController.js"></script>
+  <script src="client/js/applications/inboxController.js"></script>
+  <script src="client/js/applications/searchController.js"></script>
+  <script src="client/js/applications/facilitiesController.js"></script>
+</html>

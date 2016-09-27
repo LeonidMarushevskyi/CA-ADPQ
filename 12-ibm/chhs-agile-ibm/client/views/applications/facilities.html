@@ -1,0 +1,36 @@
+<div class="facilities">
+  <div layout="row" layout-align="center">
+    <div flex-gt-md="23"></div>
+    <div flex-gt-md="53" layout-align="center center">
+      <div class="address" ng-repeat="facility in showFacilities">
+        <md-content class="md-padding">
+          <md-card>
+            <md-card-title>
+              <md-card-title-text>
+                <span ng-cloak class="md-headline" >{{facility.facility_name}}</span>
+                  <span ng-cloak class="md-headline small-title">
+                    {{facility.facility_address}}<br>
+                    {{facility.location_city}}, {{facility.location_state}} {{facility.location_zip}}
+                  </span>
+              </md-card-title-text>
+            </md-card-title>
+
+            <md-card-footer>
+              <span ng-cloak class="md-headline">{{facility.facility_telephone_number}}</span>
+            </md-card-footer>
+          </md-card>
+        </md-content>
+      </div>
+
+      <div layout="column" layout-align="center center">
+        <div layout="row" ng-cloak>{{noFacilities}}</div><br>
+        <div layout="row">
+          <a style="color:white" ng-href="/#/search" ng-cloak class="arrow_forward">
+            <md-icon md-svg-src="client/icons/arrow_back.svg" ng-cloak class="material-icons" aria-label="Go back"></md-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div flex-gt-md="23"></div>
+  </div>
+</div>

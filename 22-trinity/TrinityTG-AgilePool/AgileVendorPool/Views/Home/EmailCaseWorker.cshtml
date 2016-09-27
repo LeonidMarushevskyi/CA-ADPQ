@@ -1,0 +1,444 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+
+<h2>Email: (Case Worker)</h2>
+<h6 style="font-style:italic">* Note: All emails are from the Foster Parents to the Case Worker</h6>
+
+
+<section id="EmailArea" style="margin-top:20px;">
+
+    <!-- Bootstrap tabs -->
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#inboxTab" aria-controls="inboxtab" role="tab" data-toggle="tab">Inbox</a></li>
+        <li role="presentation"><a href="#sentitemsTab" aria-controls="sentitemsTab" role="tab" data-toggle="tab">Sent Items</a></li>
+        <li>
+            <div style="margin-left:20px; margin-bottom:10px;">
+                <button id="btnNewEmail" type="button" class="btn btn-primary btn-sm" aria-haspopup="true"><span style="margin-right:5px;" class="glyphicon glyphicon-envelope" aria-hidden="true"></span>New Email</button>
+                <button id="btnDeleteEmails" type="button" class="btn btn-danger btn-sm" aria-haspopup="true"><span style="margin-right:5px;" class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>Delete Email(s)</button>
+            </div>
+
+        </li>
+    </ul>
+
+
+    <!-- Tab panes -->
+    <div class="tab-content" style="">
+        <div role="tabpanel" class="tab-pane active" id="inboxTab">
+            <table id="userInbox" class="table table-striped table-bordered table-hover facilityList" style="margin-bottom:4px; max-height: 100px; overflow-y: scroll; cursor: pointer;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>email-Id</th>
+                        <th>emailFrom</th>
+                        <th>emailTo</th>
+                        <th>emailSubject</th>
+                        <!-- <th>emailBody</th>-->
+                        <th>emailDate</th>
+                    </tr>
+                </thead>
+                <tr rv-each-data="emailList" rv-on-click="controller.getItem">
+                    <td><input type="checkbox" rv-checked="data.checked"></td>
+                    <td rv-text="data.emailId"></td>
+                    <td rv-text="data.emailFrom"></td>
+                    <td rv-text="data.emailTo"></td>
+                    <td rv-text="data.emailSubject"></td>
+                    <!-- <td rv-text="data.emailBody"></td>-->
+                    <td rv-text="data.emailDate"></td>
+                </tr>
+            </table>
+            <h4>Email Body:</h4>
+            <textarea readonly class="form-control emailBodyContent" style="min-width: 100%; height: 200px; margin-top:0px; cursor: pointer; background-color:lightblue; border-top-width:20px;">
+                *** no email to display
+            </textarea>
+
+        </div> <!-- tab inbox -->
+        <!-- SentItems -->
+        <div role="tabpanel" class="tab-pane" id="sentitemsTab">
+            <table id="userSentItems" class="table table-striped table-bordered table-hover facilityList" style="margin-bottom:4px; max-height: 100px; overflow-y: scroll; cursor: pointer;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>email-Id</th>
+                        <th>emailFrom</th>
+                        <th>emailTo</th>
+                        <th>emailSubject</th>
+                        <!-- <th>emailBody</th>-->
+                        <th>emailDate</th>
+                    </tr>
+                </thead>
+                <tr rv-each-data="emailList" rv-on-click="controller.getItem">
+                    <td><input type="checkbox" rv-checked="data.checked"></td>
+                    <td rv-text="data.emailId"></td>
+                    <td rv-text="data.emailFrom"></td>
+                    <td rv-text="data.emailTo"></td>
+                    <td rv-text="data.emailSubject"></td>
+                    <!-- <td rv-text="data.emailBody"></td>-->
+                    <td rv-text="data.emailDate"></td>
+                </tr>
+            </table>
+            <h4>Email Body:</h4>
+            <textarea readonly class="form-control emailBodyContent" style="min-width: 100%; height: 200px; margin-top:0px; cursor: pointer; background-color:lightblue; border-top-width:20px;">
+                *** no email to display
+            </textarea>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+    var email = '';
+    var caseWorkerEmail = '@AgileVendorPool.Models.GlobalData.caseWorkerEmail';
+
+    var emailList = [{
+        checked: 0,
+        emailId: '-1',
+        emailFrom: '',
+        emailTo: '',
+        emailSubject: '',
+        emailBody: '',
+        emailDate: ''
+    }],
+    selectedIndex = '',
+    controller = {
+        getItem: function (e, model) {
+            //console.log(e);
+            //console.log(model.index);
+            console.log(model);
+            //console.log(model.emailList[model.index].emailFrom);
+            $('.emailBodyContent').text(model.emailList[model.index].emailBody);
+            model.selectedIndex = model.index;
+            userMailBox.selectedIndex = model.index;
+            userMailBox.selectedEmailId = model.emailList[model.index].emailId;
+
+        }
+    };
+
+    var userMailBox = {
+        userInbox: emailList,
+        userSentBox: emailList,
+        selectedIndex: '',
+        selectedEmailId: ''
+    };
+
+
+
+    var mainProgram =
+        {
+            init: function () {
+                endpointUrl = '/api/email/getMyEmail';
+                $.ajax({
+                    type: "POST",
+                    url: endpointUrl,
+                    //data: JSON.stringify(emailList[0])
+                    // caseWorkerEmail
+                    data: JSON.stringify(emailList[0])
+                }).done(function (data) {
+                    console.log(data);
+                    console.log(data.serverData);
+                    emailList = data.serverData;
+
+                    // filter
+                    userMailBox.userInbox = jQuery.grep(emailList, function (n, i) {
+                        return (n.emailTo.toLowerCase() == email.toLowerCase());
+                    });
+                    console.log(userMailBox.userInbox);
+
+                    // filter
+                    userMailBox.userSentBox = jQuery.grep(emailList, function (n, i) {
+                        return (n.emailFrom.toLowerCase() == email.toLowerCase());
+                    });
+                    console.log(userMailBox.userSentBox);
+
+                    //if (fosterParent.fosterParentId == null) {
+                    //    //$('#Update').hide();
+                    //    //$('#Register').show();
+                    //    //fosterParent.email = email;
+                    //}
+                    //else {
+                    //    //$('#Update').show();
+                    //    //$('#Register').hide();
+                    //}
+                }).complete(function () {
+                    $('#modalActivityImage').modal('hide');
+                    console.log("getMyEmail complete");
+                    rivets.bind($('#userInbox'), { emailList: userMailBox.userInbox, controller: controller });
+                    //console.log(userMailBox);
+                    //console.log(userMailBox.userInbox[0]);
+
+                    if (userMailBox.userInbox.length > 1) {
+                        //console.log(userMailBox.userInbox[0].emailBody);
+                        $('.emailBodyContent').text(userMailBox.userInbox[0].emailBody);
+                    }
+                    rivets.bind($('#userSentItems'), { emailList: userMailBox.userSentBox, controller: controller });
+                    //
+
+                })
+
+
+            },
+
+
+        };
+
+
+    $(document).ready(function () {
+        console.log("ready!");
+
+        $('#modalActivityImage').modal('show');
+
+        email = '@ViewData["UserEmail"]';
+        console.log(email);
+
+        if (email.length == 0)
+        {
+            console.log('email is empty');
+
+            //alert("Please log in first. Thank you!");
+            errorMessage = 'Please log in first. Thank you!';
+            $('.modal-header').css({ 'background-color': 'RED' });
+            //btn-primary btn-danger
+            $('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+            $('#modal-text').text(errorMessage);
+            $('#myModal').modal({ show: true, keyboard: true });
+
+
+            $('#EmailArea').hide();
+            window.location = '/Home';
+            return;
+
+        }
+        //$('#emailFosterParent').show();
+        $('#modalActivityImage').modal('hide');
+        $('#userName').text(email);
+
+        emailList[0].emailFrom = email;
+
+        mainProgram.init();
+
+        console.log(3);
+        //rivets.bind($('#main'), { fosterParent: fosterParent });
+        //rivets.bind($('#wrapper'), { datas: emailList });
+        //rivets.bind($('#wrapper'), { emailList: emailList });
+        console.log(33);
+
+
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            // user clicks on the TABS
+
+            //console.log('tab');
+            //console.log(e.relatedTarget);  // previous active tab
+            //console.log(e.target);   // newly activated tab
+            //console.log($(e.target).attr('href'));
+
+            // clear
+            $('.emailBodyContent').text("* No email");
+
+            if (($(e.target).attr('href')) == '#inboxTab')
+            {
+                // inbox
+                $('.emailBodyContent').text(userMailBox.userInbox[0].emailBody);
+
+                // enable the delete button
+                $("#btnDeleteEmails").prop("disabled", false);
+
+            }
+            else if ( ($(e.target).attr('href')) == '#sentitemsTab')
+            {
+                // sent items
+                $('.emailBodyContent').text(userMailBox.userSentBox[0].emailBody);
+
+                // disable the delete button
+                $("#btnDeleteEmails").prop("disabled", true);
+            }
+
+        })
+
+
+        $('#btnNewEmail').click(function () {
+            $('.modal-header').css({ 'background-color': 'lightseagreen' });
+            $('#myModalbutton').removeClass('btn-danger').addClass('btn-primary');
+            $('#modal-text').text('Update is Complete.');
+            $('#myModalNewEmail').modal({ show: true, keyboard: true });
+
+
+        });
+
+        $('#newEmailSend').click(function () {
+            newEmailSubject = $('#newEmailSubject').val();
+            newEmailBody = $('#newEmailBody').val();
+            console.log(newEmailSubject);
+            console.log(newEmailBody);
+
+            $('#modalActivityImage').modal('show');
+            console.log("btnDeleteEmails");
+            console.log(userMailBox);
+
+            newEmail = {
+                emailId: '-1',
+                emailFrom: email,
+                emailTo: caseWorkerEmail,
+                emailSubject: newEmailSubject,
+                emailBody: newEmailBody,
+                emailDate: ''
+            };
+
+            endpointUrl = '/api/email/sendEmail';
+
+            $.ajax({
+                type: "POST",
+                url: endpointUrl,
+                data: JSON.stringify(newEmail)
+            }).done(function (data) {
+                console.log("delete");
+
+                // reset the inbox
+                window.location = '/Home/EmailFosterParent';
+
+
+            }).fail(function (jqXHR, textStatus) {
+                console.log("deletefail");
+                var errorMessage = jqXHR.responseJSON.serverError[0].summary;
+
+                //$('.modal-header').css({ 'background-color': 'RED' });
+                //$('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+                //$('#modal-text').text(errorMessage);
+                //$('#myModal').modal({ show: true, keyboard: true });
+
+            }).complete(function () {
+                $('#modalActivityImage').modal('hide');
+                console.log("newEmailSend complete");
+
+            })
+
+        });
+
+
+
+        $('#btnDeleteEmails').click(function () {
+
+            $('#modalActivityImage').modal('show');
+            console.log("btnDeleteEmails");
+            console.log(userMailBox);
+
+            endpointUrl = '/api/email/deleteEmailList';
+
+            // filter
+            deleteList = jQuery.grep(userMailBox.userInbox, function (n, i) {
+                return (n.checked == 1);
+            });
+            console.log(deleteList);
+            tempList = [];
+            deleteList.forEach(function (element, index, array) {
+                console.log(index + ' - ' + element.emailId);
+                tempList.push(element.emailId);
+            });
+            console.log(tempList);
+
+
+            $.ajax({
+                type: "POST",
+                url: endpointUrl,
+                data: JSON.stringify(tempList)
+            }).done(function (data) {
+                console.log("delete");
+
+                // reset the inbox
+                window.location = '/Home/EmailFosterParent';
+
+                //$('#Update').text("Update");
+
+                //$('.modal-header').css({ 'background-color': 'lightblue' });
+                //$('#myModalbutton').removeClass('btn-danger').addClass('btn-primary');
+                //$('#modal-text').text('Update is Complete.');
+                //$('#myModal').modal({ show: true, keyboard: true });
+
+            }).fail(function (jqXHR, textStatus) {
+                console.log("deletefail");
+                var errorMessage = jqXHR.responseJSON.serverError[0].summary;
+
+                //$('.modal-header').css({ 'background-color': 'RED' });
+                //$('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+                //$('#modal-text').text(errorMessage);
+                //$('#myModal').modal({ show: true, keyboard: true });
+
+            }).complete(function () {
+                $('#modalActivityImage').modal('hide');
+                console.log("delete complete");
+
+            })
+        });
+
+
+
+    });
+
+
+</script>
+
+
+
+@*bootstrap modal dialog*@
+
+<div id="myModalNewEmail" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:lightseagreen">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h2 class="modal-title" style="color:black;">New Email</h2>
+            </div>
+            <div class="modal-body">
+                <table style="width:100%;">
+                    <tr style="width:100%;">
+                        <td style="width:15%; text-align:right;"><h3>To:</h3></td>
+                        <td style="width:80%;"><input readonly type="text" class="form-control" placeholder="Case Worker" aria-describedby="basic-addon1" /></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;"><h3>Subject:</h3>
+                        <td><input type="text" id="newEmailSubject" class="form-control" placeholder="Subject" aria-describedby="basic-addon1" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <td>
+                            <textarea id="newEmailBody" class="form-control" placeholder="Enter email body..." style="width:100%; height: 200px;  "></textarea>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" id="newEmailSend" class="btn btn-primary" data-dismiss="modal">Send</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <p class="modal-title" style="color:black;">oops...</p>
+            </div>
+            <div class="modal-body">
+                <p id="modal-text"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="myModalbutton" class="btn" data-dismiss="modal">OK</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

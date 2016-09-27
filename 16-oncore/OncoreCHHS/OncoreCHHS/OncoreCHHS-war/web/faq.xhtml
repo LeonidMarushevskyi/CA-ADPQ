@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:onc="http://java.sun.com/jsf/composite/onc"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+
+
+    <ui:composition template="/facelets/templates/reduced_layout.xhtml">
+
+        <ui:param name="managedBean" value="#{homeManagedBean}"/>
+
+
+        <ui:define name="title">
+            <title>CHHS Foster Care Services | FAQ</title>
+        </ui:define>
+
+        <ui:define name="content">
+
+            <!-- Main -->
+            <div id="main" class="wrapper style1">
+                <section class="container">
+                    <header class="major">
+                        <h2>Frequently Asked Questions</h2>
+
+                    </header>
+
+                    
+                    <p:panelGrid columns="1" >
+
+
+                        <h:outputText style="font-weight: bold;" value="Is this a real website for California Health and Human Services?"/>
+                        <h:outputText value="No, this site is a technology demonstration built for CHHS by Oncore Consulting, LLC."/>
+                        <h:outputText/>
+                        
+                        <h:outputText style="font-weight: bold;" value="Does this site store information entered on the various pages?"/>
+                        <h:outputText value="Yes, data entered is stored to simulate real user scenarios and the data is not secure. DO NOT enter real information into this website."/>
+                        <h:outputText/>
+                        
+                        <h:outputText style="font-weight: bold;" value="Is this site built on open source technologies?"/>
+                        <h:outputText value="Yes, this site is built completely on open source or free creative commons technologies, templates, and images. The Java Enterprise Edition platform comprises the core architecture.  See www.oracle.com for more information about Java and Java related technologies. The design is a modified template from TEMPLATED under the creative commons license. See templated.co for more information.  Images were taken from Unsplash under the creative commons license. See unsplash.com for more information."/>
+
+                        <h:outputText style="font-weight: bold;" value="What browsers are supported?"/>
+                        <h:outputText value="This site has been tested on mobile versions of Chrome and Safari and desktop versions of Chrome, Safari, and Firefox."/>
+
+
+                    </p:panelGrid>
+
+                    <h:outputText value="#{managedBean.page}"/>
+                                  
+
+
+                </section>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+
+</html>

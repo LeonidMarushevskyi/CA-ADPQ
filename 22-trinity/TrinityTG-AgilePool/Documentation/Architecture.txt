@@ -1,0 +1,52 @@
+We designed the system to be extendable and scalable, and worked to create components that can be easily integrated 
+with other components. Most importantly, the layers are like LEGOS, they can be replaced with other frameworks. This helps if, in the future, business requirements change.
+
+FRAMEWORKS, PATTERNS & LANGUAGES:
+We designed this prototype using the following frameworks, patterns and languages:
+
+- Microsoft MVC 
+- Microsoft Web API 
+- Microsoft SQL Server
+- ADO.NET
+- C#
+- HTML5
+- CSS3
+- JavaScript
+- JQuery
+- Bootstrap
+- RivetsJS  (lightweight front-end data-binding)
+- AJAX
+
+LAYERS:
+We followed the Service Oriented Architecture (SOA) principles and architecture to maximize usability and scalability. We divided the system into 4 layers:
+
+- Frontend layer (HTML5, CSS3, JavaScript, JQuery, Bootstrap, RivetsJS, and AJAX)
+- Web layer (C#, Web API, Routing, MVC, fake authentication for this project)
+- Middle layer or Business Layer (C# and validation)
+- Data layer (C#, ADO.NET, read/write to the database)
+
+WEB HOSTING
+We used Microsoft Azure for hosting and continuous monitoring. For more information, please refer to this document: “Azure Continuous Monitoring.PDF.”
+
+FRONT END:
+This solution used RivetsJS, which is an JavaScript open source library, for data-binding in the UI. This is a very simple, but powerful, library. The language and the syntax is very intuitive and one can quickly create powerful data-binding in the JavaScript framework. Since AngularJS 2.0 is still in beta (June 2016), we were not able to use it for this project. If it was available, we would have used it for data-binding and other powerful features that it offers.
+
+We used Bootstrap, the world's most popular mobile-first and responsive front-end framework. Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web. This enabled us to create responsive pages. We used many of its components such as Glyphicons, Buttons, Input, Navbar, Grid system, Tables, Tabs, and Modal dialogs.
+
+We use the "sans-serif" font family throughout the website.
+
+The solution uses JQuery and AJAX to connect to the our REST APIs.
+
+BACK END (Web, Business, Data):
+The solution used C#, Web APIs, and ADO.NET to do most of the work in the back end world. The solution was designed to be a REST API provider. This will enable this solution to scale very easily. The business and data validation takes place in the Business layer.
+
+To provide a great user experience, most of the calls to the web server are Web API calls. This enables users to stay on the same page and the new data can be retrieved using Web APIs. The return data types from the REST APIs are all " HttpResponseMessage," providing a lot of flexibility.
+
+Since this prototype didn't require authorization and authentication, we didn't implement it. Still, for a real world web application, these components would have designed using the Microsoft Identity and Security framework.
+
+To read and write to the SQL Server Database, we used ADO.NET APIs. For performance and security reasons, all of our ADO API calls were into our Store Procedures.
+
+The overall design favors scalability and simple design principles to ensure sustainability and a great user experience.
+
+
+

@@ -1,0 +1,290 @@
+﻿@using Com.Natoma.HhsPrototype.UserInterface.Models
+@model UserProfileModel
+
+@{ 
+    ViewBag.Title = "Profile";
+}
+
+<div class="container theme-showcase" role="main">
+    <div class="page-header">
+        <h1>My Profile</h1>
+        <p class="lead">Manage your profile.</p>
+    </div>
+
+    @if (ViewBag.SaveSuccessful != null && ViewBag.SaveSuccessful == true)
+    {
+        <div id="divSaveSuccessful" class="row save-message">
+            <div class="col-sm-6 alert alert-success" role="alert">
+                <p class="text-success">Profile saved successfully</p>
+            </div>
+        </div>
+    }
+
+    @if (ViewBag.SaveSuccessful != null && ViewBag.SaveSuccessful == false)
+    {
+        <div id="divSaveFailed" class="row save-message">
+            <div class="col-sm-6 alert alert-danger" role="alert">
+                <p class="text-danger">Profile did not save. Correct data on all tabs.</p>
+            </div>
+        </div>
+    }
+
+    @using (Html.BeginForm("Save", "UserProfile", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "form", role = "form", @class = "form-horizontal" }))
+    {
+
+        <ul class="nav nav-tabs small">
+            <li id="liBasicTab" role="presentation" class="active"><a href="#" onclick="profileNaviationChange($(this).closest('li'), 'divBasic')">Basic</a></li>
+            <li role="presentation"><a href="#" onclick="profileNaviationChange($(this).closest('li'), 'divDemographics')">Demographics</a></li>
+            <li role="presentation"><a href="#" onclick="profileNaviationChange($(this).closest('li'), 'divHousehold')">Household</a></li>
+            <li role="presentation"><a href="#" onclick="profileNaviationChange($(this).closest('li'), 'divDocumentation')">Documentation</a></li>
+            <li role="presentation"><a href="#" onclick="profileNaviationChange($(this).closest('li'), 'divAdditional')">Additional</a></li>
+        </ul>
+
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        <div id="divBasic" class="tabbed-div row">
+            <h2>Care Provider Information</h2>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @type = "text", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MiddleName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @type = "text", @placeholder = "(Optional)" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @type = "text", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber, new { @class = "control-label col-md-2", @for = "txtPhone" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @type = "tel", @required = "required", @id = "txtPhone", @placeholder = "e.g. (916) 555-1234" })
+                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AddressLine1, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control", @type = "text", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.AddressLine1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AddressLine2, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control", @type = "text", @placeholder = "(Optional)" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.City, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.City, new { @class = "form-control", @type = "text", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.State, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.State, (SelectList)ViewData["stateList"], new { @class = "form-control", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ZipCode, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", @type = "tel" })
+                    @Html.ValidationMessageFor(m => m.ZipCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div id="divDemographics" class="tabbed-div row">
+            <h2>Demographics</h2>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateOfBirth, new { @class = "control-label col-md-2", @for = "txtDateOfBirth" })
+                <div class="col-md-10">
+                    @* TODO: Setting "type" to "date" causes problems in Chrome. But "type='date' is helpful for mobile. DatePicker libraries are inconsistent. Want some "date" functionality in there. *@
+                    @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control", @id = "txtDateOfBirth", @type = "text", @placeholder = "MM/DD/YYYY", @Value = !Model.DateOfBirth.HasValue || Model.DateOfBirth == DateTime.MinValue ? string.Empty : Model.DateOfBirth.Value.ToString("MM/dd/yyyy") })
+                    @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Gender, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Gender, new { @class = "form-control", @type = "text" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Race, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Race, new { @class = "form-control", @type = "text", @aria_describedby = "pRace" })
+                    <p id="pRace" class="help-block race">e.g. Hispanic or Latino, White, Black or African American, Native Hawaiian or other Pacific Islander, Asian, American Indian or Alaska Native, Two or More Races.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Ethnicity, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Ethnicity, new { @class = "form-control", @type = "text", @aria_describedby = "pEthnicity" })
+                    <p id="pEthnicity" class="help-block">e.g. Hispanic or Non-Hispanic.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MaritalStatus, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.MaritalStatus, new { @class = "form-control", @type = "text" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PrimaryLanguage, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.PrimaryLanguage, new { @class = "form-control", @type = "text" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AdditionalLanguages, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.AdditionalLanguages, new { @class = "form-control", @type = "text" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.EmploymentInformation, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.EmploymentInformation, new { @class = "form-control", @aria_describedby = "pEmploymentInformation" })
+                    <p id="pEmploymentInformation" class="help-block">Place of employment, work schedule, and other relevent information.</p>
+                </div>
+            </div>
+        </div>
+        <div id="divHousehold" class="tabbed-div row">
+            <h2>Household</h2>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PrimaryHouseholdLanguage, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.PrimaryHouseholdLanguage, new { @class = "form-control", @type = "text" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AdditionalHouseHoldLanguages, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.AdditionalHouseHoldLanguages, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Capacity, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Capacity, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Pets, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.Pets, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.IsAvailableForPets, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.IsAvailableForPets, (SelectList)ViewData["yesNoList"], new { @class = "form-control", @aria_describedby = "pPets" })
+                    <p id="pPets" class="help-block">Would a foster child be able to bring a pet into the household?</p>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.NumberOfDependentsInHousehold, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.NumberOfDependentsInHousehold, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Kids, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.Kids, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <div id="divDocumentation" class="tabbed-div row">
+            <h2>Documentation</h2>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FingerprintingInformation, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.FingerprintingInformation, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FingerprintedAlternateCareProviders, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.FingerprintedAlternateCareProviders, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CertificationInformation, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.CertificationInformation, new { @class = "form-control" })
+                </div>
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.IsApprovedForKinshipCare, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.IsApprovedForKinshipCare, (SelectList)ViewData["yesNoList"], new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.IsApprovedForAdoptiveCare, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.IsApprovedForAdoptiveCare, (SelectList)ViewData["yesNoList"], new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.TrainingInformation, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.TrainingInformation, new { @class = "form-control", @aria_describedby = "pHelpTraining" })
+                    <p id="pHelpTraining" class="help-block">List any training you may have received for foster care purposes.</p>
+                </div>
+            </div>
+        </div>
+        <div id="divAdditional" class="tabbed-div row">
+            <h2>Additional</h2>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SpecialCarePreferences, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.SpecialCarePreferences, new { @class = "form-control", @aria_describedby = "pHelpSpecialCarePreference" })
+                    <p id="pHelpSpecialCarePreference" class="help-block">Example: Transitional Age Youth 18-21, Pregnant and Parenting, commercially sexually exploited youth, LGBT</p>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Neighborhood, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Neighborhood, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SchoolDistrictInformation, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.SchoolDistrictInformation, new { @class = "form-control", @aria_describedby = "pHelpSchoolDistrict" })
+                    <p id="pHelpSchoolDistrict" class="help-block">Closest elementary, middle, and high schools to your home.</p>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-lg col-md-offset-2" type="submit">Save</button>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquerymask")
+    @Scripts.Render("~/bundles/js/userprofile")
+}

@@ -1,0 +1,21 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+    ViewBag.IsUserLoggedIn = false;
+
+    if (TempData["IsUserLoggedIn"] != null)
+    {
+        ViewBag.IsUserLoggedIn = (bool)TempData["IsUserLoggedIn"];
+    }
+}
+
+<h1 class="text-danger"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Error</h1>
+<p class="lead text-danger">Oops!  Looks like there is a problem...</p>
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <p>An error occurred during navigation.  Please return to the @Html.ActionLink("Home page", "Index", "Home") to continue using the application.</p>
+        <p>Please contact support at <a href="mailto:info@natomatech.com?Subject=Prototype%20Error" target="_top">info@natomatech.com</a> if this error persists.</p>
+    </div>
+</div>

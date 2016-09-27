@@ -1,0 +1,22 @@
+<table id="message_list_<%= list_type %>" class="table table-bordered display" cellspacing="0">
+  <thead>
+    <tr class="table info">
+      <th></th>
+      <th><%= first_column_header(list_type).humanize %></th>     
+      <th>Subject</th>
+      <th>Sent Date</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% messages.each_with_index do |message, idx| %>
+      <tr class='tr_message' message_id='<%= message.id %>' onClick="location.href='/messages/<%= message.id %>'"  style='cursor: pointer;' >
+        <td><%= idx + 1 %></td>
+        <td><%= self.send("msg_#{first_column_header(list_type)}", message)  %></td>
+        <td id= ''><%= message.subject  %></td>
+        <td id= ''><%= message.sent_date  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

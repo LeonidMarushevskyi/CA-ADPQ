@@ -1,0 +1,29 @@
+
+<div ng-if="!model.isLoggedIn" class="text-right" id="loginNavContainer">
+  <ul class="loginNav" id="loginNav">
+    <li class="dropdown login" role="presentation"> <a aria-expanded="false" aria-haspopup="true" role="button" href="#" data-toggle="dropdown" class="dropdown-toggle login">Login</a>
+      <ul class="dropdown-menu">
+        <li>
+          <span class="glyphicon glyphicon-user loginboxUsericon"></span>
+          <div class="userLoginBox form-group">
+                  <input type="text" class="form-control txtBoxLoginBox" placeholder="Username" ng-model="model.Username" onFocus="if(this.value=='Username')this.value=''" onBlur="if(this.value=='')this.value='Username'">
+                  <input type="password" class="form-control txtBoxLoginBox marginTop10" placeholder="Password" ng-model="model.Password" onFocus="if(this.value=='Password')this.value=''" onBlur="if(this.value=='')this.value='Password'">
+                  <button type="submit" class="btn btn-primary btn-search  marginTop10" ng-click="model.validateLogin(model.Username, model.Password)">LOGIN</button> <a href="#" class="forgotPwd">Forgot Password?</a>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li><a href="javascript:void(0)">Help</a></li>
+    <li><a href="javascript:void(0)">About Us</a></li>
+  </ul>
+</div>
+
+
+<div  ng-if="model.isLoggedIn" class="text-right" id="loginNavContainer">
+   <ul class="loginNav" id="loginNav">
+     <li class="login hidden-xs" role="presentation"> <a class="login">Welcome {{model.fullName}}</a> </li>
+     <li><a href="#">Help</a></li>
+     <li><a href="#">About Us</a></li>
+     <li><a ng-click="model.logout()" class="cursorHand">Logout</a></li>
+   </ul>
+ </div>

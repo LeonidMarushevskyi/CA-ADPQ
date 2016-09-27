@@ -1,0 +1,103 @@
+
+
+ <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="nav nav-pills nav-justified tabPills">
+                            <li>
+                                <a ng-link="['UserAccountDetails']">
+                                    Update<br />
+                                    Account Detail
+                                </a>
+                            </li>
+                            <li>
+                                <a ng-link="['UserPersonalInformation']">
+                                    Update<br />
+                                    Personal Information
+                                </a>
+                            </li>
+                            <li>
+                                <a ng-link="['UserPreferences']">
+                                    Update Family
+                                    Narrative &amp; Preferences
+                                </a>
+                            </li>
+                            <li class="active"><a ng-link="['UserLicense']">Update License &amp; Agency Detail</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+     <div class="row">
+         <div class="col-sm-7">
+             <form name="userForm4" ng-submit="model.updateUserLicense()" novalidate>
+                 <div class="form-horizontal marginTop20">
+                     <div class="form-group">
+                         <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Do you have Foster care Licence?</label>
+                         <div class="col-sm-6">
+                             <label class="radio-inline">
+                                 <input name="radio"type="radio" ng-checked="model.haveLicense == 'y'" checked >
+                                 Yes
+                             </label>
+                             <label class="radio-inline">
+                                 <input name="radio" type="radio" ng-checked="model.haveLicense == 'n'">
+                                 No
+                             </label>
+                         </div>
+                     </div>
+                     <div class="form-group required">
+                         <label for="inputPassword" class="control-label col-sm-4 paddingTop7">License Number</label>
+                         <div class="col-sm-6">
+                             <input class="form-control" name="licenceNo" id="licenceNo" ng-model="model.licenceDetails.licenceNo" required ng-disabled="model.haveLicense == 'y'">
+                             <p ng-show="userForm4.licenceNo.$invalid && !userForm4.licenceNo.$pristine" class="help-block">Enter License.</p>
+                         </div>
+                     </div>
+                     <div class="form-group required">
+                         <label class="col-sm-4 control-label">Date of Issue</label>
+                         <div class="col-sm-6 ">
+                             <div class="input-append date form-control datepicker" id="dp3" data-date-format="mm/dd/yyyy" ng-disabled="model.haveLicense == 'y'">
+                                 <input class="span2" size="16" type="text" name="dateofissue" id="dateofissue" ng-model=" model.licenceDetails.dateOfIssue" required ng-disabled="model.haveLicense == 'y'">
+                                 <p ng-show="userForm4.dateofissue.$invalid && !userForm4.dateofissue.$pristine" class="help-block">Enter Date Of Issue.</p>
+                                 <span class="add-on"><i class="icon-th"></i></span>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="form-group required">
+                         <label class="col-sm-4 control-label">Agency Case Worker</label>
+                         <div class="col-sm-6">
+                             <input class="form-control" ng-model="model.licenceDetails.agencyWorker" id="agencyWorker" name="agencyWorker">
+                             <p ng-show="userForm4.agencyWorker.$invalid && !userForm4.agencyWorker.$pristine" class="help-block">Enter Agency worker.</p>
+                         </div>
+                     </div>
+                     <div class="form-group required">
+                         <label class="col-sm-4 control-label">Agency Contact Number</label>
+                         <div class="col-sm-6">
+                             <input class="form-control" ng-model="model.licenceDetails.agencyContact" required id="agencyContact" name="agencyContact">
+                             <p ng-show="userForm4.agencyContact.$invalid && !userForm4.agencyContact.$pristine" class="help-block">Enter Agency contact.</p>
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <label for="inputPassword" class="control-label col-sm-4 paddingTop7"> </label>
+                         <div class="col-sm-6">
+                             <!--<input class="btn btn-primary" value="Update" type="submit">-->
+
+                             <button class="btn btn-primary" type="submit" ng-disabled="userForm4.$invalid">Update</button>
+                             <input class="btn btn-default" value="Cancel" type="button" ng-link="['UserLicense']">
+                         </div>
+                     </div>
+                 </div>
+                 <!-- /.form-horizontal -->
+            </form>
+    </div>
+         <div class="col-sm-5 marginTop20 LeftDivider">
+             <img src="./contents/images/registerFiller.jpg" width="388" height="408" alt="" class="img-responsive" />
+         </div>
+     </div>
+
+            </div>
+
+<main-script></main-script>
+<script language="javascript">
+
+    $('.datepicker').datepicker();
+</script>

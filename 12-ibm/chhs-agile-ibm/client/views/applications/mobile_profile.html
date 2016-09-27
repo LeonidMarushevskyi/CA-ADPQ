@@ -1,0 +1,60 @@
+<div flex layout="column" hide-gt-sm layout-align="space-around center">
+    <div flex layout="row">
+        <!-- This is the parent information -->
+        <div flex layout="column" layout-align="center center">
+            <img src="client/assets/rachel.jpg" ng-show="showProfile"
+                 width="130" height="150" />
+        </div>
+        <div flex layout="column" layout-align="center center">
+            <div ng-show="showProfile" class="parent-name md-headline">
+                Rachel Marie Robins
+            </div>
+            <br>
+            <div class="md-subhead" ng-show="editMyProfile">
+                <span class="parent-address">
+                    <span class="md-subhead">{{storage.parent_home_address}}</span>
+                </span>
+                <br>
+                <span class="parent-home-number">
+                  H: {{storage.parent_home_phone}}
+                </span>
+                <br>
+                <span class="parent-phone-number">
+                    W: {{storage.parent_work_number}}
+                </span>
+                <md-icon md-svg-src="client/icons/mode_edit.svg" ng-cloak class="material-icons check_mark"
+                         ng-style="{'color': profileColor}" aria-label="Edit Profile" ng-show="showProfile" ng-click="editProfile()"></md-icon>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div flex layout="column" class="mobile-caseworker" ng-show="showProfile">
+        <br>
+        <div flex layout="row" class="blackcolor">
+            <div flex="50" layout="column" class="blackcolor">
+                <span layout="row" layout-align="start" class="md-headline caseworker-name">
+                        Case Worker
+                </span>
+            </div>
+            <div flex="50" layout="column">
+                <div class="md-subhead">
+                    Francis Romero<br>
+                    951-582-1984<br><br>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row" layout-align="space-between" class="blackcolor">
+            <div flex="50" layout="column">
+                <br>
+                <span class="md-subhead child-fullname">
+                    <span class="md-headline">Child</span>
+                </span>
+            </div>
+            <div flex="50" layout="column" >
+                <br>
+                Margaret "Molly" Robins
+            </div>
+        </div>
+    </div>
+</div>

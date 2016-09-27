@@ -1,0 +1,89 @@
+<div ng-controller="EditProfileController" class="row edit-profile">	
+	<form ng-submit="save(user)" class="col-md-6" ng-hide="resultsReturned">
+		<i class="fa fa-user" aria-hidden="true"></i> 
+		<a ui-sref="placeholder({page:'Upload-Picture'})" translate>Update Profile Picture</a>
+		
+		<fieldset class="form-group">
+			<input ng-model="user.firstName" type="text" class="form-control" id="firstName" placeholder="{{'First Name'|translate}}" required>
+		</fieldset>
+		<fieldset class="form-group">
+			<input ng-model="user.lastName" type="text" class="form-control" id="lastName" placeholder="{{'Last Name'|translate}}" required>
+		</fieldset>
+		<fieldset class="form-group">
+			<select ng-model="user.relationship" ng-show=" user.parentId || !user.hasOwnProperty('id')" type="text" class="form-control" id="relationship" placeholder="{{'Relationship'|translate}}" ng-required="user.parentId || !user.hasOwnProperty('id')">
+				<option value="" disabled translate>Relationship</option>
+				<option value="Spouse" translate>Spouse</option>
+				<option value="Daughter" translate>Daughter</option>
+				<option value="Son" translate>Son</option>
+				<option value="Parent" translate>Parent</option>
+				<option value="Grandparent" translate>Grandparent</option>
+				<option value="Sibling" translate>Sibling</option>
+				<option value="Family Friend" translate>Family Friend</option>
+				<option value="Other" translate>Other</option>
+			</select>
+		</fieldset>
+		
+		<fieldset class="form-group" ng-show="showLocation">
+			<select ng-model="user.location" class="form-control" name="location" id="location" ng-required="showLocation">
+				<option value="" disabled translate>Location</option>
+				<option value="In Home" translate>In Home</option>
+				<option value="In Placement" translate>In Placement</option>
+				<option value="Other" translate>Other</option>
+			</select>
+		</fieldset>
+		
+		<fieldset class="form-group" ng-show="showOther || (user.location == 'In Placement' && user.facility)">
+			<input ng-model="user.facility" type="text" class="form-control" id="facility" placeholder="{{'Enter Address of Placement'|translate}}" ng-readonly="user.location != 'Other'">
+		</fieldset>
+		<fieldset class="form-group" ng-show="showFacility">
+			<input ng-model="input.zipcode" maxlength="5" type="text" class="form-control" id="input-zipcode" placeholder="{{'Search for residential facility by zipcode'|translate}}">
+		</fieldset>
+		
+		<fieldset class="form-group" ng-hide="showLocation">
+			<input ng-model="user.address1" type="text" class="form-control" id="address1" placeholder="{{'Street'|translate}}" ng-required="!showLocation">
+		</fieldset>
+		<fieldset class="form-group" ng-hide="showLocation">
+			<input ng-model="user.city" type="text" class="form-control" id="city" placeholder="{{'City'|translate}}" ng-required="!showLocation">
+		</fieldset>
+		<fieldset class="form-group" ng-hide="showLocation">
+			<select ng-model="user.state" ng-options="key as value for (key , value) in states" class="form-control" name="state" id="state" ng-required="!showLocation">
+				<option></option>
+			</select>
+		</fieldset>
+		<fieldset class="form-group" ng-hide="showLocation">
+			<input ng-model="user.zip" type="text" class="form-control" id="zip" placeholder="{{'Zip'|translate}}" ng-required="!showLocation">
+		</fieldset>
+		<fieldset class="form-group">
+			<input ng-model="user.phone" type="text" class="form-control" id="phone" placeholder="{{'Home Phone #'|translate}}" >
+		</fieldset>
+		<fieldset class="form-group">
+			<input ng-model="user.cell" type="text" class="form-control" id="cell" placeholder="{{'Cell Phone #'|translate}}" >
+		</fieldset>
+		<fieldset class="form-group">
+			<input ng-model="user.email" type="text" class="form-control" id="email" placeholder="{{'Email'|translate}}" >
+		</fieldset>
+		<fieldset class="form-group">
+			<input ng-model="user.dob" type="text" class="form-control" id="dob" placeholder="{{'Date of Birth'|translate}}" >
+			
+		</fieldset>
+		<fieldset class="form-group">
+			<label class="radio-inline"><input ng-model="user.gender" value="Female" type="radio" name="gender" translate>Female</label>
+			<label class="radio-inline"><input ng-model="user.gender" value="Male" type="radio" name="gender" translate>Male</label>
+			<label class="radio-inline"><input ng-model="user.gender" value="Decline" type="radio" name="gender" translate>Decline</label>
+		</fieldset>
+		<hr>
+		
+		<button class="btn btn-primary col-sm-5" translate>Done</button>
+		
+		<a ui-sref="profile" class="btn btn-secondary col-sm-5 coll-sm-offset-2" translate>Cancel</a>
+	</form>
+	
+	<ul class="facilities " ng-show="resultsReturned">
+		<li ng-repeat="f in facilities" ng-click="selectFacility(f)" class="col-xs-12">
+			<span class="facility">{{f.name}}</span><span class="zip">{{f.zipcode}}</span>
+		</li>
+		
+		<li ng-show="facilities.length == 0" class="col-xs-12" translate>No Results Found</li>
+		<li class="col-xs-12"><button ng-click="cancelFacilities()" class="btn btn-primary" translate>Cancel</button></li>
+	</ul>
+</div>

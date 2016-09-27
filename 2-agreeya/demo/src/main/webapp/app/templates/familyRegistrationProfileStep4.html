@@ -1,0 +1,99 @@
+<div class="MainContainer" id="MainContainer">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ol class="breadcrumb">
+                <li><a href="#/">Home</a></li>
+                <li><a href="javascript:void(0);">Establish Profile</a></li>
+                <li class="active">License &amp; Agency Detail</li>
+            </ol>
+        </div>
+    </div>
+    <section>
+        <div class="row marginTop10 lightGrayBG">
+            <div class="col-xs-12 col-sm-6 h3 txtBlue marginTop7">Establish Profile</div>
+            <div class="col-xs-12 col-sm-6 txtBlue font1dot5em"><span class="stepCount">Step <span class="font1em">4</span> of <span class="font1em">4</span></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-pills nav-justified tabPills">
+                    <li><a href="javascript:void(0);">Account Detail</a></li>
+                    <li><a href="javascript:void(0);">Personal Information</a></li>
+                    <li><a href="javascript:void(0);">Family Narrative &amp; Preferences</a></li>
+                    <li class="active"><a href="javascript:void(0);">License &amp; Agency Detail</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="form-horizontal marginTop20">
+                    <form name="registrationForm" novalidate>
+                        <div class="form-group">
+                            <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Do you have Foster care License?</label>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input name="radio" type="radio" ng-model="model.haveFosterLicense" value="yes"> Yes </label>
+                                <label class="radio-inline">
+                                    <input name="radio" type="radio" ng-model="model.haveFosterLicense" value="no"> No </label>
+                            </div>
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : registrationForm.licenseNumber.$invalid && !registrationForm.licenseNumber.$pristine }">
+                            <label for="inputPassword" class="control-label col-sm-4 paddingTop7">License Number</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" name="licenseNumber" ng-model="model.licenceDetails.licenceNo"  ng-required="true">
+                                <span ng-show="registrationForm.licenseNumber.$invalid && !registrationForm.licenseNumber.$pristine" class="help-block"> Licence number required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : registrationForm.dateOfIssue.$invalid && !registrationForm.dateOfIssue.$pristine }">
+                            <label class="col-sm-4 control-label">Date of Issue</label>
+                            <div class="col-sm-6 ">
+                                <div class="input-append date form-control datepicker" id="dp3" data-date-format="mm/dd/yyyy">
+                                    <input class="span2" size="16" type="text" value="" name="dateOfIssue" ng-model="model.licenceDetails.dateOfIssue"  ng-required="true">
+                                    <span ng-show="registrationForm.dateOfIssue.$invalid && !registrationForm.dateOfIssue.$pristine" class="help-block"> Date of issue required.</span>
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group required" ng-class="{ 'has-error' : registrationForm.agencyCaseWorker.$invalid && !registrationForm.agencyCaseWorker.$pristine }">
+                            <label class="col-sm-4 control-label">Agency Case Worker Name</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" name="agencyCaseWorker" ng-model="model.licenceDetails.agencyWorker"  ng-required="true">
+                                <span ng-show="registrationForm.agencyCaseWorker.$invalid && !registrationForm.agencyCaseWorker.$pristine" class="help-block"> Agency case worker required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : registrationForm.agencyContact.$invalid && !registrationForm.agencyContact.$pristine }">
+                            <label class="col-sm-4 control-label">Agency Contact Number</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" ng-minlength="10" ng-maxlength="10" type="number" name="agencyContact" ng-model="model.licenceDetails.agencyContact" ng-required="true">
+                                <span ng-show="registrationForm.agencyContact.$error.number" class="help-block"> Contact number should be number.</span>
+                                <span class="help-block" ng-show="((registrationForm.agencyContact.$error.minlength || registrationForm.agencyContact.$error.maxlength) && registrationForm2.agencyContact.$dirty) "> Contact number should be 10 digits only</span>
+                            </div>
+
+                        </div>
+                                                <div class="form-group">
+                            <label for="inputPassword" class="control-label col-sm-4 paddingTop7"> </label>
+                            <div class="col-sm-6">
+                                <input class="btn btn-primary" value="Submit" type="submit" ng-click="model.SaveRegistrationProfileData()" ng-disabled="registrationForm.$invalid">
+                                <input class="btn btn-default" value="Save & Exit" type="submit" ng-click="model.SaveRegistrationProfileData()" ng-disabled="registrationForm.$invalid">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.form-horizontal -->
+            </div>
+            <div class="col-sm-5 marginTop20 LeftDivider">
+                <img src="./contents/images/registerFiller.jpg" width="388" height="408" alt="" class="img-responsive" /> </div>
+        </div>
+
+
+
+    </section>
+</div>
+<main-script></main-script>
+
+<script language="javascript">
+    //$('#dp3').datepicker();
+    $('.datepicker').datepicker();
+</script>

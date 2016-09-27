@@ -1,0 +1,27 @@
+{
+  "name": "chhsdemo",
+  "description": "Develope a demo app for foster families",
+  "main": "index.js",
+  "authors": [
+    "as-manish"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-component-router": "^0.2.1",
+    "angular-route": "^1.5.6",
+    "bootstrap": "^3.3.6",
+    "angular-cache": "^4.6.0",
+    "AngularJS-Toaster": "angularjs-toaster#^2.0.0",
+    "ag-grid": "^4.2.5",
+    "angular-dialog-service": "^5.3.0",
+    "angular-cookies": "^1.5.6"
+  }
+}

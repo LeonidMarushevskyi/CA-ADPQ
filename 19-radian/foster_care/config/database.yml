@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: foster_care_development
+
+test:
+  <<: *default
+  database: foster_care_test
+
+production:
+  <<: *default
+  database: foster_care_production
+  username: foster_care
+  password: <%= ENV['FOSTER_CARE_DATABASE_PASSWORD'] %>

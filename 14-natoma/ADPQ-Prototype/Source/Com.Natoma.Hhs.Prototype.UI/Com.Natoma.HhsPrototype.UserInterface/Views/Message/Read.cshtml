@@ -1,0 +1,49 @@
+﻿@model Com.Natoma.HhsPrototype.UserInterface.Models.MessageModel
+
+@{
+    ViewBag.Title = "Message Details";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Message Details</h2>
+        <hr />
+        <div class="row">
+            <div class="col-xs-3">
+                <label for="spnTo">To</label><br />
+                <span id="spnTo">@Model.RecipientName</span>
+            </div>
+            <div class="col-xs-3">
+                <label for="spnFrom">From</label><br />
+                <span id="spnFrom">@Model.SenderName</span>
+            </div>
+            <div class="col-xs-4 col-xs-offset-2">
+                <label for="spnDate">Date</label><br />
+                @* TODO: Format this as "MM/dd/yyyy hh:mm:ss tt" so table display is even *@
+                <span id="spnDate">@Model.DateSent</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="spnSubject">Subject</label><br />
+                <span id="spnSubject">@Model.Subject</span>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-xs-12">
+                <p>
+                    @* Using "Html.Raw" so line breaks (<br />) will be rendered in window. *@
+                    @* TODO: Create better way to include some HTML elements (bold, line breaks) in messages. Maybe some Editor Library? *@
+                    @Html.Raw(Model.Body)
+                </p>
+            </div>
+        </div>
+        <hr />
+        <a href="@Url.Action("Index", "Message")" class="btn btn-info">Back to Mailbox</a>
+        <a href="@Url.Action("DeleteMessage", "Message", new { messageId = Model.MessageId })" class="btn btn-danger">Delete Message</a>
+    </div>
+}

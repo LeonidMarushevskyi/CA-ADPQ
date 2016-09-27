@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Star Wars",
+        "rating": 5,
+        "length": 120
+    },
+    {
+        "id": 2,
+        "title": "Magic of Thinking Big",
+        "rating": 5,
+        "length": 150
+    },
+    {
+        "id": 3,
+        "title": "Rich Dad Poor Dad",
+        "rating": 4,
+        "length": 100
+    },
+    {
+        "id": 4,
+        "title": "Immortals of Meluha",
+        "rating": 3,
+        "length": 10
+    }
+]

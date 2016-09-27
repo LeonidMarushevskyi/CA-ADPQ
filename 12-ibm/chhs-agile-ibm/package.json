@@ -1,0 +1,45 @@
+{
+  "name": "Sunshine-Angular",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "4.2.x",
+    "npm": "~3.9.x"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "npm run test-server && npm run test-client",
+    "test-server": "jasmine",
+    "test-client": "karma start karma.conf.js --single-run",
+    "test-integration": "protractor protractor.conf.js"
+  },
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-animate": "^1.5.5",
+    "angular-aria": "^1.5.6",
+    "angular-material": "^1.0.9",
+    "angular-messages": "^1.5.6",
+    "angular-mocks": "^1.5.6",
+    "angular-resource": "^1.5.6",
+    "angular-route": "^1.5.6",
+    "angular-sanitize": "^1.5.6",
+    "cfenv": "^1.0.3",
+    "express": "^4.13.4",
+    "ng-file-upload": "^12.0.4",
+    "ngstorage": "^0.3.10",
+    "node-env-file": "^0.1.8"
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "mocha": "^2.5.3",
+    "phantomjs-prebuilt": "^2.1.7",
+    "protractor": "^3.3.0",
+    "socket.io": "^1.4.6",
+    "supertest": "^1.2.0"
+  },
+  "license": "Apache-2.0"
+}

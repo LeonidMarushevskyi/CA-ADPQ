@@ -1,0 +1,68 @@
+version: '2'
+services:
+  ### Angular Container #########################################
+  angular:
+#    build:
+#      context: ../
+#      dockerfile: docker/angular/Dockerfile
+    container_name: cgi-angular
+    image: quay.io/surgeforward/cgi:angular
+    environment:
+      - NGINX_HOST=cgi.test.surgeforward.com
+      - NGINX_PORT=80
+    ports:
+      - "80:80"
+
+  ### Spring Boot HouseholdService Container #########################################
+  springboot-profile:
+#    build:
+#      context: ../
+#      dockerfile: docker/springboot/profile/Dockerfile
+    container_name: cgi-springboot-profile
+    image: quay.io/surgeforward/cgi:springboot-profile
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql
+
+
+  ### DATA Container ##########################################
+  data:
+    container_name: cgi-data
+#    build: ./data
+    image: quay.io/surgeforward/cgi:data
+    volumes:
+      - /var/lib/mysql
+      - /data
+
+  ### MySQL Container #########################################
+  mysql:
+    container_name: cgi-mysql
+#    build: ./mysql
+    image: quay.io/surgeforward/cgi:mysql
+    volumes_from:
+      - data
+    environment:
+      - MYSQL_DATABASE=cgi_adpq
+      - MYSQL_USER=cgi_adpq_user
+      - MYSQL_PASSWORD=UtcPWBk.+6wEirpez4j)P
+      - MYSQL_ROOT_PASSWORD=QyzgkE]CWC(Pd7Aq9(Gmj
+    volumes_from:
+      - data
+    ports:
+      - "3306:3306"
+    depends_on:
+      - data
+
+
+  ### Redis Container #########################################
+  redis:
+    container_name: cgi-redis
+#    build: ./redis
+    image: quay.io/surgeforward/cgi:redis
+    volumes_from:
+      - data
+    ports:
+      - "6379:6379"
+    depends_on:
+      - data

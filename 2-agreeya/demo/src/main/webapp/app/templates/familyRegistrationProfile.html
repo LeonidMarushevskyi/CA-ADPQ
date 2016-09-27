@@ -1,0 +1,87 @@
+<div class="MainContainer" id="MainContainer">
+    <div class="row">
+        <div class="col-sm-12">
+            <ol class="breadcrumb">
+                <li><a href="#/">Home</a></li>
+                <li><a href="javascript:void(0)">Establish Profile</a></li>
+                <li class="active">Account Detail</li>
+            </ol>
+        </div>
+    </div>
+    <section>
+        <div class="row marginTop10 lightGrayBG">
+            <div class="col-xs-12 col-sm-6 h3 txtBlue marginTop7">Establish Profile</div>
+            <div class="col-xs-12 col-sm-6 txtBlue font1dot5em">
+                <span class="stepCount">Step
+            <span class="font1em">1</span> of
+                <span class="font1em">4</span>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-pills nav-justified tabPills">
+                    <li class="active"><a href="javascript:void(0)">Account Detail</a></li>
+                    <li><a href="javascript:void(0)">Personal Information</a></li>
+                    <li><a href="javascript:void(0)">Family Narrative &amp; Preferences</a></li>
+                    <li><a href="javascript:void(0)">License &amp; Agency Detail</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="form-horizontal marginTop20">
+
+                    <form name="registrationForm1" ng-submit="model.SaveRegistrationProfileData()" novalidate>
+                        <div class="form-group required" ng-class="{ 'has-error' : registrationForm1.userName.$invalid && !registrationForm1.userName.$pristine }">
+                            <label for="userName" class="control-label col-sm-4 paddingTop7">Username</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" name="userName" id="userName" ng-model="model.personalProfile.userName" required>
+                                <span ng-show="registrationForm1.userName.$invalid && !registrationForm1.userName.$pristine" class="help-block"> Username required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : registrationForm1.email.$invalid && !registrationForm1.email.$pristine }">
+                            <label for="email" class="control-label col-sm-4 paddingTop7">Email Id</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="email" name="email" id="email" ng-model="model.personalProfile.useremail" required>
+                                <p ng-show="registrationForm1.email.$invalid && !registrationForm1.email.$pristine" class="help-block">Enter a valid email.</p>
+                            </div>
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : registrationForm1.password.$invalid && !registrationForm1.password.$pristine }">
+                            <label for="password" class="control-label col-sm-4 paddingTop7">Password</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="password" name="password" ng-model="model.personalProfile.password" required>
+                                <p ng-show="registrationForm1.password.$invalid && !registrationForm1.password.$pristine" class="help-block">Enter password.</p>
+
+                            </div>
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : (registrationForm1.confirmPassword.$invalid && !registrationForm1.confirmPassword.$pristine || (model.personalProfile.password != model.confirmPassword))}">
+                            <label for="confirmPassword" class="control-label col-sm-4 paddingTop7">Confirm Password</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="password" name="confirmPassword" ng-model="model.confirmPassword" required>
+                                <p ng-show="registrationForm1.password.$invalid && !registrationForm1.password.$pristine" class="help-block">Enter confirm password.</p>
+                                <p ng-show="registrationForm1.confirmPassword.$valid && model.personalProfile.password != model.confirmPassword" class="help-block">Password and confirm password does not match.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-sm-offset-4">
+                                <button class="btn btn-primary" type="submit" ng-disabled="registrationForm1.$invalid || model.personalProfile.password != model.confirmPassword">Save</button>
+                                <input class="btn btn-default" value="Cancel" type="button" onClick="location.href='#/'">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.form-horizontal -->
+            </div>
+            <div class="col-sm-5 marginTop20 LeftDivider">
+                <img src="./contents/images/registerFiller.jpg" width="388" height="408" alt="" class="img-responsive" />
+            </div>
+        </div>
+
+
+
+
+    </section>
+</div>
+<main-script></main-script>

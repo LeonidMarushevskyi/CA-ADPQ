@@ -1,0 +1,18 @@
+<div ng-controller="LoginController" class="login row">	
+	<form ng-submit="login()" class="col-md-6">
+		<fieldset class="form-group">
+<!-- 			<label for="email" translate>Email address</label> -->
+			<input ng-model="credentials.email" type="email" class="form-control" id="email" placeholder="{{'Email address'|translate}}" required>
+<!-- 		<small class="text-muted">We'll never share your email with anyone else.</small> -->
+		</fieldset>
+		<fieldset class="form-group">
+<!-- 			<label for="password" translate>Password</label> -->
+			<input ng-model="credentials.password" type="password" class="form-control" id="password" placeholder="{{'Password'|translate}}">
+		</fieldset>
+		
+		<button type="submit" class="btn btn-primary login-btn" translate>Login</button>
+		
+		<a ui-sref="placeholder({page:'Forgot-Password'})" class="link-button-color forgot-password" translate>Forgot Password</a>
+		<a ui-sref="register" class="link-button-color" translate>Register</a>
+	</form>
+</div>

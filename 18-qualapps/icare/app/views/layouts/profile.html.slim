@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title ICare
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  body.gray-bg
+    .row.border-bottom.white-bg
+    #wrapper
+      .top-navigation
+        = render 'shared/main_menu'
+      = render 'shared/notifications'
+      .container-fluid
+        == yield :form_errors
+        == yield
+        = render 'shared/modal'
+        

@@ -1,0 +1,66 @@
+<div ng-controller="ProfileController" class="profile">
+	<div class="profile-name">
+		<div class="circle-picture">
+			<img ng-src="{{user.profilePicture}}">
+		</div>
+		<h1>{{user.firstName}} {{user.lastName}}</h1>
+	</div>
+	<div class="links">
+		<a ui-sref="editProfile({id:user.id})" translate>Update My Profile</a>
+		<a ui-sref="placeholder({page:'Reset-Password'})" translate>Reset Password</a>
+	</div>
+	
+	<span ng-show="user.address1">{{user.address1}}</span>
+	<span ng-show="user.address2">{{user.address2}}</span>
+	<span ng-show="user.city && user.state">{{user.city}}, {{user.state}} {{user.zip}}</span>
+	<span ng-show="user.phone"><span translate>Home:</span> {{user.phone}}</span>
+	<span ng-show="user.cell"><span translate>Cell:</span> {{user.cell}}</span>
+	<span ng-show="user.email"><span>{{user.email}}</span></span>
+	<span ng-show="user.gender"><span>{{user.gender}}</span></span>
+	<span ng-show="user.dob"><span translate>DOB:</span> {{user.dob|date:'M/d/y'}}</span>
+	
+	<div class="facilities-wrap">
+		<fieldset class="form-group">
+			<label for="zipcode" translate>search and view residential facilities in your zipcode</label>
+			<input ng-model="input.zipcode" type="text" class="form-control" id="facility" placeholder="{{'enter zipcode'|translate}}">
+			<button class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+		</fieldset>
+
+		<ul class="facilities" ng-show="resultsReturned">
+			<li ng-repeat="f in facilities" class="">
+				<span class="facility">{{f.name}}</span><span class="zip">{{f.zipcode}}</span>
+			</li>
+			
+			<li ng-show="facilities.length == 0" class="" translate>No Results Found</li>
+		</ul>
+	</div>
+	
+	<h1 translate>Family & Household</h1>
+	<a class="btn btn-primary add-family" translate ui-sref="editProfile({id:'new'})">Add New Family or Friend</a>
+	
+	<div class="family-member" ng-repeat="f in family" ng-show="f.relationship">
+		<a ui-sref="plan({id:f.id})" class="block-wrap">
+			<div class="circle-picture">
+				<img ng-src="{{f.profilePicture}}">
+			</div>
+			
+			<div>
+				<h3>{{f.firstName}} {{f.lastName}}</h3>
+				
+				<div>{{f.gender}} <span ng-show="f.gender">/</span> {{f.relationship}}</div>
+				
+				<div ng-show="f.dob"><span translate>DOB:</span> 
+					<br ng-hide="$parent.currentLocale.name == 'English'">
+					{{f.dob|date:'M/d/yy'}}
+				</div>
+			</div>
+			
+<!--
+			<div>
+				<i class="fa fa-users" aria-hidden="true" ng-show="f.group"></i>
+				<i class="fa fa-home" aria-hidden="true" ng-show="f.home"></i>
+			</div>
+-->
+		</a>
+	</div>
+</div>

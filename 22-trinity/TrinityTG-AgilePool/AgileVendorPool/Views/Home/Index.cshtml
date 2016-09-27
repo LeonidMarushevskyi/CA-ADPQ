@@ -1,0 +1,238 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+    // api list
+    // http://localhost:1798/api/email/getFosterParentEmailList
+}
+
+<div class="row" style="margin:5px;">
+
+    <section>
+        <h1>Foster Parent Profile</h1>
+
+        <div class="row">
+            <h2>Login </h2>
+            <div class="col-md-1" ><span></span></div>
+            <div class="col-md-3"><input type="text" id="inputEmailFosterParent"  class="form-control" placeholder="Email for Foster Parent" aria-describedby="basic-addon1" /></div>
+            <div class="col-md-2"><button id="loginFosterParent"  class="btn btn-primary form-control">Login</button></div>
+            <div class="col-md-6"></div>
+        </div>
+
+        <hr />
+        <div class="row">
+            <h2>Register</h2>
+            <div class="col-md-1"><span></span></div>
+            <div class="col-md-3"><input type="text" id="inputRegisterFosterParent" class="form-control" placeholder="Email for Foster Parent" aria-describedby="basic-addon1" /></div>
+            <div class="col-md-2"><button id="registerFosterParent" class="btn btn-primary form-control">Login</button></div>
+            <div class="col-md-6"></div>
+        </div>
+
+    </section>
+
+    <hr />
+    <section>
+        <h1>Case Worker Email</h1>
+        <div class="row">
+            <h2>Login </h2>
+            <div class="col-md-1"><span></span></div>
+            <div class="col-md-3"><input type="text" readonly id="inputRegisterFosterParent" class="form-control" placeholder="Email for Case Worker" aria-describedby="basic-addon1" /></div>
+            <div class="col-md-2"><button onclick="window.location = '/Home/Email?UserType=CaseWorker';" class="btn btn-primary form-control">Login</button></div>
+            <div class="col-md-6"></div>
+        </div>
+    </section>
+    <hr/>
+
+    <section>
+        <h1>About this Application</h1>
+        <article>
+            <h2>Project Goals</h2>
+            <ol>
+                <li>Will allow parents of foster kids to establish/register and manage their profile</li>
+                <li>Will allow parents of foster kids to view children's residential facilities in their zip code</li>
+                <li>Will allow parents of foster kids to communicate with the case worker via a private inbox</li>
+            </ol>
+
+        </article>
+        <article>
+            <h2>Architecture</h2>
+            @*<img style="max-width:100%; max-height:100%;" src="~/Images-Archiecture/eSOS Architecture - Components.jpg" />*@
+        </article>
+        <article>
+            <h2>Technology Stack</h2>
+
+            <img src="~/Images-Archiecture/html5.jpg" />
+            <img src="~/Images-Archiecture/javascript.png" />
+            <img src="~/Images-Archiecture/ajax2.jpg" />
+            <img src="~/Images-Archiecture/bootstrap.jpg" />
+
+
+            <img src="~/Images-Archiecture/jQuery.1.7.1.png" />
+            <img src="~/Images-Archiecture/json.jpg" />
+            <img src="~/Images-Archiecture/mssql.jpg" />
+            <img src="~/Images-Archiecture/mvc-logo-landing-page.png" />
+            <img src="~/Images-Archiecture/net-logo.jpg" />
+            <img src="~/Images-Archiecture/windows-azure-icons-2.jpg" />
+        </article>
+
+    </section>
+
+</div>
+
+
+<script>
+
+    var endpointUrl = "";
+
+    $(document).ready(function () {
+        console.log("ready!");
+
+        var loginData = {
+            email: ""
+        };
+        
+        var userEmail = '@ViewData["UserEmail"]';
+        if (userEmail.length != 0) {
+            // logged in
+            $('#userName').text(userEmail);
+            $('#logOut').show();
+        }
+        else {
+            // not logged in
+            $('#logOut').hide();
+        }
+
+        $('#inputEmailFosterParent').keypress(function (e) {
+            if (e.which == 13) {
+                $("#loginFosterParent").trigger("click");
+            }
+        });
+        $('#inputEmailFosterParent').focus();
+
+
+        // login
+        $("#loginFosterParent").click(function () {
+            console.log("click");
+            endpointUrl = '/api/util/login';
+            userEmail = $("#inputEmailFosterParent").val();
+            $('#userName').text('');
+            loginData.email = userEmail;
+
+            // reset the text displayed
+            $('#userName').text(''); 
+            $('#logOut').hide();
+
+            $.ajax({
+                type: "POST",
+                url: endpointUrl, //  + ((fosterParents.fosterParentId) ? "/" + fosterParents.fosterParentId : ""),
+                data: JSON.stringify(loginData)
+            }).done(function (data) {
+                console.log("Login OK");
+                console.log(data);
+                $('#userName').text(userEmail);
+                $('#logOut').show();
+                window.location = '/Home/FosterParentProfile?email=' + userEmail;
+
+            }).fail(function (jqXHR, textStatus) {
+                console.log("fail");
+                //console.log(jqXHR);
+                //console.log(jqXHR.responseText);
+                //console.log(jqXHR.responseJSON);
+                //console.log(jqXHR.responseJSON.serverError[0].summary);
+                $('.modal-header').css({ 'background-color': 'RED' });
+                //btn-primary btn-danger
+                $('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+                var errorMessage = jqXHR.responseJSON.serverError[0].summary;
+                $('#modal-text').text(errorMessage);
+                $('#myModal').modal({ show: true, keyboard: true });
+
+            }).complete(function () {
+                console.log("click complete");
+
+            })
+
+        });
+
+        
+        // register
+        $("#registerFosterParent").click(function () {
+            console.log("register");
+            endpointUrl = '/api/util/register';
+            userEmail = $("#inputRegisterFosterParent").val();
+            $('#userName').text('');
+            loginData.email = userEmail;
+
+            // reset the text displayed
+            $('#userName').text(''); 
+
+            $.ajax({
+                type: "POST",
+                url: endpointUrl, 
+                data: JSON.stringify(loginData)
+            }).done(function (data) {
+                console.log("register OK");
+                console.log(data);
+                $('#userName').text(userEmail);
+                window.location = '/Home/FosterParentProfile?email=' + userEmail;
+
+
+                }).fail(function (jqXHR, textStatus) {
+                    console.log("register fail");
+                    //console.log(jqXHR);
+                    //console.log(jqXHR.responseText);
+                    //console.log(jqXHR.responseJSON);
+                    //console.log(jqXHR.responseJSON.serverError[0].summary);
+
+                    $('.modal-header').css({ 'background-color': 'RED' });
+                    //btn-primary btn-danger
+                    $('#myModalbutton').removeClass('btn-primary').addClass('btn-danger');
+                    var errorMessage = jqXHR.responseJSON.serverError[0].summary;
+                    $('#modal-text').text(errorMessage);
+                    $('#myModal').modal({ show: true, keyboard: true });
+
+                }).complete(function () {
+                    console.log("click register complete");
+
+                })
+
+        });
+
+        
+
+    });
+
+    
+
+    //function getContract(contractNumber) {
+    //    return $.get(urlBase + contractNumber);
+    //}
+
+    //function showfooBarList() {
+    //    console.log("==========================");
+    //    fooBarList.serverData.forEach(function (entry) {
+    //        console.log(entry.name, " :: ", entry.index);
+    //    });
+
+    //}
+
+</script>
+
+
+
+@*bootstrap modal dialog*@
+
+<div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" >
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <p class="modal-title">oops...</p>
+            </div>
+            <div class="modal-body">
+                <p id="modal-text"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="myModalbutton" class="btn" data-dismiss="modal">OK</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

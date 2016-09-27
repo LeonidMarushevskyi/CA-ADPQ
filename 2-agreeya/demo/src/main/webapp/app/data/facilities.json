@@ -1,0 +1,148 @@
+{
+	"facilities": {
+		"pojoList": [{
+			"county_name": "LOS ANGELES",
+			"facility_address": "3701 STOCKER STREET #200",
+			"facility_administrator": "VEGA, DORIS",
+			"facility_capacity": "69",
+			"facility_city": "LOS ANGELES",
+			"facility_name": "EGGLESTON FAMILY SERVICES, FFA",
+			"facility_number": "197805862",
+			"facility_state": "CA",
+			"facility_status": "LICENSED",
+			"facility_telephone_number": "(323) 954-1464",
+			"facility_type": "FOSTER FAMILY AGENCY",
+			"facility_zip": "90008",
+			"license_first_date": "2010-04-01T00:00:00.000",
+			"licensee": "EGGLESTON YOUTH CENTER, INC.",
+			"location": {
+				"type": "Point",
+				"coordinates": [-118.337172, 34.007369]
+			},
+			"location_address": "3701 STOCKER STREET #200",
+			"location_city": "LOS ANGELES",
+			"location_state": "CA",
+			"location_zip": "90008",
+			"regional_office": "32"
+		}, {
+			"county_name": "LOS ANGELES",
+			"facility_address": "4252 CRENSHAW BLVD.",
+			"facility_administrator": "CYNTHIA M. WILLARD",
+			"facility_capacity": "0",
+			"facility_city": "LOS ANGELES",
+			"facility_name": "INSTITUTE FOR BLACK PARENTING",
+			"facility_number": "197806229",
+			"facility_state": "CA",
+			"facility_status": "CLOSED",
+			"facility_telephone_number": "(310) 807-3350",
+			"facility_type": "ADOPTION AGENCY",
+			"facility_zip": "90008",
+			"licensee": "INSTITUTE FOR BLACK PARENTING",
+			"location": {
+				"type": "Point",
+				"coordinates": [-118.33458, 34.006524]
+			},
+			"location_address": "4252 CRENSHAW BLVD.",
+			"location_city": "LOS ANGELES",
+			"location_state": "CA",
+			"location_zip": "90008",
+			"regional_office": "32"
+		}, {
+			"county_name": "LOS ANGELES",
+			"facility_address": "4252 CRENSHAW BLVD.",
+			"facility_administrator": "CYNTHIA M. WILLARD",
+			"facility_capacity": "0",
+			"facility_city": "LOS ANGELES",
+			"facility_name": "INSTITUTE FOR BLACK PARENTING",
+			"facility_number": "197806230",
+			"facility_state": "CA",
+			"facility_status": "CLOSED",
+			"facility_telephone_number": "(310) 807-3350",
+			"facility_type": "FOSTER FAMILY AGENCY SUB",
+			"facility_zip": "90008",
+			"licensee": "INSTITUTE FOR BLACK PARENTING",
+			"location": {
+				"type": "Point",
+				"coordinates": [-118.33458, 34.006524]
+			},
+			"location_address": "4252 CRENSHAW BLVD.",
+			"location_city": "LOS ANGELES",
+			"location_state": "CA",
+			"location_zip": "90008",
+			"regional_office": "32"
+		}, {
+			"county_name": "LOS ANGELES",
+			"facility_address": "3701 STOCKER AVE., STE. 200",
+			"facility_administrator": "DIXON, KAREN",
+			"facility_capacity": "0",
+			"facility_city": "LOS ANGELES",
+			"facility_name": "EGGLESTON FAMILY SERVICES",
+			"facility_number": "197805863",
+			"facility_state": "CA",
+			"facility_status": "LICENSED",
+			"facility_telephone_number": "(323) 954-1464",
+			"facility_type": "ADOPTION AGENCY",
+			"facility_zip": "90008",
+			"license_first_date": "2010-06-30T00:00:00.000",
+			"licensee": "EGGLESTON YOUTH CENTER. INC",
+			"location": {
+				"type": "Point",
+				"coordinates": [-118.337246, 34.007269]
+			},
+			"location_address": "3701 STOCKER AVE., STE. 200",
+			"location_city": "LOS ANGELES",
+			"location_state": "CA",
+			"location_zip": "90008",
+			"regional_office": "32"
+		}, {
+			"county_name": "LOS ANGELES",
+			"facility_address": "3756 SANTA ROSALIA DRIVE #312",
+			"facility_administrator": "NEKISHA KEE",
+			"facility_capacity": "0",
+			"facility_city": "LOS ANGELES",
+			"facility_name": "GUARDIANS OF LOVE",
+			"facility_number": "197805491",
+			"facility_state": "CA",
+			"facility_status": "LICENSED",
+			"facility_telephone_number": "(323) 295-6030",
+			"facility_type": "ADOPTION AGENCY",
+			"facility_zip": "90008",
+			"license_first_date": "2008-09-22T00:00:00.000",
+			"licensee": "GUARDIANS OF LOVE",
+			"location": {
+				"type": "Point",
+				"coordinates": [-118.338895, 34.008935]
+			},
+			"location_address": "3756 SANTA ROSALIA DRIVE #312",
+			"location_city": "LOS ANGELES",
+			"location_state": "CA",
+			"location_zip": "90008",
+			"regional_office": "32"
+		}, {
+			"county_name": "LOS ANGELES",
+			"facility_address": "3756 SANTA ROSALIA STE305",
+			"facility_administrator": "FULLERWOOD, KINIKKI",
+			"facility_capacity": "77",
+			"facility_city": "LOS ANGELES",
+			"facility_name": "GUARDIANS OF LOVE FFA",
+			"facility_number": "197805376",
+			"facility_state": "CA",
+			"facility_status": "LICENSED",
+			"facility_telephone_number": "(323) 295-6030",
+			"facility_type": "FOSTER FAMILY AGENCY",
+			"facility_zip": "90008",
+			"license_first_date": "2007-12-24T00:00:00.000",
+			"licensee": "GUARDIANS OF LOVE",
+			"location": {
+				"type": "Point",
+				"coordinates": [-118.338838, 34.008788]
+			},
+			"location_address": "3756 SANTA ROSALIA STE305",
+			"location_city": "LOS ANGELES",
+			"location_state": "CA",
+			"location_zip": "90008",
+			"regional_office": "32"
+		}]
+	},
+	"status": "0"
+}

@@ -1,0 +1,155 @@
+
+.avatar-image, .avatar-placeholder {
+    min-width:100px;
+    min-height:100px;
+    max-width:150px;
+    max-height:150px;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.avatar-placeholder {
+    fill: getColor(state, muted);
+    border: 2px solid getColor(state, muted);
+    padding: 1em;
+}
+
+#edit_avatar_link {
+    margin-top: 5px;
+    color: $secondary-blue;
+}
+#edit_avatar_link:hover {
+    text-decoration: none;
+    color: $primary-blue;
+}
+
+#avatar_loading_msg {
+    display: none;
+    color: $secondary-blue;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+/* Hide file input */
+
+.cropit-preview {
+    background-color: #f8f8f8;
+    background-size: cover;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-top: 7px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    .cropit-preview-image-container {
+        cursor: move;
+        border-radius: 50%;
+    }
+    .cropit-preview {
+border-radius: 50%;
+    }
+    .cropit-preview-image {
+        will-change:  initial;
+    }
+    .image-size-label {
+        margin-top: 10px;
+    }
+    input, .export {
+        display: block;
+    }
+
+}
+
+.profile-update-info {
+    margin: 1em 0;
+}
+
+.svg-icon--help {
+    fill: getColor(text, heading);
+    height: 1.3em;
+}
+
+.profile-container {
+    max-width: 1400px;
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+}
+
+.profile-header {
+    justify-content: left;
+}
+
+.profile-header-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#profile_case_worker {
+    h6 {
+        font-size: 16px;
+    }
+    .case-worker {
+        color: $secondary-blue;
+    }
+}
+
+#update_profile_btn {
+    margin-left: 20px;
+}
+
+
+.js-children-pref {
+    .selectize-control {
+        margin-bottom: 15px;
+    }
+    .selectize-input {
+        max-width: 170px;
+        input {
+            font-size: 14px;
+            padding-left: 5px;
+        }
+    }
+    .special-health {
+        margin-top: 10px;
+    }
+}
+
+.js-children-pref, .js-residence-about {
+    font-size: 16px;
+    label {
+        font-size: 15px;
+    }
+    .form--inline, .residence-radio-group {
+        label {
+            font-weight: normal;
+        }
+    }
+    .residence-radio-group {
+        margin: 5px 0 10px 0;
+    }
+    input[type=text], input[type=number], .selectize-control {
+        margin-bottom:10px;
+    }
+}
+
+.js-profile-adult-container, .js-profile-children-container {
+    font-size: 16px;
+}
+
+.profile-editing-info {
+    margin: 1em 0;
+    padding: 0.5em;
+ border-left: 2px solid getColor(text, links);
+}
+
+.profile-add-btn {
+    margin: auto;
+}
+
+.js-profile-editing-cancel {
+    font-size: 0.6em;
+    line-height: 2.6em;
+}

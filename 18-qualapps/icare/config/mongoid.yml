@@ -1,0 +1,31 @@
+production:
+  clients:
+    default:
+      database: i_care_development
+      hosts:
+        - localhost:27017
+      options:
+
+  # Configure Mongoid specific options. (optional)
+  options:
+
+development:
+  clients:
+    default:
+      database: i_care_development
+      hosts:
+        - localhost:27017
+      options:
+
+  # Configure Mongoid specific options. (optional)
+  options:
+test:
+  clients:
+    default:
+      database: i_care_test
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1

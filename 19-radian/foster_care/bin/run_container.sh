@@ -1,0 +1,1 @@
+docker run -v $(pwd)/../foster_care:/foster_care  -p 3000:3000 -p 5432:5432 -d --name=foster_care -itP foster_care_ubuntu:latest

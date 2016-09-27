@@ -1,0 +1,143 @@
+<div class="MainContainer" id="MainContainer">
+    <div class="row">
+        <div class="col-sm-12">
+            <ol class="breadcrumb">
+                <li><a href="#/">Home</a></li>
+                <li><a href="javascript:void(0);">Establish Profile</a></li>
+                <li class="active">Family Narrative &amp; Preferences</li>
+            </ol>
+        </div>
+    </div>
+    <section>
+        <div class="row marginTop10 lightGrayBG">
+            <div class="col-xs-12 col-sm-6 h3 txtBlue marginTop7">Establish Profile</div>
+            <div class="col-xs-12 col-sm-6 txtBlue font1dot5em"><span class="stepCount">Step <span class="font1em">3</span> of <span class="font1em">4</span></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-pills nav-justified tabPills">
+                    <li><a href="javascript:void(0);">Account Detail</a></li>
+                    <li><a href="javascript:void(0);">Personal Information</a></li>
+                    <li class="active"><a href="javascript:void(0);">Family Narrative &amp; Preferences</a></li>
+                    <li><a href="javascript:void(0)">License &amp; Agency Detail</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="form-horizontal marginTop20">
+                    <form name="registrationForm" novalidate>
+                        <div class="form-group required" ng-class="{ 'has-error' : registrationForm.description.$invalid && !registrationForm.description.$pristine }">
+                            <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Please provide information to describe you and your family. </label>
+                            <div class="col-sm-6 paddingTop7">
+                                <textarea type="text" rows="4" class="form-control" name="description" ng-model="model.familyDetails.description" required></textarea>
+                                <span ng-show="registrationForm.description.$invalid && !registrationForm.description.$pristine" class="help-block"> Desription required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Do you have Kids?</label>
+                            <div class="col-sm-6">
+                                <p>
+                                    <label>
+                                        <input type="radio" name="RadioGroup1" id="RadioGroup1_0" ng-model="model.familyDetails.haveKids" value="y"> Yes
+                                    </label>
+                                    &nbsp;
+                                    <label>
+                                        <input type="radio" name="RadioGroup1" id="RadioGroup1_1" ng-model="model.familyDetails.haveKids" value="n"> No
+                                    </label>
+                                    <br>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group required" id="dv_numofkids" ng-if="model.familyDetails.haveKids == 'y'" ng-class="{ 'has-error' : registrationForm.ddl_numofKids.$invalid && !registrationForm.ddl_numofKids.$pristine }">
+                            <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Number of Kids</label>
+                            <div class="col-sm-6">
+                                <select name="ddl_numofKids" class="form-control" ng-model="model.familyDetails.numberOfKids" ng-options="kid.Id as kid.Kid for kid in model.ddlNumberOfKids" required>
+                                    <option value="0">Select</option>
+                                </select>
+                                <span ng-show="registrationForm.ddl_numofKids.$error.required">Select number of kids</span>
+
+                            </div>
+                        </div>
+                        <div class="panel panel-default" id="dv_FirstKid" ng-if="model.familyDetails.numberOfKids >= 1 && model.familyDetails.haveKids == 'y'">
+                            <div class="panel-heading"><b>First Kid Details</b></div>
+                            <div class="panel-body">
+                                <div class="form-group required" ng-class="{ 'has-error' : registrationForm.firstKidName.$invalid && !registrationForm.firstKidName.$pristine }">
+                                    <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Name</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" name="firstKidName" ng-model="model.kid1.kidName" required>
+                                        <span ng-show="registrationForm.firstKidName.$invalid && !registrationForm.firstKidName.$pristine" class="help-block"> First name required.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group required " ng-class="{ 'has-error' : registrationForm.ddlFirstKidAgeGroup.$invalid && !registrationForm.ddlFirstKidAgeGroup.$pristine }">
+                                    <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Age Group of First Kid</label>
+                                    <div class="col-sm-6">
+                                        <select name="ddlFirstKidAgeGroup" class="form-control" ng-model="model.kid1.age" ng-options="age.Id as age.ageGroup for age in model.kidsAgeGroups" required>
+                                            <option value="">Select</option>
+                                        </select>
+                                        <span ng-show="registrationForm.ddlFirstKidAgeGroup.$error.required">Select age group of kid</span>
+                                    </div>
+                                </div>
+                                <div class="form-group required" ng-class="{ 'has-error' : registrationForm.firstKidHobbies.$invalid && !registrationForm.firstKidHobbies.$pristine }">
+                                    <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Hobbies</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" rows="4" name="firstKidHobbies" type="text" ng-model="model.kid1.hobbies" required></textarea>
+                                        <span ng-show="registrationForm.firstKidHobbies.$invalid && !registrationForm.firstKidHobbies.$pristine" class="help-block"> Hobbies required.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default" id="dv_SecondKid" ng-if="model.familyDetails.numberOfKids == 2 && model.familyDetails.haveKids == 'y'">
+                            <div class="panel-heading"><b>Second Kid Details</b></div>
+                            <div class="panel-body">
+                                <div class="form-group required" ng-class="{ 'has-error' : registrationForm.secondKidName.$invalid && !registrationForm.secondKidName.$pristine }">
+                                    <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Name</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" name="secondKidName" ng-model="model.kid2.kidName" required>
+                                        <span ng-show="registrationForm.secondKidName.$invalid && !registrationForm.secondKidName.$pristine" class="help-block"> First name required.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group required " ng-class="{ 'has-error' : registrationForm.ddlSecondKidAgeGroup.$invalid && !registrationForm.ddlSecondKidAgeGroup.$pristine }">
+                                    <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Age Group of Second Kid</label>
+                                    <div class="col-sm-6">
+                                        <select name="ddlSecondKidAgeGroup" class="form-control" ng-model="model.kid2.age" ng-options="age.Id as age.ageGroup for age in model.kidsAgeGroups" required>
+                                            <option value="">Select</option>
+                                        </select>
+                                        <span ng-show="registrationForm.ddlSecondKidAgeGroup.$error.required">Select age group of kid</span>
+                                    </div>
+                                </div>
+                                <div class="form-group required" ng-class="{ 'has-error' : registrationForm.secondKidHobbies.$invalid && !registrationForm.secondKidHobbies.$pristine }">
+                                    <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Hobbies</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" rows="4" name="secondKidHobbies" type="text" ng-model="model.kid2.hobbies" required></textarea>
+                                        <span ng-show="registrationForm.secondKidHobbies.$invalid && !registrationForm.secondKidHobbies.$pristine" class="help-block"> Hobbies required.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group required" ng-class="{ 'has-error' : registrationForm.kidsPreference.$invalid && !registrationForm.kidsPreference.$pristine }">
+                            <label for="inputPassword" class="control-label col-sm-4 paddingTop7">Please be open in expressing your Kids behavior, emotional and other preferences</label>
+                            <div class="col-sm-6 paddingTop7">
+                                <textarea type="text" rows="4" class="form-control" name="kidsPreference" ng-model="model.familyDetails.kidsPref" required></textarea>
+                                <span ng-show="registrationForm.kidsPreference.$invalid && !registrationForm.kidsPreference.$pristine" class="help-block"> Desription required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-sm-offset-4">
+                                <input class="btn btn-primary" value="Save" type="submit" ng-click="model.SaveRegistrationProfileData()" ng-disabled="registrationForm.$invalid">
+                                <input class="btn btn-default" value="Save & Exit" type="submit" ng-click="model.SaveRegistrationProfileDataAndExit()" ng-disabled="registrationForm.$invalid">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.form-horizontal -->
+            </div>
+            <div class="col-sm-5 marginTop20 LeftDivider">
+                <img src="./contents/images/registerFiller.jpg" width="388" height="408" alt="" class="img-responsive" /> </div>
+        </div>
+
+
+    </section>
+</div>
+<main-script></main-script>

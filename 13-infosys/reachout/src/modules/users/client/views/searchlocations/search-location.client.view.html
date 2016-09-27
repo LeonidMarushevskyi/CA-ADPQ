@@ -1,0 +1,39 @@
+<section>
+	<div class="page-header">
+    	<h2>Search</h2>
+  	</div>
+	<div class = "row">
+		<div class = "col-xs-12 col-sm-3 col-md-3">
+			<div class = "container-fluid checkboxes" style = "background-color: #eee">
+				<div class = "label-filter">
+					<h3>Within 10 miles</h3>
+				</div>
+				<br>
+ 				<ul>
+    				<li><input type="checkbox" ng-model = "facilities" ng-change = "getData()">&nbsp;&nbsp;Foster Care Facilities</li><br>
+    				<li><input type="checkbox" ng-model = "schools" ng-change = "getData()">&nbsp;&nbsp;Schools</li><br>
+    				<!-- <li class = "text-color-white"><input type="checkbox" ng-model = "transport">Public transport</li> -->
+  				</ul>
+			</div>	
+		</div>
+		<div class = "col-xs-12 col-sm-9 col-md-9 map-container">
+			<div ng-show = "vm.authentication.user">
+				<ng-map center="{{vm.authentication.user.latitude}}, {{vm.authentication.user.longitude}}" zoom="11">
+					<marker position = "{{vm.authentication.user.latitude}}, {{vm.authentication.user.longitude}}" title = "{{vm.authentication.user.stAddr2}} {{vm.authentication.user.stAddr1}}"></marker>
+					<marker icon = "http://maps.google.com/mapfiles/ms/icons/purple-dot.png" ng-repeat = "place in schoolLocations" title="{{place.name}}" position = "{{place.lat}}, {{place.lng}}"></marker>
+					<marker icon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png" ng-repeat = "place in transportLocations" title="{{place.name}}" position = "{{place.lat}}, {{place.lng}}"></marker>
+					<marker id = "{{place.facility_number}}" icon = "http://maps.google.com/mapfiles/ms/icons/green-dot.png" ng-if = "locations.length" ng-repeat = "place in locations" title = "{{place.facility_name}}" position = "{{place.location.coordinates[1]}}, {{place.location.coordinates[0]}}" on-click = "showDetails(place)"></marker>
+					<info-window id ="facilitiesInfo">
+						<div ng-non-bindable="">
+					        {{vm.place.facility_name}}<br/>
+					        {{vm.place.facility_address}}<br/>
+					        {{vm.place.facility_city}}, {{vm.place.facility_state}} {{vm.place.facility_zip}}<br/>
+					        {{vm.place.facility_telephone_number}}
+						</div> 
+        			</info-window>
+    			</ng-map>
+			</div>
+			<br><br>
+		</div>
+	</div>
+</section>

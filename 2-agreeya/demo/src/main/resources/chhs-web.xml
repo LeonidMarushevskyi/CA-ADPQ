@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xsi:schemaLocation="
+   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<import resource="classpath*:/chhs-dao.xml"/>
+	<import resource="classpath*:/chhs-service.xml"/>
+	<import resource="classpath*:/chhs-bd.xml"/>
+	<!-- <import resource="classpath*:/chhs-jms.xml"/>  -->
+<context:property-placeholder location="classpath:/chhs_config.properties,file:d:/chhs_config.properties"
+                              ignore-unresolvable="false" ignore-resource-not-found="true"/>
+
+
+    <bean class="com.agreeya.chhs.util.ResourceBundleUtil">
+        <property name="location" value="classpath:/messages.properties"/>
+    </bean>
+    
+     <bean class="com.agreeya.chhs.util.HibernateValidationErrorUtil">
+        <property name="location" value="classpath:/validation_errors.properties"/>
+    </bean>
+
+	
+	<!-- ContextProvider -->
+	<bean id="beanProvider" class="com.agreeya.chhs.util.ContextProvider"></bean>
+
+	<!-- User controller -->
+	<bean id="membershipController" class="com.agreeya.chhs.controller.MembershipController">
+		<property name="memberServiceBD" ref="memberServiceBD" />
+	</bean>
+	
+	<!-- Login controllers -->
+	<bean id="contextInitiationController" class="com.agreeya.chhs.controller.ContextInitiationController">
+		<property name="memberServiceBD" ref="memberServiceBD" />
+		<property name="aESSecurityBD" ref="aESSecurityBD" />
+	</bean>
+
+	<!-- Message Property File For Hibernate Validator -->
+	<bean id="messageValidationSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="validation_errors"></property>
+	</bean>
+
+	<!-- Implementor class HibernateValidator -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageValidationSource" />
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+	</bean>
+	
+	<!-- log4j implementation -->
+	<!-- <bean id="log4jInitialization" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
+		<property name="targetMethod" value="initLogging" />
+		<property name="arguments">
+		<list>
+		<value>classpath:/log4j.xml</value>
+		</list>
+		</property>
+	</bean> -->
+	
+	<!-- Filter bean -->
+	<bean id="WSFilter" class="com.agreeya.chhs.filter.WSRequestFilter">
+		<property name="memberServiceBD" ref="memberServiceBD" />
+		<property name="requestClassMap">
+			<map>
+				<entry key="/rest/contextinit/createusercontext" value="com.agreeya.chhs.request.CreateUserContextRequest" />
+				<entry key="/rest/contextinit/userlogout" value="com.agreeya.chhs.request.UserLogoutRequest" />
+				<entry key="/rest/contextinit/checkuserdetailexist" value="com.agreeya.chhs.request.ForgotPasswordRequest" />
+				<entry key="/rest/facilities/agencynearby" value="com.agreeya.chhs.request.FindAgenciesBytLocationRequest" />
+				<entry key="/rest/member/register" value="com.agreeya.chhs.request.UserRegistrationRequest" />
+				<entry key="/rest/member/save" value="com.agreeya.chhs.request.SaveUserRequest" />
+				<entry key="/rest/member/inbox" value="com.agreeya.chhs.request.GetUserInboxRequest" />
+			</map>
+		</property>
+		<property name="validator" ref="validator"/>
+	    <property name="applicationLoggerService" ref="applicationLoggerService"/>
+	</bean>	
+	
+</beans>

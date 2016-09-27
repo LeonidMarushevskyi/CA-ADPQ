@@ -1,0 +1,26 @@
+
+Installation 
+
+1. Provision a web service from a service provider or make sure Microsoft Internet Information Server (IIS) is installed on your local system. We used a free version of Microsoft Azure web service https://azure.microsoft.com/ for this prototype.
+
+2. Provision a SQL server. We used Azure SQL server
+
+3. Install Microsoft SQL Studio on your computer. We use a free trial version 
+
+4. Install Visual Studio 2015
+
+5. Run the SQL scripts in the SQL folder to create tables and store procedures. There are four files and they are numbered. Please run them in that order:
+    a.	1-DeleteALLStoreProcs.sql
+    b.	2-DropALLTables.sql
+    c.	3-CreateALLTables.sql
+    d.	4-CreateALLStoreProcs.sql
+    
+6.	Download the solution from GitHub to your local system
+
+7.	Load the solution (AgileVendorPool.sln) into Visual Studio 2015
+
+8.	In the Web.Config file, edit the "connectionStrings" and point it to either your remote SQL server or your local SQL server
+
+That is it. 
+
+Now you can run the application.

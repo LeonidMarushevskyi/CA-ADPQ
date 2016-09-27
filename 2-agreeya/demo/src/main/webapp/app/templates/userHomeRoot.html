@@ -1,0 +1,40 @@
+﻿<div class="MainContainer" id="MainContainer">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ol class="breadcrumb">
+                <li><a href="javascript:void(0)">Home</a></li>
+                <li class="active">{{model.breadCrumText}}</li>
+            </ol>
+        </div>
+    </div>
+    <section>
+        <div class="row marginTop10 lightGrayBG">
+            <div class="col-xs-12 col-sm-6 h3 txtBlue marginTop7">My Page</div>
+        </div>
+        <div class="row marginTop10">
+            <div class="col-sm-3 leftNav">
+                <!--Left Nav-->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="nav nav-pills tabPills  nav-stacked">
+                            <li ng-class="model.tabA"><a ng-click="model.setActive(1)" ng-link="['UserStatus']">My Page</a></li>
+                            <li ng-class="model.tabB"><a ng-click="model.setActive(2)" ng-link="['UserAccountDetails']">Manage Profile</a></liclass="">
+                            <li ng-class="model.tabC"><a ng-click="model.setActive(3)" ng-link="['SearchChildResidentialFacilities']">Lookup Child Residential Facilities</a></li>
+                            <li ng-class="model.tabD"><a ng-click="model.setActive(4)" ng-link="['SearchFosterCareAgencies']">Lookup  Foster Care Agencies</a></li>
+                            <li ng-class="model.tabE"><a ng-click="model.setActive(5)" ng-link="['UserInbox']">Inbox</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                    <ng-outlet></ng-outlet>
+            </div>
+
+        </div>
+
+
+
+    </section>
+</div>
+<main-script></main-script>

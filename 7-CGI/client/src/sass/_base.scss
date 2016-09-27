@@ -1,0 +1,101 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.collapse {
+	transition: height 0.35s ease 0s;
+}
+
+body {
+  padding-top: 0px;
+  font-family: $main-font;
+}
+
+h1 {
+	font-size: $h1;
+}
+
+h2 { 
+	font-size: $h2;
+}
+
+h3 {
+	font-size: $h3;
+}
+
+a {
+	cursor: pointer;
+	
+	&, &.no-change:visited {
+		color: $link-color;
+	}
+	
+	&.no-change {
+		outline: 0;
+	}
+	
+	&:visted {
+		color: $link-visited;
+	}
+	
+	&:hover, &:active, &:focus {
+		color: $link-hover !important;
+		
+		&.btn {
+			color: white !important;
+			background: lighten($button-bg, 10%);
+		}
+		
+		&.btn-secondary {
+			color: lighten($button-bg, 20%) !important;
+			border-color: lighten($button-bg, 20%) !important;			
+			background: white;
+		}
+	}
+	
+	&.block-wrap {
+		&, &:hover {
+			color: black !important;
+			display: block;
+			text-decoration: none;
+		}
+	}
+}
+
+hr {
+	border-color: #999;
+}
+
+.nav a, .navbar-brand {
+	&:focus {
+		outline: 0;
+	}
+}
+
+.btn {
+	text-transform: uppercase;
+	font-weight: bold;	
+	padding: 10px 45px;
+}
+
+.btn-primary {
+	background-color: $button-bg;
+	border-color: darken($button-bg, 10%);
+}
+
+.btn-secondary {
+	background-color: white;
+	color: $button-bg;
+	border-color: $button-bg;
+}
+
+.link-button-color {
+	color: $button-bg;
+}
+
+.login-btn {
+	margin-right: 25px;
+}
+
+.forgot-password {
+	display: inline-block;
+	margin-top: 15px;
+}

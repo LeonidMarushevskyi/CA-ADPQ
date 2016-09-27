@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Com.Natoma.HhsPrototype.Proc.ProtoProcSvc" CodeBehind="ProtoProcSvc.svc.cs" %>

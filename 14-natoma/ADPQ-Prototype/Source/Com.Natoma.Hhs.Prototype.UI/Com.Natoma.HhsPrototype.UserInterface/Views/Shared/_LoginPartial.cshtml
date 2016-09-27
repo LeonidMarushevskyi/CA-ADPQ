@@ -1,0 +1,13 @@
+﻿@if (ViewBag.IsUserLoggedIn != null && ViewBag.IsUserLoggedIn)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="@Url.Action("Logoff", "Account")"><span class="glyphicon glyphicon-log-out natoma-icon" aria-hidden="true"></span> Log Off</a></li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="@Url.Action("Register", "Account")"><span class="glyphicon glyphicon-ok-circle natoma-icon" aria-hidden="true"></span> Register</a></li>
+        <li><a href="@Url.Action("Login", "Account")"><span class="glyphicon glyphicon-log-in natoma-icon" aria-hidden="true"></span> Log In</a></li>
+    </ul>
+}

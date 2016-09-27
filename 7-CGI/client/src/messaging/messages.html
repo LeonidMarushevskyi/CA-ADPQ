@@ -1,0 +1,64 @@
+<div class="messages" ng-controller="MessagesController">
+	<div class="row" ng-hide="messageId">
+		<a ng-click="createNewMessage()" ng-hide="newMessage" class="btn btn-primary col-xs-12" translate>New Message</a>
+		<hr class="col-xs-12">
+	</div>
+	
+	<div class="row message-filter" ng-hide="messageId || newMessage">
+		<fieldset class="form-group">
+			<input ng-model="search" class="form-control" placeholder="{{'search messages'|translate}}">
+		</fieldset>
+	</div>
+	
+	<div class="row message" ng-repeat="m in messages | filter:search | orderBy:'-createdAt'" ng-hide="messageId || newMessage" ng-class="{'read': m.isRead}">
+		<a ui-sref="messages({id: m.id})" class="view-message">
+			<div class="col-xs-8 col-sm-4 from">
+				<i class="fa fa-reply" aria-hidden="true" ng-show="m.fromId == $parent.userData.id"></i>
+				<i class="fa fa-share" aria-hidden="true" ng-hide="m.fromId == $parent.userData.id"></i>
+				
+				<i class="fa fa-envelope" aria-hidden="true" ></i>
+				
+				<h5>{{m.from}}</h5>
+				
+				<div class="date">{{m.createdAt|date:'MMM d'}}</div>
+			</div>
+			
+			<div class="col-xs-4 col-sm-8 content">
+				<h5>{{m.subject}}</h5>
+				<div class="body">{{m.body}}</div>
+			</div>
+		</a>
+	</div>
+	
+	<div class="single-message " ng-show="messageId" ng-hide="newMessage">
+		<h5>{{message.from}}</h5>
+				
+		<div class="date">{{message.createdAt|date:'MMM d'}}</div>
+			
+		<h5 class="subject">{{message.subject}}</h5>
+		<div class="body">{{message.body}}</div>
+
+	</div>
+	
+	<div class="row" ng-hide="!messageId || newMessage">
+		<a ng-click="createNewMessage(message)" class="btn btn-primary col-xs-12" translate>Reply</a>
+	</div>
+	
+	<div class="reply" ng-show="newMessage">
+		<p>{{messageDate|date:'MMMM d @ h:MM a'}}</p>
+		
+		<fieldset class="form-group">
+			<label for="subject" translate>Subject</label>
+			<input ng-model="newMessage.subject" type="input" class="form-control" id="subject" placeholder="{{'Subject'|translate}}" required>
+		</fieldset>
+		
+		<fieldset class="form-group">
+			<label for="body" translate>Body</label>
+			<textarea ng-model="newMessage.body" type="input" class="form-control" id="body"></textarea>
+		</fieldset>
+		
+		<button class="btn btn-primary" ng-click="sendMessage(newMessage)" translate>Send</button>
+		<a class="link-button-color cancel" ng-click="newMessage = null" translate>Cancel</a>
+	</div>
+
+</div>

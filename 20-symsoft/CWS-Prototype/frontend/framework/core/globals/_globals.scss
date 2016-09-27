@@ -1,0 +1,71 @@
+//
+// Global Variables
+// =============================================================================
+
+//
+// Base
+// ----
+
+// Non-responsive website
+$non-responsive: true !default;
+
+// Transition duration
+$transition-duration: 150ms !default;
+
+// Breakpoints
+$width-xs: 30em !default;
+$width-sm: 48em !default;
+$width-md: 60em !default;
+$width-lg: 70em !default;
+$width-xg: 80em !default;
+
+// Spacing
+$spacing-xs: unitSize(1) !default;
+$spacing-s: unitSize(2) !default;
+$spacing-m: unitSize(3) !default;
+$spacing-l: unitSize(4) !default;
+$spacing-xl: unitSize(5) !default;
+
+//
+// Color Palette
+// -------------
+
+$gray: (
+    darker: #333333,
+    dark: #4d4d4d,
+    base: #666666,
+    light: #808080,
+    lighter: #999999
+) !default;
+
+// Colors
+$colors-default: (
+    base: (
+        "primary": #555,
+        "lines": #e0e0e0
+    ),
+    text: (
+        "primary": #555,
+        "secondary": #666,
+        "heading": #333333,
+        "links": map_get($gray, base),
+        "emphasis": map_get($gray, base),
+        "selection": black,
+        "selection-text": white,
+        "ui": white
+    ),
+    background: (
+        "dark": map_get($gray, dark),
+        "light": map_get($gray,light),
+        "body": white
+    ),
+    state: (
+        "muted": #aaa,
+        "primary": #4591aa,
+        "success": #45ca69,
+        "warning": #ffb800,
+        "error": #ca4829
+    ),
+);
+
+$colors: extend($colors-default, $colors, true);

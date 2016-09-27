@@ -1,0 +1,73 @@
+<div ng-controller="HomeController">
+	<div class="summary-section messages">
+		<div ui-sref="messages">
+			<a ui-sref="messages" class="block-wrap">
+				<i class="fa fa-envelope" aria-hidden="true">
+					<div class="badge" ng-show="unreadCount > 0">
+						<span>{{unreadCount}}</span>
+					</div>
+				</i>
+				
+				<h3 translate>Messages</h3>
+			</a>
+		</div>
+		<div>
+			<h2>
+				<span translate>New Messages</span>
+				<small><a ui-sref="messages"translate>more...</a></small>
+			</h2>
+			<ul>
+				<li ng-repeat="m in messages | orderBy:'!date' | limitTo:2">
+					<a ui-sref="messages({id: m.id})">
+						<i class="fa" aria-hidden="true" 
+						   ng-class="{'fa-envelope': !m.read, 'fa-envelope-o': m.read}"
+						>
+						</i>
+						<div ng-class="{'unread': !m.read, 'read': m.read}">
+							<span><span translate>From:</span> {{m.from}}</span>
+							<span>{{m.subject}}</span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="summary-section plan" ng-repeat="plan in plans">
+		<div>
+			<a ui-sref="plan({id: plan.id })" class="block-wrap">
+				<div class="circle-picture"><img ng-src="{{plan.profilePicture}}"></div>
+				<h3>
+					<span ng-show="$parent.currentLocale.language == 'es'">Plan de</span>
+					{{plan.firstName}}
+					<span ng-show="$parent.currentLocale.language == 'en'">'s Plan</span>
+				</h3>
+			</a>
+		</div>
+		<div>
+			<div>
+				<h2>{{plan.firstName}} {{plan.lastName}}</h2>
+				<span ng-show="plan.location"><span translate>Location:</span> {{plan.location}}</span>
+			</div>
+			<div>
+				<h4 translate>Schedule</h4>
+				
+				<table>
+					<tr ng-repeat="event in events | orderBy:'-date' | limitTo:2">
+						<td>
+							<a ui-sref="event({id: event.id})">
+								<i class="fa" aria-hidden="true" 
+								   ng-class="{'fa-check-square-o': event.completed, 'fa-calendar-o': !event.completed}"
+								>
+								</i>
+							</a>
+						</td>
+						<td><a ui-sref="placeholder({page: 'Events'})">{{event.date|date:'M/d/yy'}}</a></td>
+						<td><a ui-sref="placeholder({page: 'Events'})">{{event.title}}</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+</div>

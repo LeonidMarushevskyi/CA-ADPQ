@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+rails_path = File.expand_path('../../', __FILE__)
+puts rails_path
+
+`mkdir public/images`
+
+Dir.glob("#{rails_path}/vendor/assets/**/images").each do |directory|
+  `cp #{directory}/* #{rails_path}/public/images/`
+end
+
+`mkdir public/fonts`
+
+Dir.glob("#{rails_path}/vendor/assets/**/fonts").each do |directory|
+  `cp #{directory}/* #{rails_path}/public/fonts/`
+end

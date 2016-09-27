@@ -1,0 +1,23 @@
+<h3>My profile</h3>
+
+<% %w( first_name last_name email ).each do |attr|  %>
+  <div class='col-sm-1'><strong><%= attr.humanize %>: </strong></div>
+  <input class='col-sm-3' type="text" name="user[<%= attr %>]" id="user_<%= attr %>" value="<%= @user.send(attr) %>" class="text ui-widget-content ui-corner-all" >
+  <br/> <br/>
+<% end %>
+
+<% 
+  address_string = 'Address'
+  address = @user.addresses.first
+  if (!address && @user.facility) 
+    address = @user.facility.addresses.first
+    address_string += ' (Foster Facility)'
+  end
+%>
+
+<% 2.times { %> <br/> <% } %>
+
+<h4><%= address_string %></h4>
+<% %w( street city state county_name zip telephone_number ).each do |attr|  %>
+  <div class='col-sm-1'><strong><%= attr.humanize %>: </strong></div> <div class='col-sm-3'><%= address.send(attr) %></div><br/>
+<% end %>

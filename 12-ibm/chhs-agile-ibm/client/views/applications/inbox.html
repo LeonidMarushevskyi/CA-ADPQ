@@ -1,0 +1,30 @@
+<div className="inbox">
+  <div layout="row" layout-align="center">
+    <div flex-gt-xs="10"></div>
+    <div flex-gt-xs="80" layout-align="left center">
+      <md-content flex="">
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="inbox in inboxData"
+                  ng-click="showMessage($event, inbox.title, inbox.from, inbox.body)">
+            <div class="md-avatar">
+              <md-icon  md-svg-src="client/icons/account_circle_black.svg" ng-cloak
+                       class="material-icons" aria-label="Message Profile"></md-icon>
+            </div>
+            <div class="md-list-item-text">
+              <h3>{{inbox.title}}</h3>
+              <p ng-cloak>
+                {{inbox.from}}
+              </p>
+            </div>
+            <md-divider inset=""></md-divider>
+          </md-list-item>
+        </md-list>
+        <md-button class="md-raised md-warn" ng-click="showMessageDialog($event)">
+          <md-icon md-svg-src="client/icons/mode_edit.svg" ng-cloak class="material-icons" aria-label="Compose Message"></md-icon>
+          Compose
+        </md-button>
+      </md-content>
+      </div>
+  <div flex-gt-xs="10"></div>
+  </div>
+</div>

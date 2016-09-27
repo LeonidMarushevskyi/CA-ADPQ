@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"  
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+        <link rel="shortcut icon" href="images/header_ca.gov.ico" />
+        <link rel="apple-touch-icon" href="images/header_ca.gov.png" />
+        
+        <link rel="stylesheet" type="text/css" href="css/skel.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style-components.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style-primefaces_overrides.css"/>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+
+        <!-- Used to prevent IE from going into compatibility mode -->
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        </f:facet>
+
+
+        <ui:insert name="title">
+            <!-- INSERT CUSTOM TITLE HERE -->
+        </ui:insert>
+
+
+
+        <!--<script src="js/jquery.min.js"></script>-->
+        <script src="js/jquery.dropotron.min.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/skel-layers.min.js"></script>
+        <script src="js/init.js"></script>
+
+
+
+
+
+
+        <ui:insert name="scripts">
+            <!-- INSERT CUSTOM SCRIPTS HERE -->
+        </ui:insert>
+
+    </h:head>
+
+    <h:body styleClass="homepage">
+
+
+
+
+        <f:view>
+
+
+            <h:form id="chhsForm">
+
+
+
+                <!-- EXAMPLE FEEDBACK SPINNER -->
+                <p:dialog id="feedback" widgetVar="feedbackWdg" modal="true" height="40px" width="69px" position="center" closable="false" style="background: white;"
+                          maximizable="false" resizable="false" showHeader="false" appendTo="@(form)">
+                    <h:graphicImage value="images/spinner.gif" alt="feedback spinner"></h:graphicImage>
+                </p:dialog>
+                <!-- ======================== -->
+
+
+
+                <!-- COMMON CONFIRMATION DIALOG -->
+                <p:confirmDialog id="dirtyDlg" message="You must save or cancel your changes before leaving."
+                                 header="Unsaved Changes Warning" closable="false" severity="alert" appendTo="@(form)"
+                                 widgetVar="dirtyDlgWdg">
+                    <p:commandButton value="OK" onclick="PF('dirtyDlgWdg').hide()" />
+                </p:confirmDialog>
+                <!-- ======================== -->
+
+
+                <!-- COMMON SAVE CONFIRMATION DIALOG -->
+                <p:confirmDialog id="saveDlg" message="Your changes have been successfully saved."
+                                 header="Save Confirmation" closable="false" severity="info" appendTo="@(form)"
+                                 widgetVar="saveDlgWdg">
+                    <p:commandButton value="OK" onclick="PF('saveDlgWdg').hide()" action="#{navigationManagedBean.navigateToLink('index', false)}" />
+                </p:confirmDialog>
+                <!-- ======================== -->
+
+
+                <ui:insert name="header">
+                    <!--  INSERT HEADER HERE -->
+                </ui:insert>
+
+                <ui:insert name="content">
+                    <!-- INSERT CONTENT HERE -->
+                </ui:insert>
+
+                <ui:insert name="footer">
+                    <!-- INCLUDE FOOTER HERE -->
+                </ui:insert>
+
+                <!-- GPS ENHANCEMENT, STILL EXPERIMENTAL -->
+                <!--<ui:include src="../common/coordinates.xhtml"/>-->
+
+            </h:form>
+        </f:view>
+
+<!-- GPS ENHANCEMENT, STILL EXPERIMENTAL -->
+<!--         <script>
+
+                $(document).ready(function() {
+                    navigator.geolocation.getCurrentPosition(findLocation, errorAlert);
+                });
+
+                function findLocation(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    
+                    
+                    $("#chhsForm\\:cachedLatitude").val(latitude);
+                    $("#chhsForm\\:cachedLongitude").val(longitude);
+
+                };
+
+                function errorAlert() {
+                    alert('Unable to determine location, ensure you have enabled GPS location permissions in your browser.');
+                };
+
+               
+
+            </script>-->
+            
+
+    </h:body>
+
+
+</html>
