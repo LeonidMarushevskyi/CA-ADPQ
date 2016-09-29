@@ -1,0 +1,31 @@
+<md-dialog class="rex-modal new-msg-modal" aria-label="New Message" role="dialog">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h1>New Message</h1>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+
+        <label for="to">To</label>
+        <input type="text" class="form-control rex-input" id="to" ng-model="NewMsg.msg.to"></input>
+
+        <label for="subject">Subject</label>
+        <input type="text" class="form-control rex-input" id="subject" ng-model="NewMsg.msg.subject"></input>
+
+        <label for="message">Message</label>
+        <textarea type="textarea" class="form-control rex-input" rows="8" id="message" ng-model="NewMsg.msg.message"></textarea>
+
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <div class="col-sm-offset-6 col-sm-3">
+        <button tabindex="3" type="button" class="btn rex-button" ng-click="NewMsg.closeModal()">Cancel</button>
+      </div>
+      <div class="col-sm-3">
+        <button tabindex="3" type="submit" class="btn rex-button" ng-click="NewMsg.submit()">Send</button>
+      </div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

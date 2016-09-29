@@ -1,0 +1,22 @@
+.bar{
+  background-color: $darkGray;
+
+  p{
+    color: white;
+    transform: translateY(4px);
+  }
+
+  .glyphicon-edit{
+    top: 2px;
+  }
+}
+
+.inbox-view {
+  margin-top: -15px;
+  .list-column{
+    padding-right: 0;
+  }
+  .mobile-message{
+    margin-bottom: 100px;
+  }
+}
