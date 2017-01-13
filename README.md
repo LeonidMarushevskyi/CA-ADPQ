@@ -1,4 +1,4 @@
 # CA-ADPQ
-This is an archive of selected bids from the ADPQ RFI submissions. 
+This is an archive of submitted prototype repositories from the CHHS ADPQ RFI. 
 
-Selected Vendors are included here. All git files removed; also the links to the prototypes are not guaranteed to be working
+All git files removed; also the links to the prototypes are not guaranteed to be working.
